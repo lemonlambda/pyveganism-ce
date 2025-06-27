@@ -9,7 +9,6 @@ require("prototypes.updates.missing-pymods")
 
 local enabled_concepts = {
     --technologies
-    "technologies.biomass",
     "technologies.oil-plants",
     "technologies.protein-plants",
     "technologies.oil-seeds",
@@ -45,7 +44,10 @@ local enabled_concepts = {
     --
     --fungi
     "fungi.atztazzae",
-    --
+
+    -- yes
+    "plant-residues",
+    
     --miscellaneous
     "misc.samples",
     "misc.citric-acid",

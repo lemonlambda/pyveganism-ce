@@ -1,22 +1,3 @@
-TECHNOLOGY {
-    type = "technology",
-    name = "biomass",
-    icon = "__pyveganism__/graphics/technology/biomass.png",
-    icon_size = 128,
-    order = "c-a",
-    upgrade = false,
-    prerequisites = {"oil-plants"},
-    effects = {},
-    unit = {
-        count = 50,
-        ingredients = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
-        },
-        time = 30
-    }
-}
-
 ITEM {
     type = "item",
     name = "plant-residues",
