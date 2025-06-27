@@ -96,10 +96,8 @@ RECIPE {
     main_product = ""
 }:add_unlock("growth-media-3"):add_unlock("rocket-fuel")
 
-if mods["pyrawores"] then
-    RECIPE("pseudodaemonas-rocket-fuel"):replace_ingredient("iron-plate", "tin-plate")
-    RECIPE("enrichment-culture-pseudodaemonas"):replace_ingredient("limestone", "sodium-hydroxide")
-    RECIPE("enrichment-culture-pseudodaemonas"):replace_ingredient("pressured-air", "oxygen")
-    RECIPE("pure-culture-pseudodaemonas"):replace_ingredient("limestone", "sodium-hydroxide")
-    RECIPE("pure-culture-pseudodaemonas"):replace_ingredient("pressured-air", "oxygen")
-end
+RECIPE("pseudodaemonas-rocket-fuel"):replace_ingredient("iron-plate", "tin-plate")
+RECIPE("enrichment-culture-pseudodaemonas"):replace_ingredient("limestone", "sodium-hydroxide")
+RECIPE("enrichment-culture-pseudodaemonas"):replace_ingredient("pressured-air", "oxygen")
+RECIPE("pure-culture-pseudodaemonas"):replace_ingredient("limestone", "sodium-hydroxide")
+RECIPE("pure-culture-pseudodaemonas"):replace_ingredient("pressured-air", "oxygen")

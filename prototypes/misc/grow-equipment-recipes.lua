@@ -1,29 +1,27 @@
 --[[
 --> Lamp Recipes
 ]]--
-if mods["pyrawores"] then
-    RECIPE {
-        type = "recipe",
-        name = "sodium-vapor-lamp",
-        category = "crafting-with-fluid",
-        enabled = false,
-        energy_required = 0.5,
-        ingredients = {
-            {type = "item", name = "glass", amount = 2},
-            {type = "item", name = "sodium-hydroxide", amount = 1},
-            {type = "item", name = "copper-cable", amount = 3},
-            {type = "fluid", name = "vacuum", amount = 20}
-        },
-        results = {
-            {type = "item", name = "small-lamp", amount = 4}
-        },
-        icon = "__base__/graphics/icons/small-lamp.png",
-        icon_size = 64,
-        subgroup = "py-veganism-grow-equipment",
-        order = "aaa",
-        main_product = ""
-    }:add_unlock("optics")
-end
+RECIPE {
+    type = "recipe",
+    name = "sodium-vapor-lamp",
+    category = "crafting-with-fluid",
+    enabled = false,
+    energy_required = 0.5,
+    ingredients = {
+        {type = "item", name = "glass", amount = 2},
+        {type = "item", name = "sodium-hydroxide", amount = 1},
+        {type = "item", name = "copper-cable", amount = 3},
+        {type = "fluid", name = "vacuum", amount = 20}
+    },
+    results = {
+        {type = "item", name = "small-lamp", amount = 4}
+    },
+    icon = "__base__/graphics/icons/small-lamp.png",
+    icon_size = 64,
+    subgroup = "py-veganism-grow-equipment",
+    order = "aaa",
+    main_product = ""
+}:add_unlock("optics")
 
 --[[
 --> Fertilizer Recipes
@@ -128,28 +126,26 @@ RECIPE {
     order = "ada"
 }:add_unlock("cultivation-expertise-4")
 
-if mods["pyhightech"] then
-    RECIPE {
-        type = "recipe",
-        name = "pyveganism-fertilizer-ammonium-sulfate",
-        category = "mixer",
-        enabled = false,
-        energy_required = 0.5,
-        ingredients = {
-            {type = "item", name = "tailings-dust", amount = 10},
-            {type = "item", name = "ammonium-sulfate", amount = 10}, 
-            {type = "item", name = "biomass", amount = 8},
-            {type = "item", name = "limestone", amount = 4}
-        },
-        results = {
-            {type = "item", name = "fertilizer", amount = 8}
-        },
-        icons = {
-            {icon = py_veganism_globals["fertilizer_icon"].icon, icon_size = size},
-            {icon = py_veganism_globals:get_vegan_icon(size), icon_size = size}
-        },
-        icon_size = size,
-        subgroup = "py-veganism-grow-equipment",
-        order = "aea"
-    }:add_unlock("cultivation-expertise-3")
-end
+RECIPE {
+    type = "recipe",
+    name = "pyveganism-fertilizer-ammonium-sulfate",
+    category = "mixer",
+    enabled = false,
+    energy_required = 0.5,
+    ingredients = {
+        {type = "item", name = "tailings-dust", amount = 10},
+        {type = "item", name = "ammonium-sulfate", amount = 10}, 
+        {type = "item", name = "biomass", amount = 8},
+        {type = "item", name = "limestone", amount = 4}
+    },
+    results = {
+        {type = "item", name = "fertilizer", amount = 8}
+    },
+    icons = {
+        {icon = py_veganism_globals["fertilizer_icon"].icon, icon_size = size},
+        {icon = py_veganism_globals:get_vegan_icon(size), icon_size = size}
+    },
+    icon_size = size,
+    subgroup = "py-veganism-grow-equipment",
+    order = "aea"
+}:add_unlock("cultivation-expertise-3")

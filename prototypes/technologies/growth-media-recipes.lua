@@ -22,31 +22,29 @@ RECIPE {
     main_product = ""
 }:add_unlock("growth-media-1")
 
-if mods["pyrawores"] then
-    RECIPE {
-        type = "recipe",
-        name = "sterile-water-chlorine",
-        category = "chemistry",
-        enabled = false,
-        energy_required = 0.5,
-        ingredients = {
-            {type = "fluid", name = "water", amount = 600},
-            {type = "fluid", name = "chlorine", amount = 10}
-        },
-        results = {
-            {type = "fluid", name = "sterile-water", amount = 600}
-        },
-        icons = {
-            {icon = "__pyveganism__/graphics/icons/water-drop.png"},
-            {icon = "__pyveganism__/graphics/icons/toxic-stress.png"},
-            {icon = "__pyveganism__/graphics/icons/1.png"}
-        },
-        icon_size = 64,
-        subgroup = "py-veganism-media",
-        order = "aac",
-        main_product = ""
-    }:add_unlock("growth-media-1")
-end
+RECIPE {
+    type = "recipe",
+    name = "sterile-water-chlorine",
+    category = "chemistry",
+    enabled = false,
+    energy_required = 0.5,
+    ingredients = {
+        {type = "fluid", name = "water", amount = 600},
+        {type = "fluid", name = "chlorine", amount = 10}
+    },
+    results = {
+        {type = "fluid", name = "sterile-water", amount = 600}
+    },
+    icons = {
+        {icon = "__pyveganism__/graphics/icons/water-drop.png"},
+        {icon = "__pyveganism__/graphics/icons/toxic-stress.png"},
+        {icon = "__pyveganism__/graphics/icons/1.png"}
+    },
+    icon_size = 64,
+    subgroup = "py-veganism-media",
+    order = "aac",
+    main_product = ""
+}:add_unlock("growth-media-1")
 
 RECIPE {
     type = "recipe",
@@ -269,26 +267,24 @@ RECIPE {
     order = "acba"
 }:add_unlock("growth-media-3")
 
-if mods["pyhightech"] then
-    RECIPE {
-        type = "recipe",
-        name = "semipermeable-membrane-nylon",
-        category = "crafting-with-fluid",
-        enabled = false,
-        energy_required = 1,
-        ingredients = {
-            {type = "item", name = "nylon", amount = 3}
-        },
-        results = {
-            {type = "item", name = "semipermeable-membrane", amount = 20}
-        },
-        icon = "__pyveganism__/graphics/icons/semipermeable-membrane.png",
-        icon_size = 64,
-        main_product = "semipermeable-membrane",
-        subgroup = "py-veganism-media",
-        order = "acbb"
-    }:add_unlock("growth-media-3")
-end
+RECIPE {
+    type = "recipe",
+    name = "semipermeable-membrane-nylon",
+    category = "crafting-with-fluid",
+    enabled = false,
+    energy_required = 1,
+    ingredients = {
+        {type = "item", name = "nylon", amount = 3}
+    },
+    results = {
+        {type = "item", name = "semipermeable-membrane", amount = 20}
+    },
+    icon = "__pyveganism__/graphics/icons/semipermeable-membrane.png",
+    icon_size = 64,
+    main_product = "semipermeable-membrane",
+    subgroup = "py-veganism-media",
+    order = "acbb"
+}:add_unlock("growth-media-3")
 
 --ultra pure water recipes
 RECIPE {
@@ -382,6 +378,4 @@ RECIPE {
     order = "cba"
 }:add_unlock("growth-media-3"):add_unlock("rocket-fuel")
 
-if mods["pyrawores"] then
-    RECIPE("pseudodaemonas-growth-medium"):add_ingredient{type = "item", name = "salt", amount = 5}
-end
+RECIPE("pseudodaemonas-growth-medium"):add_ingredient{type = "item", name = "salt", amount = 5}

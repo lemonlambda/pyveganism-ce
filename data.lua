@@ -4,9 +4,6 @@ require("prototypes.datastage-globals")
 require("prototypes.item-group")
 require("prototypes.crafting-category")
 
---add required features if some of the pymods are missing
-require("prototypes.updates.missing-pymods")
-
 local enabled_concepts = {
     --technologies
     "technologies.oil-plants",
@@ -30,6 +27,7 @@ local enabled_concepts = {
     "plants.guar",
     "plants.sugar-beet",
     "plants.sugar-cane",
+    "plants.cadaver-arum",
     --
     --microorganisms
     "microorganisms.fiicorum",
@@ -52,21 +50,8 @@ local enabled_concepts = {
     "misc.samples",
     "misc.citric-acid",
     "misc.grow-equipment"
+    "misc.ammonium-sulfate"
 }
-
-if mods["pyhightech"] then
-    local pyht_concepts = {
-        --plants
-        "plants.cadaver-arum",
-        --
-        --miscellaneous
-        "misc.ammonium-sulfate"
-    }
-
-    for _, concept in pairs(pyht_concepts) do
-        table.insert(enabled_concepts, concept)
-    end
-end
 
 local function try_load(file)
     local ok, err = pcall(require, file)

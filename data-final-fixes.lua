@@ -5,6 +5,4 @@ require("prototypes.updates.handcrafting")
 -- beacon or module prototypes
 require("prototypes.buildings.hidden-beacon")
 
-if mods["pyrawores"] then
-    RECIPE("ralesia-biomass"):replace_ingredient("water", "hydrogen")
-end
+RECIPE("ralesia-biomass"):replace_ingredient("water", "hydrogen")

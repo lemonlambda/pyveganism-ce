@@ -148,9 +148,7 @@ RECIPE {
     order = "abda"
 }:add_unlock("growth-media-2")
 
-if mods["pyrawores"] then
-    RECIPE("marsh-gas-to-syngas"):add_ingredient({type = "fluid", name = "hydrogen", amount = 40})
-end
+RECIPE("marsh-gas-to-syngas"):add_ingredient({type = "fluid", name = "hydrogen", amount = 40})
 
 RECIPE {
     type = "recipe",
@@ -195,25 +193,23 @@ RECIPE {
     order = "abb"
 }:add_unlock("growth-media-2")
 
-if mods["pyhightech"] then
-    RECIPE {
-        type = "recipe",
-        name = "marsh-gas-to-methane",
-        category = "gasifier",
-        enabled = false,
-        energy_required = 1,
-        ingredients = {
-            {type = "fluid", name = "marsh-gas", amount = 100}
-        },
-        results = {
-            {type = "fluid", name = "methane", amount = 100}
-        },
-        icon = "__pyhightechgraphics__/graphics/icons/methane.png",
-        icon_size = 32,
-        subgroup = "py-veganism-sludge",
-        order = "abdd"
-    }:add_unlock("growth-media-2")
-end
+RECIPE {
+    type = "recipe",
+    name = "marsh-gas-to-methane",
+    category = "gasifier",
+    enabled = false,
+    energy_required = 1,
+    ingredients = {
+        {type = "fluid", name = "marsh-gas", amount = 100}
+    },
+    results = {
+        {type = "fluid", name = "methane", amount = 100}
+    },
+    icon = "__pyhightechgraphics__/graphics/icons/methane.png",
+    icon_size = 32,
+    subgroup = "py-veganism-sludge",
+    order = "abdd"
+}:add_unlock("growth-media-2")
 
 RECIPE {
     type = "recipe",

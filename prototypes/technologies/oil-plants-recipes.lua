@@ -43,36 +43,32 @@ RECIPE {
     order = "aab"
 }:add_unlock("oil-plants")
 
-if mods["pyrawores"] then
-    RECIPE("fat-hardening"):replace_ingredient("steam", "hydrogen"):replace_ingredient("iron-plate", "nickel-plate")
-end
+RECIPE("fat-hardening"):replace_ingredient("steam", "hydrogen"):replace_ingredient("iron-plate", "nickel-plate")
 
-if mods["pyrawores"] then
-    RECIPE {
-        type = "recipe",
-        name = "plant-oil-saponification-basic",
-        category = "fts-reactor",
-        enabled = false,
-        energy_required = 3,
-        ingredients = {
-            {type = "fluid", name = "plant-oil", amount = 200},
-            {type = "fluid", name = "water", amount = 400},
-            {type = "item", name = "sodium-hydroxide", amount = 2}
-        },
-        results = {
-            {type = "fluid", name = "oleochemicals", amount = 150},
-            {type = "fluid", name = "glycerol", amount = 100},
-            {type = "fluid", name = "steam", amount = 400}
-        },
-        icons = {
-            {icon = "__pycoalprocessinggraphics__/graphics/icons/oleochemicals.png", icon_size = 32},
-            {icon = "__pyveganism__/graphics/icons/vegan-small.png", icon_size = 32}
-        },
-        icon_size = 32,
-        subgroup = "py-veganism-oil-plants",
-        order = "aab"
-    }:add_unlock("oil-plants")
-end
+RECIPE {
+    type = "recipe",
+    name = "plant-oil-saponification-basic",
+    category = "fts-reactor",
+    enabled = false,
+    energy_required = 3,
+    ingredients = {
+        {type = "fluid", name = "plant-oil", amount = 200},
+        {type = "fluid", name = "water", amount = 400},
+        {type = "item", name = "sodium-hydroxide", amount = 2}
+    },
+    results = {
+        {type = "fluid", name = "oleochemicals", amount = 150},
+        {type = "fluid", name = "glycerol", amount = 100},
+        {type = "fluid", name = "steam", amount = 400}
+    },
+    icons = {
+        {icon = "__pycoalprocessinggraphics__/graphics/icons/oleochemicals.png", icon_size = 32},
+        {icon = "__pyveganism__/graphics/icons/vegan-small.png", icon_size = 32}
+    },
+    icon_size = 32,
+    subgroup = "py-veganism-oil-plants",
+    order = "aab"
+}:add_unlock("oil-plants")
 
 RECIPE {
     type = "recipe",
