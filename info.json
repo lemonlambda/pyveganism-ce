@@ -1,0 +1,17 @@
+{
+    "name": "pyveganism",
+    "version": "1.0.0",
+    "title": "pY Veganism",
+    "author": "tiriscef,lambdalemon",
+    "contact": "tiriscef@protonmail.com",
+    "homepage": "https://forums.factorio.com/viewtopic.php?f=219&t=71587",
+    "factorio_version": "2.0",
+    "dependencies": [
+        "pyalternativeenergy",
+        "pycoalprocessing",
+        "pyhightech",
+        "pyrawores",
+        "pypetroleumhandling"
+    ],
+    "description": "Unofficial. Add plants and biotechnical processes to allow you to play pyanodons mods without exploiting virtual animals."
+}

@@ -1,0 +1,216 @@
+---------------------------------------------------------------------------------------------------
+Version: 1.0.0
+Date: 2025.5.26
+  Changes:
+    Ported everything to 2.0
+---------------------------------------------------------------------------------------------------
+Version: 0.0.22
+Date: 2020.11.04
+  Changes:
+    - Buffed rocket fuel from pseudodaemonas yields.
+
+  Bugfixes:
+    - Fixed a crash caused by composting silos consuming more items than they contain.
+    - Fixed some broken recipe icons.
+
+---------------------------------------------------------------------------------------------------
+Version: 0.0.21
+Date: 2020.04.20
+  Changes:
+    - Plant Breeding, Cultivation Expertise and Biotechnology now affect the new machines of pyal
+    - I know that Cultivation Expertise and the speed-part of Biotechnology don't work as intended together with pyal's plants-as-modules system. But I can't fix this without quickly running into limitations of the factorio engine.
+
+  Bugfixes:
+    - Fixed a loading error caused by an outdated alteration to pyanodons prototypes which don't even exist anymore
+
+---------------------------------------------------------------------------------------------------
+Version: 0.0.20
+Date: 2020.01.28
+  Changes:
+    - Update for factorio 0.18
+
+---------------------------------------------------------------------------------------------------
+Version: 0.0.19
+Date: 2019.11.29
+  Bugfixes:
+    - Fixed a loading error together with Circuitissimo (or any other mod from PyroFire)
+
+---------------------------------------------------------------------------------------------------
+Version: 0.0.18
+Date: 2019.11.14
+  Changes:
+    - Composting speed is influenced by Biotechnology
+    - Humus produced and items consumed by Composting Silos now appear in the production statistic
+
+  Bugfixes:
+    - Fixed a crash when adding pyv to an existing map
+
+---------------------------------------------------------------------------------------------------
+Version: 0.0.17
+Date: 2019.11.11
+  Bugfixes:
+    - Fixed broken hidden modules and a crash together with factory planner
+
+---------------------------------------------------------------------------------------------------
+Version: 0.0.16
+Date: 2019.11.11
+  Features:
+    - Plant residue to marsh gas fermentation recipes
+
+  Changes:
+    - Some plants can now be 'trashed' to plant residues
+    - Reduced lag due to beacon actualisation after research completion
+    - Enrichment culture recipe for activated sludge now yields a reasonable amount of output
+    - Greatly increased the speed of composters and nerfed the speed of composting silos
+
+  Bugfixes:
+    - Fixed that pyht's mk-update broke the beacon effects on Moondrop Greenhouses
+
+---------------------------------------------------------------------------------------------------
+Version: 0.0.15
+Date: 2019.11.07
+  Changes:
+    - Gave handcrafting recipes a description to avoid confusion in test subj... players
+
+  Bugfixes:
+    - Fixed missing locales in Biotechnology research
+    - Added catalyst_amounts to pure culture recipes to avoid that Biotechnology kind of breaks them
+    - Fixed that the marsh gas to sulphur recipe wasn't working because the desulfurisation units don't have enough fluid boxes
+
+---------------------------------------------------------------------------------------------------
+Version: 0.0.14
+Date: 2019.11.03
+  Features:
+    - Added Biotechnology research
+    - Added recipes with humus for Ralesia, Logs and Fawogae
+
+  Changes:
+    - Phytoplankton Farms and Moondrop Greenhouses now benefit from Plant Breeding and Cultivation Expertise
+    - The boni from Plant Breeding and Cultivation Expertise research levels now stack multiplicatively
+    - The effect of Plant Breeding was increased to 7% per level
+    - The Composting speed of Composting Silo is now increased if there is humus inside the silo (up to 5 times at 4000 Humus)
+
+---------------------------------------------------------------------------------------------------
+Version: 0.0.13
+Date: 2019.11.01
+  Bugfixes:
+    - Fixed a loading error when pyht or pyph isn't enabled
+    - Changed some implementation details that could be causing desyncs
+
+---------------------------------------------------------------------------------------------------
+Version: 0.0.12
+Date: 2019.10.31
+  Features:
+    - Added a composter entity that is code-wise a furnace to provide a desync-save alternative to composting silos to multiplayer games
+
+  Changes:
+    - Gave Plant Breeding and Cultivation Expertise an effect description that is similar to the ones in the base game
+    - Corrected the icon for Soy Bean Pressing
+
+---------------------------------------------------------------------------------------------------
+Version: 0.0.11
+Date: 2019.10.28
+  Changes:
+    - Gave Plant Breeding and Cultivation Expertise an effect description
+
+  Bugfixes:
+    - Fixed a crash that happens when a hidden beacon gets lost
+
+---------------------------------------------------------------------------------------------------
+Version: 0.0.10
+Date: 2019.10.25
+  Changes:
+    - Gave the invisible beacons an icon to avoid breaking other mods
+    - Atztazzae mushroom growing recipes declare the mycel as catalyst
+    - This allowes to apply the effect of Plant Breeding to them
+
+---------------------------------------------------------------------------------------------------
+Version: 0.0.9
+Date: 2019.09.04
+  Features:
+    - Added cadaver-arum
+    - Added ammonium-sulfate
+
+  Bugfixes:
+    - Fixed a loading error when pyrawores isn't enabled
+
+---------------------------------------------------------------------------------------------------
+Version: 0.0.8
+Date: 2019.08.12
+  Bugfixes:
+    - Fixed a crash when the loop in the on_tick-function stopped at an entity that got removed before the next call to the on_tick-function
+
+---------------------------------------------------------------------------------------------------
+Version: 0.0.7
+Date: 2019.08.06
+  Bugfixes:
+    - Fixed remaining invisible beacons
+
+---------------------------------------------------------------------------------------------------
+Version: 0.0.6
+Date: 2019.08.02
+  Bugfixes:
+    - Fixed a crash when the player dies after a blood donation
+    - Added a missing locale
+
+---------------------------------------------------------------------------------------------------
+Version: 0.0.5
+Date: 2019.08.01
+  Bugfixes:
+    - Fixed a crash where the number of entity checks was nil
+
+---------------------------------------------------------------------------------------------------
+Version: 0.0.4
+Date: 2019.08.01
+  Features:
+    - Added blood donations and pseudodaemonas
+    - Added proxae and citric acid
+    - Added sugar plants tech, sugar cane, sugar beet and sugar purification
+    - Added protein plants tech, guar, glycine and serine extraction
+    - Added composting silo and humus
+    - Added morgenröte bacteria and more fertilizer recipes
+    - Added pemtenn and ethanol fermentation
+    - Added e-coli and serine fermentation
+
+  Changes:
+    - Rewrite of the growing recipe generator. Now with Humus and Lamps. 
+    - Fiicorum and zirella are now also available when pyht isn't enabled
+
+  Factory-breaking Changes:
+    - Tailings and Ash are no longer used in generated growing recipes, but as ingredients for fertilizer.
+    - Canola pressing now returns canola meal instead of plant residues
+
+---------------------------------------------------------------------------------------------------
+Version: 0.0.3
+Date: 2019.07.10
+  Features:
+    - Added Plant Breeding research
+    - Added Cultivation Expertise research
+
+---------------------------------------------------------------------------------------------------
+Version: 0.0.2
+Date: 2019.07.08
+  Features:
+    - More uses for plant-residues
+    - Added atztazzae chain
+    - Added water purification
+    - Added sewage-sludge
+    - Added optional hardcore vegan/vegetarian mode
+    - Added plant oil saponification
+
+  Changes:
+    - Renamed biomass to plant residues
+
+---------------------------------------------------------------------------------------------------
+Version: 0.0.1
+Date: 2019.06.17
+  Features:
+    - Added tiriscefing willows and bone meal chain
+    - Added solfaen and agarose-gel chain
+    - Added fiicorum, zirella and urea chain
+    - Added canola, cocoa, calknut and oil palms
+    - Added oil plants to lard chain
+    - Added biomass
+
+  Factory-breaking Changes:
+    - Added more pipe-connections to the bio reactor
