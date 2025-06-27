@@ -17,7 +17,6 @@
 ]]
 --<< Registered Entities >>
 local TYPE_BEACONED_MACHINE = 1
-local TYPE_COMPOSTING_SILO = 2
 
 --<< Beaconed machine variables (must be final) >>
 function lvl_name(technology, level)
@@ -303,10 +302,10 @@ end
 function create_beacon_for(entity)
     local beacon =
         entity.surface.create_entity {
-        name = BEACON_NAME,
-        position = entity.position,
-        force = entity.force
-    }
+            name = BEACON_NAME,
+            position = entity.position,
+            force = entity.force
+        }
 
     local productivity, speed = get_current_boni(entity)
     set_beacon_boni(beacon, productivity, speed)
@@ -399,30 +398,6 @@ function process_compostable_items(silo)
     remove_compostable_items(silo, details.type_count)
 end
 
-function distribute_biomass(registered_silo)
-    local count = math.floor(registered_silo.pending_biomass)
-    if count < 1 then
-        return
-    end
-
-    local inventory = registered_silo.entity.get_inventory(defines.inventory.chest)
-    local item_stack = {name = "biomass", count = count}
-
-    if inventory.can_insert(item_stack) then
-        local inserted_count = inventory.insert(item_stack)
-        registered_silo.pending_biomass = registered_silo.pending_biomass - inserted_count
-
-        add_to_production_statistics(registered_silo, "biomass", inserted_count)
-    end
-end
-
-function refresh_composting_silo(registered_silo)
-    if registered_silo.pending_biomass < 1000 then -- stop consuming material if a lot of biomass is generated, but cannot be inserted
-        process_compostable_items(registered_silo)
-    end
-    distribute_biomass(registered_silo)
-end
-
 --<< Implementation Register >>
 function refresh(registered_entity)
     if not registered_entity.entity.valid then
@@ -432,8 +407,6 @@ function refresh(registered_entity)
 
     if registered_entity.type == TYPE_BEACONED_MACHINE then
         refresh_beaconed_entity(registered_entity)
-    elseif registered_entity.type == TYPE_COMPOSTING_SILO then
-        refresh_composting_silo(registered_entity)
     end
     registered_entity.tick_last_refresh = game.tick
 end
@@ -456,17 +429,6 @@ function register_beaconed_machine(entity)
         beacon = beacon,
         recipe = recipe,
         tick_last_refresh = game.tick
-    }
-end
-
--- Adds the composting silo to the register
-function register_composting_silo(entity)
-    storage.registered_machines[entity.unit_number] = {
-        type = TYPE_COMPOSTING_SILO,
-        entity = entity,
-        tick_last_refresh = game.tick,
-        pending_biomass = 0.,
-        composting_progress = 0.
     }
 end
 
@@ -494,9 +456,6 @@ function on_entity_built(event)
     if machine_needs_beacons(name) then
         register_beaconed_machine(entity)
     end
-    if name == "composting-silo" then
-        register_composting_silo(entity)
-    end
 end
 
 -- Eventhandler machine removed
@@ -509,7 +468,7 @@ function on_entity_removed(event)
 end
 
 function starts_with(str, prefix)
-  return string.sub(str, 1, #prefix) == prefix
+    return string.sub(str, 1, #prefix) == prefix
 end
 
 -- Eventhandler research
@@ -560,9 +519,6 @@ function check_registered_entity(registered_entity)
     if registered_entity.type == TYPE_BEACONED_MACHINE then
         check_registered_beaconed_entity(registered_entity)
     end
-    if registered_entity.type == TYPE_COMPOSTING_SILO then
-        refresh(registered_entity)
-    end
 end
 
 -- Checks some entries for validity and custom events
@@ -575,7 +531,7 @@ function tick()
     local number_of_checks = storage.max_checks
 
     if index and register[index] then
-        current_entity = register[index] -- continue looping
+        current_entity = register[index]            -- continue looping
     else
         index, current_entity = next(register, nil) -- begin a new loop at the start (nil as a key returns the first pair)
     end
@@ -623,11 +579,6 @@ function init()
     for _, surface in pairs(game.surfaces) do
         for _, entity in pairs(surface.find_entities_filtered {name = relevant_machines}) do
             register_beaconed_machine(entity)
-        end
-    end
-    for _, surface in pairs(game.surfaces) do
-        for _, entity in pairs(surface.find_entities_filtered {name = "composting-silo"}) do
-            register_composting_silo(entity)
         end
     end
 

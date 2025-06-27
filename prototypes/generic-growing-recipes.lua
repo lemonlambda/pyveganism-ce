@@ -55,7 +55,7 @@ local fertilizer_recipes = {
 }
 
 local biomass_appendix = "-biomass"
-local biomass_icon = {icon = "__pyveganism__/graphics/icons/with-biomass.png"}
+local biomass_icon = {icon = "__pyalienlifegraphics__/graphics/icons/biomass.png", scale = 0.25, offset = {-8, -8}}
 local biomass_ingredient_function = function(recipe, details)
     recipe:remove_ingredient("soil")
     recipe:add_ingredient {type = "item", name = "biomass", amount = details.amount}
@@ -73,7 +73,7 @@ local biomass_recipes = {
     ["grow-tiriscefing-willow-2"] = {amount = 30, energy_required_effect = 0.667},
     ["log2"] = {amount = 5, productivity_effect = 1.334, keep_original_icon = true},
     ["fawogae"] = {amount = 2, energy_required_effect = 0.6, productivity_effect = 1.5, keep_original_icon = true},
-    ["ralesia"] = {amount = 35, energy_required_effect = 5./7.7, productivity_effect = 1.5, keep_original_icon = true}
+    ["ralesia"] = {amount = 35, energy_required_effect = 5. / 7.7, productivity_effect = 1.5, keep_original_icon = true}
 }
 
 local ash_appendix = "-ash"
@@ -105,43 +105,43 @@ local combination_details = {
     ["grow-calknut-palm"] = {
         groups = {
             {CARBON_DIOXIDE, LAMP},
-            {HUMUS, FERTILIZER}
+            {HUMUS,          FERTILIZER}
         }
     },
     ["grow-oil-palm"] = {
         groups = {
             {CARBON_DIOXIDE, LAMP},
-            {HUMUS, FERTILIZER}
+            {HUMUS,          FERTILIZER}
         }
     },
     ["grow-cocoa"] = {
         groups = {
             {CARBON_DIOXIDE, LAMP},
-            {HUMUS, FERTILIZER}
+            {HUMUS,          FERTILIZER}
         }
     },
     ["grow-canola"] = {
         groups = {
             {CARBON_DIOXIDE, LAMP},
-            {HUMUS, FERTILIZER}
+            {HUMUS,          FERTILIZER}
         }
     },
     ["grow-guar"] = {
         groups = {
             {CARBON_DIOXIDE, LAMP},
-            {HUMUS, FERTILIZER}
+            {HUMUS,          FERTILIZER}
         }
     },
     ["grow-sugar-beet"] = {
         groups = {
             {CARBON_DIOXIDE, LAMP},
-            {HUMUS, FERTILIZER}
+            {HUMUS,          FERTILIZER}
         }
     },
     ["grow-sugar-cane"] = {
         groups = {
             {CARBON_DIOXIDE, LAMP},
-            {HUMUS, FERTILIZER}
+            {HUMUS,          FERTILIZER}
         }
     },
     ["grow-atztazzae"] = {
