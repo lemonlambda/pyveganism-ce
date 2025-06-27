@@ -103,8 +103,8 @@ ENTITY {
 -- << Humus >>
 ITEM {
     type = "item",
-    name = "humus",
-    icon = "__pyveganism__/graphics/icons/humus.png",
+    name = "biomass",
+    icon = "__pyveganism__/graphics/icons/biomass.png",
     icon_size = 64,
     flags = {},
     subgroup = "py-veganism-biomass",

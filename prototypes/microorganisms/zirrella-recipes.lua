@@ -69,7 +69,7 @@ RECIPE {
     main_product = ""
 }
 
-local size = py_veganism_globals["urea_icon"].size
+local size = py_veganism_globals["urea_icon"].icon_size
 RECIPE {
     type = "recipe",
     name = "evaporate-urea-medium",
@@ -83,8 +83,8 @@ RECIPE {
         {type = "item", name = "urea", amount = 50}
     },
     icons = {
-        {icon = py_veganism_globals["urea_icon"].icon},
-        {icon = py_veganism_globals:get_vegan_icon(size)}
+        {icon = py_veganism_globals["urea_icon"].icon, icon_size = size},
+        {icon = py_veganism_globals:get_vegan_icon(size), icon_size = size}
     },
     icon_size = size,
     subgroup = "py-veganism-zirrella",

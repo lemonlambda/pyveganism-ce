@@ -7,7 +7,7 @@ RECIPE {
     ingredients = {
         {type = "item", name = "pure-sand", amount = 10},
         {type = "item", name = "fertilizer", amount = 4},
-        {type = "item", name = "humus", amount = 20},
+        {type = "item", name = "biomass", amount = 20},
         {type = "fluid", name = "clean-water", amount = 300},
         {type = "fluid", name = "acidgas", amount = 100}
     },

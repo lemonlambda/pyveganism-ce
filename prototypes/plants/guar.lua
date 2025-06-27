@@ -38,7 +38,7 @@ ITEM {
     type = "item",
     name = "guarbeans",
     enabled = false,
-    icon = "__pyveganism__/graphics/icons/guarbeans.png",
+    icon = "__pyveganism__/graphics/icons/guar-beans.png",
     icon_size = 64,
     flags = {},
     subgroup = "py-veganism-guar",

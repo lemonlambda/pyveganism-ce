@@ -20,7 +20,6 @@ local enabled_concepts = {
     "technologies.biotechnology",
     --
     --buildings
-    "buildings.composting-silo",
     "buildings.bio-printer-mk00",
     --
     --plants
@@ -69,9 +68,9 @@ end
 
 local function try_load(file)
     local ok, err = pcall(require, file)
-    -- if not ok and not err:find("^module .* not found") then
-    --     error(err)
-    -- end
+    if not ok and not err:find("^module .* not found") then
+        error(err)
+    end
 end
 
 for _, concept in pairs(enabled_concepts) do

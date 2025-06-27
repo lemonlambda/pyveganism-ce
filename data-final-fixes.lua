@@ -6,5 +6,5 @@ require("prototypes.updates.handcrafting")
 require("prototypes.buildings.hidden-beacon")
 
 if mods["pyrawores"] then
-    RECIPE("ralesia-humus"):replace_ingredient("water", "hydrogen")
+    RECIPE("ralesia-biomass"):replace_ingredient("water", "hydrogen")
 end

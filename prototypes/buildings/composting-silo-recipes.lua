@@ -92,10 +92,10 @@ local function create_composting_recipe(item, value)
     local results_table = {}
 
     if before_comma > 0 then
-        table.insert(results_table, {type = "item", name = "humus", amount = before_comma})
+        table.insert(results_table, {type = "item", name = "biomass", amount = before_comma})
     end
     if after_comma > 0 then
-        table.insert(results_table, {type = "item", name = "humus", amount = 1, probability = after_comma})
+        table.insert(results_table, {type = "item", name = "biomass", amount = 1, probability = after_comma})
     end
 
     RECIPE {
@@ -108,7 +108,7 @@ local function create_composting_recipe(item, value)
             {type = "item", name = item, amount = 1}
         },
         results = results_table,
-        main_product = "humus",
+        main_product = "biomass",
         subgroup = "py-veganism-composter",
         order = "aab",
         hidden = true

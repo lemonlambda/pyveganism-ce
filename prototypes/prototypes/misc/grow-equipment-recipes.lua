@@ -38,7 +38,7 @@ RECIPE {
     ingredients = {
         {type = "item", name = "ash", amount = 10},
         {type = "item", name = "urea", amount = 10}, 
-        {type = "item", name = "humus", amount = 1},
+        {type = "item", name = "biomass", amount = 1},
         {type = "item", name = "limestone", amount = 1}
     },
     results = {
@@ -63,7 +63,7 @@ RECIPE {
         {type = "item", name = "ash", amount = 10},
         {type = "item", name = "urea", amount = 6}, 
         {type = "item", name = "morgenroete-endospores", amount = 1},
-        {type = "item", name = "humus", amount = 2},
+        {type = "item", name = "biomass", amount = 2},
         {type = "item", name = "limestone", amount = 1}
     },
     results = {
@@ -88,7 +88,7 @@ RECIPE {
         {type = "fluid", name = "dirty-water-light", amount = 100},
         {type = "item", name = "urea", amount = 9}, 
         {type = "item", name = "morgenroete-endospores", amount = 1},
-        {type = "item", name = "humus", amount = 3},
+        {type = "item", name = "biomass", amount = 3},
         {type = "item", name = "limestone", amount = 1}
     },
     results = {
@@ -113,7 +113,7 @@ RECIPE {
         {type = "item", name = "tailings-dust", amount = 6},
         {type = "item", name = "urea", amount = 12}, 
         {type = "item", name = "morgenroete-endospores", amount = 1},
-        {type = "item", name = "humus", amount = 4},
+        {type = "item", name = "biomass", amount = 4},
         {type = "item", name = "limestone", amount = 2}
     },
     results = {
@@ -138,7 +138,7 @@ if mods["pyhightech"] then
         ingredients = {
             {type = "item", name = "tailings-dust", amount = 10},
             {type = "item", name = "ammonium-sulfate", amount = 10}, 
-            {type = "item", name = "humus", amount = 8},
+            {type = "item", name = "biomass", amount = 8},
             {type = "item", name = "limestone", amount = 4}
         },
         results = {

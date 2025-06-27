@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.1
+Date: 2025.5.26
+  Changes:
+    Changed the name of soybean and coconut.
+---------------------------------------------------------------------------------------------------
 Version: 1.0.0
 Date: 2025.5.26
   Changes:
@@ -82,13 +87,13 @@ Version: 0.0.14
 Date: 2019.11.03
   Features:
     - Added Biotechnology research
-    - Added recipes with humus for Ralesia, Logs and Fawogae
+    - Added recipes with biomass for Ralesia, Logs and Fawogae
 
   Changes:
     - Phytoplankton Farms and Moondrop Greenhouses now benefit from Plant Breeding and Cultivation Expertise
     - The boni from Plant Breeding and Cultivation Expertise research levels now stack multiplicatively
     - The effect of Plant Breeding was increased to 7% per level
-    - The Composting speed of Composting Silo is now increased if there is humus inside the silo (up to 5 times at 4000 Humus)
+    - The Composting speed of Composting Silo is now increased if there is biomass inside the silo (up to 5 times at 4000 Humus)
 
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.13
@@ -167,7 +172,7 @@ Date: 2019.08.01
     - Added proxae and citric acid
     - Added sugar plants tech, sugar cane, sugar beet and sugar purification
     - Added protein plants tech, guar, glycine and serine extraction
-    - Added composting silo and humus
+    - Added composting silo and biomass
     - Added morgenröte bacteria and more fertilizer recipes
     - Added pemtenn and ethanol fermentation
     - Added e-coli and serine fermentation

@@ -12,7 +12,7 @@
         ["beacon"]: beacon_entity
         ["recipe"]: recipe_name
         ["tick_last_refresh"]: tick of the last refresh
-        ["pending_humus"]: float
+        ["pending_biomass"]: float
         ["composting_progress"]: float
 ]]
 --<< Registered Entities >>
@@ -335,27 +335,27 @@ function analyze_silo_inventory(registered_silo)
 
     local count = 0
     local type_count = 0
-    local humus_count = 0
+    local biomass_count = 0
     for item_name, item_count in pairs(contents) do
         if compostable_items[item_name] then
             count = count + item_count
             type_count = type_count + 1
         end
-        if item_name == "humus" then
-            humus_count = humus_count + item_count
+        if item_name == "biomass" then
+            biomass_count = biomass_count + item_count
         end
     end
 
-    return {count = count, type_count = type_count, humus_count = humus_count}
+    return {count = count, type_count = type_count, biomass_count = biomass_count}
 end
 
 local composting_coefficient = 1. / 600. / 400. -- 1 Humus every 10 Seconds (600 ticks) when 400 Items are in the silo
-function get_composting_progress(item_count, item_types_count, humus_count, time, force)
+function get_composting_progress(item_count, item_types_count, biomass_count, time, force)
     local biotech_level = get_tech_level(technologies["pyveganism-biotechnology"], force)
 
     return item_count * item_types_count * time * composting_coefficient *
         math.max(1., math.min(5., item_count / 2000.)) *
-        math.min(5, 1 + humus_count * 0.001) *
+        math.min(5, 1 + biomass_count * 0.001) *
         (technologies["pyveganism-biotechnology"].speed_increase_per_level + 1) ^ biotech_level
 end
 
@@ -378,7 +378,7 @@ function remove_compostable_items(silo, type_count)
             if count == index_to_remove then
                 local removed_count = inventory.remove {name = item_name, count = math.floor(silo.composting_progress)}
                 silo.composting_progress = silo.composting_progress - removed_count
-                silo.pending_humus = silo.pending_humus + removed_count * compostable_items[item_name]
+                silo.pending_biomass = silo.pending_biomass + removed_count * compostable_items[item_name]
 
                 add_to_production_statistics(silo, item_name, -removed_count)
                 break
@@ -395,32 +395,32 @@ function process_compostable_items(silo)
     local force = silo.entity.force
     silo.composting_progress =
         silo.composting_progress +
-        get_composting_progress(details.count, details.type_count, details.humus_count, delta_time, force)
+        get_composting_progress(details.count, details.type_count, details.biomass_count, delta_time, force)
     remove_compostable_items(silo, details.type_count)
 end
 
-function distribute_humus(registered_silo)
-    local count = math.floor(registered_silo.pending_humus)
+function distribute_biomass(registered_silo)
+    local count = math.floor(registered_silo.pending_biomass)
     if count < 1 then
         return
     end
 
     local inventory = registered_silo.entity.get_inventory(defines.inventory.chest)
-    local item_stack = {name = "humus", count = count}
+    local item_stack = {name = "biomass", count = count}
 
     if inventory.can_insert(item_stack) then
         local inserted_count = inventory.insert(item_stack)
-        registered_silo.pending_humus = registered_silo.pending_humus - inserted_count
+        registered_silo.pending_biomass = registered_silo.pending_biomass - inserted_count
 
-        add_to_production_statistics(registered_silo, "humus", inserted_count)
+        add_to_production_statistics(registered_silo, "biomass", inserted_count)
     end
 end
 
 function refresh_composting_silo(registered_silo)
-    if registered_silo.pending_humus < 1000 then -- stop consuming material if a lot of humus is generated, but cannot be inserted
+    if registered_silo.pending_biomass < 1000 then -- stop consuming material if a lot of biomass is generated, but cannot be inserted
         process_compostable_items(registered_silo)
     end
-    distribute_humus(registered_silo)
+    distribute_biomass(registered_silo)
 end
 
 --<< Implementation Register >>
@@ -465,7 +465,7 @@ function register_composting_silo(entity)
         type = TYPE_COMPOSTING_SILO,
         entity = entity,
         tick_last_refresh = game.tick,
-        pending_humus = 0.,
+        pending_biomass = 0.,
         composting_progress = 0.
     }
 end

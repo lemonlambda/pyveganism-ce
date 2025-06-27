@@ -10,7 +10,7 @@ local items_with_descriptions = {
 }
 
 -- WARNING: Might break something
--- local function append_compostable_description(item_name, humus_count)
+-- local function append_compostable_description(item_name, biomass_count)
 --     local prototype = data.raw.item[item_name]
 --     if not prototype then --Item doesn't exist within the loaded mods
 --         return
@@ -21,7 +21,7 @@ local items_with_descriptions = {
 --         prototype.localised_description = {"item-description." .. item_name}
 --     end
 
---     local appendix = {"item-description.compostable", humus_count}
+--     local appendix = {"item-description.compostable", biomass_count}
 
 --     if prototype.localised_description then
 --         prototype.localised_description = {"", prototype.localised_description, "\n", appendix}
@@ -34,6 +34,6 @@ local items_with_descriptions = {
 --     end
 -- end
 
--- for item_name, humus_count in pairs(compostable_items) do
---     append_compostable_description(item_name, humus_count)
+-- for item_name, biomass_count in pairs(compostable_items) do
+--     append_compostable_description(item_name, biomass_count)
 -- end

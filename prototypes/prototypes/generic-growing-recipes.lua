@@ -54,13 +54,13 @@ local fertilizer_recipes = {
     ["grow-tiriscefing-willow-2"] = {amount = 2, energy_required_effect = 0.5}
 }
 
-local humus_appendix = "-humus"
-local humus_icon = {icon = "__pyveganism__/graphics/icons/with-humus.png"}
-local humus_ingredient_function = function(recipe, details)
+local biomass_appendix = "-biomass"
+local biomass_icon = {icon = "__pyveganism__/graphics/icons/with-biomass.png"}
+local biomass_ingredient_function = function(recipe, details)
     recipe:remove_ingredient("soil")
-    recipe:add_ingredient {type = "item", name = "humus", amount = details.amount}
+    recipe:add_ingredient {type = "item", name = "biomass", amount = details.amount}
 end
-local humus_recipes = {
+local biomass_recipes = {
     ["grow-calknut-palm"] = {amount = 10, energy_required_effect = 0.7},
     ["grow-oil-palm"] = {amount = 10, energy_required_effect = 0.7},
     ["grow-cocoa"] = {amount = 10, energy_required_effect = 0.7},
@@ -244,11 +244,11 @@ local creation_lookup = {
     [HUMUS] = function(recipe_name, bottom_recipe_name)
         return create_recipe(
             recipe_name,
-            humus_appendix,
-            humus_recipes[bottom_recipe_name],
+            biomass_appendix,
+            biomass_recipes[bottom_recipe_name],
             unlocks[bottom_recipe_name],
-            humus_icon,
-            humus_ingredient_function
+            biomass_icon,
+            biomass_ingredient_function
         )
     end,
     [ASH] = function(recipe_name, bottom_recipe_name)
