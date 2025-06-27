@@ -49,7 +49,7 @@ local enabled_concepts = {
     --miscellaneous
     "misc.samples",
     "misc.citric-acid",
-    "misc.grow-equipment"
+    "misc.grow-equipment",
     "misc.ammonium-sulfate"
 }
 
