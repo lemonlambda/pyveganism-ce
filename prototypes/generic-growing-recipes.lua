@@ -14,7 +14,6 @@ local carbon_dioxide_recipes = {
     ["grow-oil-palm"] = {amount = 200, productivity_effect = 1.5},
     ["grow-cocoa"] = {amount = 200, productivity_effect = 1.5},
     ["grow-canola"] = {amount = 200, productivity_effect = 1.5},
-    ["grow-guar"] = {amount = 200, productivity_effect = 1.5},
     ["grow-sugar-beet"] = {amount = 200, productivity_effect = 1.5},
     ["grow-sugar-cane"] = {amount = 200, productivity_effect = 1.5},
     ["grow-cadaver-arum"] = {amount = 300, productivity_effect = 1.2}
@@ -30,7 +29,6 @@ local lamp_recipes = {
     ["grow-oil-palm"] = {amount = 1, productivity_effect = 2},
     ["grow-cocoa"] = {amount = 1, productivity_effect = 2},
     ["grow-canola"] = {amount = 1, productivity_effect = 2},
-    ["grow-guar"] = {amount = 1, productivity_effect = 2},
     ["grow-sugar-beet"] = {amount = 1, productivity_effect = 2},
     ["grow-sugar-cane"] = {amount = 1, productivity_effect = 2},
     ["grow-cadaver-arum"] = {amount = 1, productivity_effect = 1.5}
@@ -46,7 +44,6 @@ local fertilizer_recipes = {
     ["grow-oil-palm"] = {amount = 1, energy_required_effect = 0.7},
     ["grow-cocoa"] = {amount = 1, energy_required_effect = 0.7},
     ["grow-canola"] = {amount = 1, energy_required_effect = 0.7},
-    ["grow-guar"] = {amount = 1, energy_required_effect = 0.7},
     ["grow-sugar-beet"] = {amount = 1, energy_required_effect = 0.7},
     ["grow-sugar-cane"] = {amount = 1, energy_required_effect = 0.7},
     ["grow-atztazzae"] = {amount = 1, energy_required_effect = 0.5},
@@ -65,7 +62,6 @@ local biomass_recipes = {
     ["grow-oil-palm"] = {amount = 10, energy_required_effect = 0.7},
     ["grow-cocoa"] = {amount = 10, energy_required_effect = 0.7},
     ["grow-canola"] = {amount = 10, energy_required_effect = 0.7},
-    ["grow-guar"] = {amount = 10, energy_required_effect = 0.7},
     ["grow-sugar-beet"] = {amount = 10, energy_required_effect = 0.7},
     ["grow-sugar-cane"] = {amount = 10, energy_required_effect = 0.7},
     ["grow-atztazzae"] = {amount = 30, energy_required_effect = 0.5},
@@ -90,7 +86,6 @@ local unlocks = {
     ["grow-oil-palm"] = {"oil-plants"},
     ["grow-cocoa"] = {"oil-plants"},
     ["grow-canola"] = {"oil-seeds"},
-    ["grow-guar"] = {"oil-plants", "protein-plants"},
     ["grow-sugar-beet"] = {"sugar-plants"},
     ["grow-sugar-cane"] = {"sugar-plants"},
     ["grow-tiriscefing-willow-1"] = {"coal-processing-1"},
@@ -121,12 +116,6 @@ local combination_details = {
         }
     },
     ["grow-canola"] = {
-        groups = {
-            {CARBON_DIOXIDE, LAMP},
-            {HUMUS,          FERTILIZER}
-        }
-    },
-    ["grow-guar"] = {
         groups = {
             {CARBON_DIOXIDE, LAMP},
             {HUMUS,          FERTILIZER}

@@ -1,7 +1,7 @@
 RECIPE {
     type = "recipe",
     name = "grow-calknut-palm",
-    category = "nursery",
+    category = "kicalk",
     enabled = false,
     energy_required = 60,
     ingredients = {

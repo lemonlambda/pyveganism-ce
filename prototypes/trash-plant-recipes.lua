@@ -5,7 +5,7 @@ local biomass_items = {
     ["oil-palm-fruit"] = {},
     ["canola"] = {},
     ["calknut"] = {},
-    ["guar-pods"] = {},
+    -- ["guar"] = {},
     ["solfaen-dry"] = {input = 20, output = 3, dry = true},
     ["sugar-cane"] = {},
     ["sugar-beet"] = {}

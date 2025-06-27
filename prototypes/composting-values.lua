@@ -23,7 +23,7 @@ return {
     ["oil-palm-kernel"] = 0.25,
     ["oil-palm-kernel-dry"] = 0.25,
     ["oil-palm-kernel-open"] = 0.25,
-    ["guar-pods"] = 0.5,
+    -- ["guar"] = 0.5,
     ["guar-pods-washed"] = 0.5,
     ["edamame"] = 0.25,
     ["guarbeans"] = 0.25,

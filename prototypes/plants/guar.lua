@@ -1,14 +1,14 @@
-ITEM {
-    type = "item",
-    name = "guar-pods",
-    enabled = false,
-    icon = "__pyveganism__/graphics/icons/guar-pods.png",
-    icon_size = 64,
-    flags = {},
-    subgroup = "py-veganism-guar",
-    order = "aaa",
-    stack_size = 200
-}
+-- ITEM {
+--     type = "item",
+--     name = "guar-pods",
+--     enabled = false,
+--     icon = "__pyveganism__/graphics/icons/guar-pods.png",
+--     icon_size = 64,
+--     flags = {},
+--     subgroup = "py-veganism-guar",
+--     order = "aaa",
+--     stack_size = 200
+-- }
 
 ITEM {
     type = "item",

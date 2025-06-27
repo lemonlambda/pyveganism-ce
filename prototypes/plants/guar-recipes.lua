@@ -1,27 +1,27 @@
 --<< Growing >>
-RECIPE {
-    type = "recipe",
-    name = "grow-guar",
-    category = "nursery",
-    enabled = false,
-    energy_required = 60,
-    ingredients = {
-        {type = "item", name = "soil", amount = 10},
-        {type = "fluid", name = "water", amount = 500}
-    },
-    results = {
-        {type = "item", name = "guar-pods", amount = 10},
-        {type = "item", name = "plant-residues", amount = 2}
-    },
-    main_product = "guar-pods",
-    icons = {
-        {icon = "__pyveganism__/graphics/icons/grow-guar.png"},
-        {icon = "__pyveganism__/graphics/icons/grow.png"}
-    },
-    icon_size = 64,
-    subgroup = "py-veganism-guar",
-    order = "aca"
-}:add_unlock("oil-plants"):add_unlock("protein-plants")
+-- RECIPE {
+--     type = "recipe",
+--     name = "grow-guar",
+--     category = "guar",
+--     enabled = false,
+--     energy_required = 60,
+--     ingredients = {
+--         {type = "item", name = "soil", amount = 10},
+--         {type = "fluid", name = "water", amount = 500}
+--     },
+--     results = {
+--         {type = "item", name = "guar", amount = 10},
+--         {type = "item", name = "plant-residues", amount = 2}
+--     },
+--     main_product = "guar",
+--     icons = {
+--         {icon = "__pyveganism__/graphics/icons/grow-guar.png"},
+--         {icon = "__pyveganism__/graphics/icons/grow.png"}
+--     },
+--     icon_size = 64,
+--     subgroup = "py-veganism-guar",
+--     order = "aca"
+-- }:add_unlock("oil-plants"):add_unlock("protein-plants")
 
 --<< Processing >>
 RECIPE {
@@ -31,7 +31,7 @@ RECIPE {
     enabled = false,
     energy_required = 2,
     ingredients = {
-        {type = "item", name = "guar-pods", amount = 20},
+        {type = "item", name = "guar", amount = 20},
         {type = "fluid", name = "water", amount = 200}
     },
     results = {
@@ -49,7 +49,7 @@ RECIPE {
 
 RECIPE {
     type = "recipe",
-    name = "core-guar-pods",
+    name = "core-guar",
     category = "crafting",
     enabled = false,
     energy_required = 2,
@@ -82,7 +82,7 @@ RECIPE {
         {type = "item", name = "guarbeans", amount = 300}
     },
     icons = {
-        {icon = "__pyveganism__/graphics/icons/guarbeans.png"},
+        {icon = "__pyveganism__/graphics/icons/guar-beans.png"},
         {icon = "__pyveganism__/graphics/icons/time.png"}
     },
     icon_size = 64,
@@ -105,7 +105,7 @@ RECIPE {
         {type = "item", name = "guar-meal", amount = 5}
     },
     icons = {
-        {icon = "__pyveganism__/graphics/icons/guarbeans.png"},
+        {icon = "__pyveganism__/graphics/icons/guar-beans.png"},
         {icon = "__pyveganism__/graphics/icons/pressing.png"}
     },
     icon_size = 64,
