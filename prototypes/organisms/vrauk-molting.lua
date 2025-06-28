@@ -20,7 +20,7 @@ ITEM {
 ITEM {
 		type = "item",
   	name = "vrauk-frass",
-    icon = "__pyveganism__/graphics/icons/frass.png",
+    icon = "__pyveganism__/graphics/icons/vrauk-frass.png",
     icon_size = 64,
     enabled = false,
     subgroup = "py-veganism-vrauk",
@@ -35,7 +35,7 @@ RECIPE {
     subgroup = "py-veganism-vrauk",
     icons = {
     	{ icon = "__pyveganism__/graphics/icons/vrauk-molt.png", icon_size = 64 },
-    	{ icon = "__pyveganism__/graphics/icons/frass.png", icon_size = 64, scale = 0.26, shift = {8, 8}}
+    	{ icon = "__pyveganism__/graphics/icons/vrauk-frass.png", icon_size = 64, scale = 0.26, shift = {8, 8}}
     },
     icon_size = 64,
     enabled = false,
@@ -123,7 +123,7 @@ RECIPE {
     order = "aac",
     category = "vrauks",
     subgroup = "py-veganism-vrauk",
-    icon = "__pyveganism__/graphics/icons/frass.png",
+    icon = "__pyveganism__/graphics/icons/vrauk-frass.png",
     icon_size = 64,
     enabled = false,
     ingredients = {
