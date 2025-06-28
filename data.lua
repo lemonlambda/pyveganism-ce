@@ -81,6 +81,8 @@ local enabled_concepts = {
     "misc.grow-equipment-recipes",
     "misc.ammonium-sulfate",
     "misc.ammonium-sulfate-recipes",
+    "misc.tofu-recipes",
+    "misc.meat-alternatives",
 }
 
 for _, concept in pairs(enabled_concepts) do
