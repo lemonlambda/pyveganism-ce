@@ -3,6 +3,7 @@ Version: 1.2.0
 Date: ???
   Changes:
     - Added pressed tofu which can make vegan jerky.
+    - Added alternatives to rendering Vrauks to make meat, guts, brains, and formic acid.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.0
 Date: 2025.5.27

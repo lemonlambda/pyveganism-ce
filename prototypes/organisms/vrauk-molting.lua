@@ -181,7 +181,7 @@ RECIPE{
 				amount = 5
 			},
 		},
-}
+}:add_unlock("vrauks")
 
 RECIPE{
 		type = "recipe",
@@ -211,4 +211,4 @@ RECIPE{
 			  amount = 25,
 			}
 		},
-}
+}:add_unlock("vrauks")
