@@ -173,6 +173,12 @@ data:extend {
     },
     {
         type = "item-subgroup",
+        name = "py-veganism-vrauk",
+        group = "py-veganism",
+        order = "caa",
+    },
+    {
+        type = "item-subgroup",
         name = "py-veganism-samples",
         group = "py-veganism",
         order = "zaa"
@@ -194,5 +200,5 @@ data:extend {
         name = "py-veganism-trash",
         group = "py-veganism",
         order = "zad"
-    }
+    },
 }

@@ -62,7 +62,10 @@ local enabled_concepts = {
     "microorganisms.e-coli-recipes",
     "microorganisms.pemtenn",
     "microorganisms.pemtenn-recipes",
-    --
+
+    -- organisms
+    "organisms.vrauk-molting",
+    
     --fungi
     "fungi.atztazzae",
     "fungi.atztazzae-recipes",
