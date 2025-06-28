@@ -182,3 +182,33 @@ RECIPE{
 			},
 		},
 }
+
+RECIPE{
+		type = "recipe",
+		name = "vrauk-frass-to-formic-acid",
+		order = "aac",
+		category = "pulp",
+		subgroup = "py-veganism-vrauk",
+		icon = "__pyveganism__/graphics/icons/vrauk-frass.png",
+		icon_size = 64,
+		enabled = false,
+		ingredients = {
+			{
+				type = "item",
+				name = "vrauk-frass",
+				amount = 10,
+			},
+		},
+		results = {
+			{
+				type = "item",
+				name = "vrauk-frass",
+				amount = 7
+			},
+			{
+			  type = "fluid",
+			  name = "formic-acid",
+			  amount = 25,
+			}
+		},
+}
