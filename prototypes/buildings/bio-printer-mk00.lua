@@ -55,9 +55,9 @@ ENTITY {
     collision_box = {{-4.1, -4.1}, {4.1, 4.1}},
     selection_box = {{-4.5, -4.5}, {4.5, 4.5}},
     forced_symmetry = "diagonal-pos",
-    module_slots = i,
+    module_slots = 1,
     allowed_effects = {"speed", "productivity", "consumption", "pollution", "quality"},
-    allowed_module_categories = {"speed", "productivity", "efficiency", "bioprinting"},
+    allowed_module_categories = {"speed", "productivity", "efficiency", "bioprinting", "vrauks"},
     crafting_categories = {"bio-printer"},
     crafting_speed = 0.5,
     energy_source = {

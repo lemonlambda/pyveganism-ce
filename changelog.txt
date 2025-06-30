@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.1.1
+Date: 2025.5.30
+  Changes:
+    - Added more synthetic vrauk meat/mass printing recipes
+    - Added allowing vrauk module in bioprinter
+    - Made vrauks molt and poop faster
+---------------------------------------------------------------------------------------------------
 Version: 1.1.0
 Date: 2025.5.28
   Changes:

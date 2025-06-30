@@ -73,7 +73,7 @@ RECIPE {
         amount = 15
       },
     },
-    energy_required = 160,
+    energy_required = 30,
 }:add_unlock("vrauks")
 
 RECIPE {
@@ -114,7 +114,7 @@ RECIPE {
         amount = 5
       }
     },
-    energy_required = 160,
+    energy_required = 30,
 }:add_unlock("vrauks")
 
 RECIPE {
@@ -155,7 +155,7 @@ RECIPE {
         amount = 15
       }
     },
-    energy_required = 160,
+    energy_required = 30,
 }:add_unlock("vrauks")
 
 RECIPE{
@@ -167,6 +167,7 @@ RECIPE{
 		icon = "__pyalienlifegraphics__/graphics/icons/chitin.png",
 		icon_size = 64,
 		enabled = false,
+		energy_required = 10,
 		ingredients = {
 			{
 				type = "item",
@@ -192,6 +193,7 @@ RECIPE{
 		icon = "__pyveganism__/graphics/icons/vrauk-frass.png",
 		icon_size = 64,
 		enabled = false,
+		energy_required = 5,
 		ingredients = {
 			{
 				type = "item",

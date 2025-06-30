@@ -3,6 +3,7 @@ local DEBUG = true
 require("prototypes.datastage-globals")
 require("prototypes.item-group")
 require("prototypes.crafting-category")
+require("prototypes.functions.helpers")
 
 local enabled_concepts = {
     --technologies
