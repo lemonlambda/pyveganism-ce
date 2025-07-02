@@ -7,7 +7,11 @@
     "homepage": "https://forums.factorio.com/viewtopic.php?f=219&t=71587",
     "factorio_version": "2.0",
     "dependencies": [
+<<<<<<<
         "pyalternativeenergy",
+=======
+        "pyalternativeenergy"
+>>>>>>>
     ],
     "description": "Unofficial. Add plants and biotechnical processes to allow you to play pyanodons mods without exploiting virtual animals."
 }
