@@ -8,10 +8,6 @@
     "factorio_version": "2.0",
     "dependencies": [
         "pyalternativeenergy",
-        "pycoalprocessing",
-        "pyhightech",
-        "pyrawores",
-        "pypetroleumhandling"
     ],
     "description": "Unofficial. Add plants and biotechnical processes to allow you to play pyanodons mods without exploiting virtual animals."
 }
