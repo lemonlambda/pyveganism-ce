@@ -61,3 +61,4 @@ RECIPE {
 }:add_unlock("oil-plants")
 
 require("vrauk-meat-alternatives")
+require("cottongut-meat-alternatives")

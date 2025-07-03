@@ -179,6 +179,12 @@ data:extend {
     },
     {
         type = "item-subgroup",
+        name = "py-veganism-cottongut",
+        group = "py-veganism",
+        order = "cba",
+    },
+    {
+        type = "item-subgroup",
         name = "py-veganism-burlap",
         group = "py-veganism",
         order = "daa",
