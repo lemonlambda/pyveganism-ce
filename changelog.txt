@@ -3,6 +3,7 @@ Version: 1.2.0
 Date: ???
   Changes:
     - Non-viable Vrauk Mass now requires burlap sacks.
+    - Added Auog Non-viable mass recipes
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.2
 Date: 2025.5.30
