@@ -79,9 +79,9 @@ for i=0,3 do
 end
 
 py_veganism_globals.non_viable_vrauk_mass_icon = {
-      {icon = "__pyveganism__/graphics/icons/burlap-sack.png", icon_size = 64},
-      {icon = "__pyveganism__/graphics/icons/vrauks-gray.png", icon_size = 64, scale = 0.25, shift = {0, 3}},
-  }
+    {icon = "__pyveganism__/graphics/icons/burlap-sack.png", icon_size = 64},
+    {icon = "__pyveganism__/graphics/icons/vrauks-gray.png", icon_size = 64, scale = 0.25, shift = {0, 3}},
+}
 
 ITEM {
     type = "item",
