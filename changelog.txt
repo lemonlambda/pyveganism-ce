@@ -4,6 +4,7 @@ Date: ???
   Changes:
     - Citric Acid can be converted between py veganism and py version
     - Non-viable Vrauk Mass now requires burlap sacks.
+    - Vrauk Frass icon changed
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.2
 Date: 2025.5.30
