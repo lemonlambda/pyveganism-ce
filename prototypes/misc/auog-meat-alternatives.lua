@@ -106,12 +106,12 @@ RECIPE {
         {
             type = "item",
             name = "meat",
-            amount = 1
+            amount = 8
         },
         {
             type = "item",
             name = "guts",
-            amount = 1
+            amount = 3
         },
         {
             type = "item",
@@ -121,17 +121,17 @@ RECIPE {
         {
             type = "item",
             name = "skin",
-            amount = 1
+            amount = 2
         },
         {
             type = "item",
             name = "bones",
-            amount = 1,
+            amount = 3,
         },
         {
             type = "fluid",
             name = "blood",
-            amount = 20,
+            amount = 10,
         },
         {
             type = "item",
@@ -141,6 +141,12 @@ RECIPE {
     },
     icons = new_icon,
     subgroup = "py-veganism-auog",
+}
+
+RECIPE{
+    type = "recipe",
+    name = "auog-blood-printing",
+    
 }
 
 ITEM{
