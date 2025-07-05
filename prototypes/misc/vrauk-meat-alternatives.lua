@@ -6,7 +6,7 @@ py_veganism_globals.repetitive_recipe(1, 3, {
     },
     {
         type = "item",
-        name = "petri-dish",
+        name = "agar",
         amount = 10,
     },
     {
@@ -17,7 +17,7 @@ py_veganism_globals.repetitive_recipe(1, 3, {
     {
         type = "item",
         name = "saps",
-        amount = 1,
+        amount = 5,
     },
     {
         type = "item",
@@ -25,7 +25,21 @@ py_veganism_globals.repetitive_recipe(1, 3, {
         amount = 1
     }
 }, function(i, ingredient_pairs)
-    return ingredient_pairs, {}
+    local additional = {}
+
+    if i == 2 then
+        ingredient_pairs["saps"].amount = 15
+        
+        additional.meat_amount = 3
+        additional.guts_amount = 1
+    elseif i == 3 then
+        ingredient_pairs["native-flora"].amount = 25
+        
+        additional.meat_amount = 1
+        additional.guts_amount = 3
+    end
+    
+    return ingredient_pairs, additional
 end, function(i, ingredients, counts, additional)
     RECIPE {
         type = "recipe",
@@ -38,12 +52,12 @@ end, function(i, ingredients, counts, additional)
             {
                 type = "item",
                 name = "meat",
-                amount = 2
+                amount = additional.meat_amount or 2
             },
             {
                 type = "item",
                 name = "guts",
-                amount = 2
+                amount = additional.guts_amount or 2
             },
             {
                 type = "item",
@@ -175,6 +189,7 @@ py_veganism_globals.repetitive_recipe(1, 3,
                 name = "tar",
                 amount = 15
             }
+            ingredient_pairs["sack"].amount = 15
             additional.nvm_vrauk_amount = 15
             additional.earth_generic_sample_amount = 0
             additional.vrauks_codex_amount = 0
