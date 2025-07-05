@@ -159,9 +159,9 @@ py_veganism_globals.repetitive_recipe(1, 3,
                 amount = 1,
                 probability = 0.45
             }
-            additional.nvm_vrauk_probability = 0.25
+            additional.nvm_vrauk_probability = 0.60
             additional.earth_generic_sample_amount = 1
-            additional.earth_generic_sample_probability = .45
+            additional.earth_generic_sample_probability = .65
             additional.vrauks_codex_probability = .85
         elseif i == 3 then
             ingredient_pairs["native-flora"] = {
