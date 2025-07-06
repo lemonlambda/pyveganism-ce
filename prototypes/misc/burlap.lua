@@ -50,8 +50,8 @@ ITEM {
 
 ITEM {
     type = "item",
-    name = "molten-iron-stick",
-    icon = "__pyveganism__/graphics/icons/molten-iron-stick.png",
+    name = "hot-iron-stick",
+    icon = "__pyveganism__/graphics/icons/hot-iron-stick.png",
     icon_size = 64,
     enabled = false,
     stack_size = 200,
@@ -59,9 +59,9 @@ ITEM {
 
 RECIPE{
     type = "recipe",
-    name = "molten-iron-stick",
+    name = "hot-iron-stick",
     category = "smelting",
-    icon = "__pyveganism__/graphics/icons/molten-iron-stick.png",
+    icon = "__pyveganism__/graphics/icons/hot-iron-stick.png",
     icon_size = 64,
     ingredients = {
         {
@@ -73,7 +73,7 @@ RECIPE{
     results = {
         {
             type = "item",
-            name = "molten-iron-stick",
+            name = "hot-iron-stick",
             amount = 1
         }
     },
@@ -88,7 +88,7 @@ RECIPE {
     ingredients = {
         {
             type = "item",
-            name = "molten-iron-stick",
+            name = "hot-iron-stick",
             amount = 1,
         },
     },
