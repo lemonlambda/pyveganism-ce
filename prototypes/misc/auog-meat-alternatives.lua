@@ -12,7 +12,7 @@ ITEM {
     stack_size = 200,
 }
 
-py_veganism_globals.repetitive_recipe(0, 2,
+py_veganism_globals.repetitive_recipe(1, 3,
     {
         {
             type = "item",
@@ -56,32 +56,73 @@ py_veganism_globals.repetitive_recipe(0, 2,
         }
     },
     function(i, ingredient_pairs)
-        return ingredient_pairs, {}
-    end, function(i, ingredients, counts)
+        local additional = {
+            energy_required = 200
+        }
+
+        if i == 2 then
+            ingredient_pairs["water"].amount = 15000
+            ingredient_pairs["bio-sample"].amount = 10
+            ingredient_pairs["earth-generic-sample"].amount = 0
+            ingredient_pairs["plastic-bar"] = {
+                type = "item",
+                name = "glass",
+                amount = 4
+            }
+            ingredient_pairs["steam"] = {
+                type = "fluid",
+                name = "steam",
+                amount = 150
+            }
+            additional.earth_bear_sample_amount = 1
+            additional.earth_bear_sample_probability = .95
+        elseif i == 3 then
+            ingredient_pairs["reinforced-wooden-chest"].amount = 4
+            ingredient_pairs["native-flora"].amount = 0
+            ingredient_pairs["ralesia"] = {
+                type = "item",
+                name = "ralesia",
+                amount = 10
+            }
+            ingredient_pairs["seaweed"] = {
+                type = "item",
+                name = "seaweed",
+                amount = 5
+            }
+            ingredient_pairs["plant-oil"] = {
+                type = "fluid",
+                name = "plant-oil",
+                amount = 100
+            }
+            additional.nvm_auog_amount = 4
+        end
+        
+        return ingredient_pairs, additional
+    end, function(i, ingredients, counts, additional)
         local icons = table.deepcopy(py_veganism_globals.non_viable_auog_mass_icon)
         table.insert(icons,
-            {icon = "__pyalienlifegraphics__/graphics/icons/" .. (i + 1) .. ".png", icon_size = 64, scale = .25, shift = {-8, 8}}
+            {icon = "__pyalienlifegraphics__/graphics/icons/" .. i .. ".png", icon_size = 64, scale = .25, shift = {-8, 8}}
         )
 
         RECIPE {
             type = "recipe",
-            name = "synthetic-non-viable-auog-mass-" .. (i + 1),
+            name = "synthetic-non-viable-auog-mass-" .. i,
             category = "bio-printer",
             icons = icons,
             enabled = false,
-            energy_required = 30 * (3 - math.log(counts["moss"] / 5 + 1)),
+            energy_required = additional.energy_required,
             ingredients = ingredients,
             results = {
                 {
                     type = "item",
                     name = "non-viable-auog-mass",
-                    amount = 1
+                    amount = additional.nvm_auog_amount or 1
                 },
                 {
                     type = "item",
                     name = "earth-bear-sample",
-                    amount = 1,
-                    probability = 0.8 + math.min(0.1 * math.log(1 + counts["native-flora"] / 50), 0.2),
+                    amount = additional.earth_bear_sample_amount or 1,
+                    probability = additional.earth_bear_sample_probability or 0.8,
                 },
                 {
                     type = "item",
