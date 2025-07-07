@@ -107,12 +107,6 @@ data:extend {
     },
     {
         type = "item-subgroup",
-        name = "py-veganism-pseudodaemonas",
-        group = "py-veganism",
-        order = "bbj"
-    },
-    {
-        type = "item-subgroup",
         name = "py-veganism-oil-plants",
         group = "py-veganism",
         order = "bce"

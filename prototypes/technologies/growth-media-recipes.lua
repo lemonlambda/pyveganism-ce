@@ -353,29 +353,3 @@ RECIPE {
     subgroup = "py-veganism-media",
     order = "cab"
 }:add_unlock("growth-media-2")
-
-RECIPE {
-    type = "recipe",
-    name = "pseudodaemonas-growth-medium",
-    category = "mixer",
-    enabled = true,
-    energy_required = 1,
-    ingredients = {
-        {type = "fluid", name = "deionized-water", amount = 100},
-        {type = "fluid", name = "plant-oil", amount = 50},
-        {type = "item", name = "sugar", amount = 10},
-        {type = "item", name = "protein", amount = 5},
-        {type = "item", name = "iron-ore", amount = 10}
-    },
-    results = {
-        {type = "fluid", name = "pseudodaemonas-growth-medium", amount = 150}
-    },
-    icons = {
-        {icon = "__pyveganism__/graphics/icons/growth-medium-drop.png"}
-    },
-    icon_size = 64,
-    subgroup = "py-veganism-media",
-    order = "cba"
-}:add_unlock("growth-media-3"):add_unlock("rocket-fuel")
-
-RECIPE("pseudodaemonas-growth-medium"):add_ingredient{type = "item", name = "salt", amount = 5}
