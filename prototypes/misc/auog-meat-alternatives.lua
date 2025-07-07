@@ -198,22 +198,12 @@ RECIPE {
     },
 }
 
-py_veganism_globals.repetitive_recipe(1, 2,
+py_veganism_globals.repetitive_recipe(1, 3,
     {
         {
             type = "item",
             name = "bio-sample",
-            amount = 5,
-        },
-        {
-            type = "item",
-            name = "earth-generic-sample",
-            amount = 2,
-        },
-        {
-            type = "item",
-            name = "earth-bear-sample",
-            amount = 2,
+            amount = 1,
         },
         {
             type = "item",
@@ -235,30 +225,47 @@ py_veganism_globals.repetitive_recipe(1, 2,
             name = "water",
             amount = 1000,
         },
-        {
-            type = "item",
-            name = "reinforced-wooden-chest",
-            amount = 1
-        }
     },
     function(i, ingredient_pairs)
         local additional = {
             energy_required = 30
         }
-        
-        -- if i == 1 then
-        --     ingredients_pairs[]
-        -- elseif i == 2 then
+
+        if i == 1 then
+            ingredient_pairs["lamp"] = {
+                type = "item",
+                name = "small-lamp",
+                amount = 1
+            }
+        elseif i == 2 then
+            ingredient_pairs["bio-sample"].amount = 3
+
+            ingredient_pairs["moss"].amount = 0
             
-        -- elseif i == 3 then
+            ingredient_pairs["iron-plate"] = {
+                type = "item",
+                name = "iron-plate",
+                amount = 1
+            }
+
+            additional.blood_amount = 110
+            additional.energy_required = 32
+        elseif i == 3 then
+            ingredient_pairs["bones"] = {
+                type = "item",
+                name = "bones",
+                amount = 10
+            }
             
-        -- end
+            additional.energy_required = 45
+            additional.blood_amount = 150
+        end
         
         return ingredient_pairs, additional
     end, function(i, ingredients, counts, additional)
         RECIPE{
             type = "recipe",
-            name = "auog-blood-printing-" .. i,
+            name = "synthetic-auog-blood-" .. i,
             icons = {
                 {icon = "__pyalienlifegraphics__/graphics/icons/auog.png", icon_size = 64},
                 {icon = "__pyalienlifegraphics__/graphics/icons/blood.png", icon_size = 64, scale = 0.25, shift = {8, -8}},
@@ -272,12 +279,18 @@ py_veganism_globals.repetitive_recipe(1, 2,
                 {
                     type = "fluid",
                     name = "blood",
-                    amount = counts["moss"] / 10,
+                    amount = additional.blood_amount or 100,
                 },
                 {
                     type = "item",
                     name = "biomass",
-                    amount = 1
+                    amount = 20
+                },
+                {
+                    type = "item",
+                    name = "auog-codex",
+                    amount = 1,
+                    probability = 0.99
                 }
             },
         }
