@@ -34,7 +34,7 @@ local function create_biomass_recipe(item_name, details)
         icon_size = 64,
         subgroup = "py-veganism-trash",
         order = "a"
-    }:add_unlock("biomass")
+    }:add_unlock("compost")
 end
 
 for item_name, details in pairs(biomass_items) do

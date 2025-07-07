@@ -2,6 +2,7 @@
 Version: 1.1.4
 Date: tba
   Changes:
+    - Fixed impossible to research composting recipes.
     - Removed blood bags and pseudodaemona.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.3
