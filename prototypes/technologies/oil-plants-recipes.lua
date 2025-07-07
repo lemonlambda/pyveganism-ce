@@ -3,13 +3,12 @@ RECIPE {
     name = "vegetable-lard",
     category = "hpf",
     enabled = false,
-    energy_required = 2,
+    energy_required = 60,
     ingredients = {
-        {type = "item", name = "solid-fat", amount = 6},
-        {type = "fluid", name = "plant-oil", amount = 80}
+        {type = "item", name = "solid-fat", amount = 20},
     },
     results = {
-        {type = "item", name = "mukmoux-fat", amount = 4}
+        {type = "item", name = "mukmoux-fat", amount = 5}
     },
     icons = {
         {icon = "__pycoalprocessinggraphics__/graphics/icons/mukmoux-fat.png", icon_size = 32},
@@ -25,11 +24,11 @@ RECIPE {
     name = "fat-hardening",
     category = "fluid-separator",
     enabled = false,
-    energy_required = 2,
+    energy_required = 20,
     ingredients = {
         {type = "fluid", name = "plant-oil", amount = 200},
-        {type = "fluid", name = "steam", amount = 100},
-        {type = "item", name = "iron-plate", amount = 1}
+        {type = "fluid", name = "hydrogen", amount = 100},
+        {type = "item", name = "nickel-plate", amount = 1}
     },
     results = {
         {type = "item", name = "solid-fat", amount = 20}
@@ -43,14 +42,12 @@ RECIPE {
     order = "aab"
 }:add_unlock("oil-plants")
 
-RECIPE("fat-hardening"):replace_ingredient("steam", "hydrogen"):replace_ingredient("iron-plate", "nickel-plate")
-
 RECIPE {
     type = "recipe",
     name = "plant-oil-saponification-basic",
     category = "fts-reactor",
     enabled = false,
-    energy_required = 3,
+    energy_required = 20,
     ingredients = {
         {type = "fluid", name = "plant-oil", amount = 200},
         {type = "fluid", name = "water", amount = 400},
@@ -75,7 +72,7 @@ RECIPE {
     name = "plant-oil-saponification-acidic",
     category = "fts-reactor",
     enabled = false,
-    energy_required = 8,
+    energy_required = 40,
     ingredients = {
         {type = "fluid", name = "plant-oil", amount = 400},
         {type = "fluid", name = "sulfuric-acid", amount = 40}

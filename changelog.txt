@@ -7,6 +7,7 @@ Date: ???
     - Added Auog Non-viable mass recipes
     - Non-viable Vrauk Mass recipes reworked
     - Rebalanced Vrauk meating printing
+    - Oil plants are now earlier
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.2
 Date: 2025.5.30
