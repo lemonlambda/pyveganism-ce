@@ -53,7 +53,7 @@ ITEM {
 
 RECIPE {
     type = "item",
-    name = "auog-approved-reinforced-wooden-chest",
+    name = "auog-approved-reinforced-wooden-chest-1",
     icons = {
         {icon = "__pyveganism__/graphics/icons/reinforced-wooden-chest.png", icon_size = 64},
         {icon = "__pyveganism__/graphics/icons/claws.png", icon_size = 64, scale = 0.2, shift = {0, 8}},
@@ -76,4 +76,33 @@ RECIPE {
             probability = 0.1
         }
     },
+    energy_required = 30,
+}:add_unlock("auog")
+
+RECIPE {
+    type = "item",
+    name = "auog-approved-reinforced-wooden-chest-2",
+    icons = {
+        {icon = "__pyveganism__/graphics/icons/reinforced-wooden-chest.png", icon_size = 64},
+        {icon = "__pyveganism__/graphics/icons/claws.png", icon_size = 64, scale = 0.2, shift = {0, 8}},
+    },
+    category = "crusher",
+    subgroup = "storage",
+    enabled = false,
+    ingredients = {
+        {
+            type = "item",
+            name = "reinforced-wooden-chest",
+            amount = 1
+        },
+    },
+    results = {
+        {
+            type = "item",
+            name = "auog-approved-reinforced-wooden-chest",
+            amount = 1,
+            probability = 0.05
+        }
+    },
+    energy_required = 10,
 }:add_unlock("auog")

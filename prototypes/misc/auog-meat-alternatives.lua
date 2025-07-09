@@ -12,6 +12,138 @@ ITEM {
     stack_size = 200,
 }
 
+ITEM {
+    type = "item",
+    name = "auog-fur-tuft",
+    icon = "__pyveganism__/graphics/icons/auog-fur-tuft.png",
+    icon_size = 64,
+    subgroup = "py-veganism-auog",
+    enabled = false,
+    stack_size = 50
+}
+
+RECIPE {
+    type = "recipe",
+    name = "auog-fur-tuft-1",
+    icons = {
+        {icon = "__pyveganism__/graphics/icons/auog-fur-tuft.png", icon_size = 64},
+        {icon = "__pyalienlifegraphics__/graphics/icons/1.png", icon_size = 64, scale = .25, shift = {-8, 8}},
+    },
+    enabled = false,
+    subgroup = "py-veganism-auog",
+    category = "auog",
+    ingredients = {
+        {
+            type = "item",
+            name = "water-barrel",
+            amount = 5
+        },
+        {
+            type = "item",
+            name = "native-flora",
+            amount = 20,
+        },
+        {
+            type = "item",
+            name = "moss",
+            amount = 10
+        },
+        {
+            type = "item",
+            name = "log",
+            amount = 5,
+        }
+    },
+    results = {
+        {
+            type = "item",
+            name = "barrel",
+            amount = 5,
+        },
+        {
+            type = "item",
+            name = "auog-fur-tuft",
+            amount = 2
+        },
+        {
+            type = "item",
+            name = "log",
+            amount_min = 4,
+            amount_max = 5
+        },
+        {
+            type = "item",
+            name = "wood",
+            amount = 5,
+            probability = 0.2
+        }
+    }
+}:add_unlock("auog")
+
+RECIPE {
+    type = "recipe",
+    name = "auog-fur-tuft-2",
+    icons = {
+        {icon = "__pyveganism__/graphics/icons/auog-fur-tuft.png", icon_size = 64},
+        {icon = "__pyalienlifegraphics__/graphics/icons/2.png", icon_size = 64, scale = .25, shift = {-8, 8}},
+    },
+    enabled = false,
+    subgroup = "py-veganism-auog",
+    category = "auog",
+    ingredients = {
+        {
+            type = "item",
+            name = "water-barrel",
+            amount = 5
+        },
+        {
+            type = "item",
+            name = "native-flora",
+            amount = 20,
+        },
+        {
+            type = "item",
+            name = "moss",
+            amount = 10
+        },
+        {
+            type = "item",
+            name = "tree-mk01",
+            amount = 5,
+        }
+    },
+    results = {
+        {
+            type = "item",
+            name = "barrel",
+            amount = 5,
+        },
+        {
+            type = "item",
+            name = "auog-fur-tuft",
+            amount = 5
+        },
+        {
+            type = "item",
+            name = "tree-mk01",
+            amount_min = 4,
+            amount_max = 5
+        },
+        {
+            type = "item",
+            name = "log",
+            amount = 1,
+            probability = 0.1
+        },
+        {
+            type = "item",
+            name = "wood",
+            amount = 5,
+            probability = 0.05
+        }
+    }
+}:add_unlock("auog")
+
 py_veganism_globals.repetitive_recipe(1, 3,
     {
         {
@@ -60,7 +192,18 @@ py_veganism_globals.repetitive_recipe(1, 3,
             energy_required = 200
         }
 
-        if i == 2 then
+        if i == 1 then
+            ingredient_pairs["auog-fur-tuft"] = {
+                type = "item",
+                name = "auog-fur-tuft",
+                amount = 5
+            }
+        elseif i == 2 then
+            ingredient_pairs["auog-fur-tuft"] = {
+                type = "item",
+                name = "auog-fur-tuft",
+                amount = 5
+            }
             ingredient_pairs["water"].amount = 15000
             ingredient_pairs["bio-sample"].amount = 10
             ingredient_pairs["earth-generic-sample"].amount = 0
@@ -225,6 +368,11 @@ py_veganism_globals.repetitive_recipe(1, 3,
             name = "water",
             amount = 1000,
         },
+        {
+            type = "item",
+            name = "iron-plate",
+            amount = 1
+        }
     },
     function(i, ingredient_pairs)
         local additional = {
@@ -232,21 +380,14 @@ py_veganism_globals.repetitive_recipe(1, 3,
         }
 
         if i == 1 then
-            ingredient_pairs["lamp"] = {
+            ingredient_pairs["auog-fur-tuft"] = {
                 type = "item",
-                name = "small-lamp",
+                name = "auog-fur-tuft",
                 amount = 1
             }
         elseif i == 2 then
             ingredient_pairs["bio-sample"].amount = 3
-
             ingredient_pairs["moss"].amount = 0
-            
-            ingredient_pairs["iron-plate"] = {
-                type = "item",
-                name = "iron-plate",
-                amount = 1
-            }
 
             additional.blood_amount = 80
             additional.energy_required = 32
