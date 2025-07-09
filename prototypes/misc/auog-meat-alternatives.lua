@@ -248,7 +248,7 @@ py_veganism_globals.repetitive_recipe(1, 3,
                 amount = 1
             }
 
-            additional.blood_amount = 110
+            additional.blood_amount = 80
             additional.energy_required = 32
         elseif i == 3 then
             ingredient_pairs["bones"] = {
