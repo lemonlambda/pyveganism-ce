@@ -1,7 +1,13 @@
 ---------------------------------------------------------------------------------------------------
-Version: 1.1.4
-Date: tba
+Version: 1.2.0
+Date: 2025.6.9
   Changes:
+    - Renamed Molten Iron Stick to Hot Iron Stick
+    - Non-viable Vrauk Mass now requires burlap sacks.
+    - Added Auog Non-viable mass recipes
+    - Non-viable Vrauk Mass recipes reworked
+    - Rebalanced Vrauk meating printing
+    - Oil plants are now earlier
     - Fixed impossible to research composting recipes.
     - Removed blood bags and pseudodaemona.
 ---------------------------------------------------------------------------------------------------

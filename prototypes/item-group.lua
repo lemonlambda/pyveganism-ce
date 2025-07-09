@@ -173,6 +173,12 @@ data:extend {
     },
     {
         type = "item-subgroup",
+        name = "py-veganism-auog",
+        group = "py-veganism",
+        order = "cba",
+    },
+    {
+        type = "item-subgroup",
         name = "py-veganism-burlap",
         group = "py-veganism",
         order = "daa",

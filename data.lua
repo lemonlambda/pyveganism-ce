@@ -79,8 +79,9 @@ local enabled_concepts = {
     "misc.ammonium-sulfate",
     "misc.ammonium-sulfate-recipes",
     "misc.tofu-recipes",
-    "misc.meat-alternatives",
     "misc.burlap",
+    "misc.reinforced-wooden-chest",
+    "misc.meat-alternatives",
 
     --buildings
     "buildings.bio-printer-mk00",

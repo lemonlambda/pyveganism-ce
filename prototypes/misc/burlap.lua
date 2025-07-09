@@ -16,6 +16,7 @@ ITEM {
     type = "item",
     name = "sack",
     icon = "__pyveganism__/graphics/icons/burlap-sack.png",
+    subgroup = "py-veganism-burlap",
     icon_size = 64,
     enabled = false,
     stack_size = 20,
@@ -25,6 +26,7 @@ ITEM {
     type = "item",
     name = "string",
     icon = "__pyveganism__/graphics/icons/string.png",
+    subgroup = "py-veganism-burlap",
     icon_size = 64,
     enabled = false,
     stack_size = 200,
@@ -34,6 +36,7 @@ ITEM {
     type = "item",
     name = "needle",
     icon = "__pyveganism__/graphics/icons/needle.png",
+    subgroup = "py-veganism-burlap",
     icon_size = 64,
     enabled = false,
     stack_size = 20,
@@ -43,6 +46,7 @@ ITEM {
     type = "item",
     name = "burlap-cloth",
     icon = "__pyveganism__/graphics/icons/burlap-cloth.png",
+    subgroup = "py-veganism-burlap",
     icon_size = 64,
     enabled = false,
     stack_size = 200,
@@ -50,8 +54,9 @@ ITEM {
 
 ITEM {
     type = "item",
-    name = "molten-iron-stick",
-    icon = "__pyveganism__/graphics/icons/molten-iron-stick.png",
+    name = "hot-iron-stick",
+    icon = "__pyveganism__/graphics/icons/hot-iron-stick.png",
+    subgroup = "py-veganism-burlap",
     icon_size = 64,
     enabled = false,
     stack_size = 200,
@@ -59,9 +64,9 @@ ITEM {
 
 RECIPE{
     type = "recipe",
-    name = "molten-iron-stick",
+    name = "hot-iron-stick",
     category = "smelting",
-    icon = "__pyveganism__/graphics/icons/molten-iron-stick.png",
+    icon = "__pyveganism__/graphics/icons/hot-iron-stick.png",
     icon_size = 64,
     ingredients = {
         {
@@ -73,7 +78,7 @@ RECIPE{
     results = {
         {
             type = "item",
-            name = "molten-iron-stick",
+            name = "hot-iron-stick",
             amount = 1
         }
     },
@@ -88,7 +93,7 @@ RECIPE {
     ingredients = {
         {
             type = "item",
-            name = "molten-iron-stick",
+            name = "hot-iron-stick",
             amount = 1,
         },
     },
