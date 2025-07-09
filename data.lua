@@ -53,8 +53,6 @@ local enabled_concepts = {
     "microorganisms.sludge-recipes",
     "microorganisms.proxae",
     "microorganisms.proxae-recipes",
-    "microorganisms.pseudodaemonas",
-    "microorganisms.pseudodaemonas-recipes",
     "microorganisms.morgenroete",
     "microorganisms.morgenroete-recipes",
     "microorganisms.e-coli",
@@ -64,14 +62,14 @@ local enabled_concepts = {
 
     -- organisms
     "organisms.vrauk-molting",
-    
+
     --fungi
     "fungi.atztazzae",
     "fungi.atztazzae-recipes",
 
     -- yes
     "plant-residues",
-    
+
     --miscellaneous
     "misc.samples",
     "misc.samples-recipes",
