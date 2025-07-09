@@ -51,7 +51,7 @@ py_veganism_globals.repetitive_recipe(1, 3,
         },
         {
             type = "item",
-            name = "reinforced-wooden-chest",
+            name = "auog-approved-reinforced-wooden-chest",
             amount = 1
         }
     },
@@ -77,7 +77,7 @@ py_veganism_globals.repetitive_recipe(1, 3,
             additional.earth_bear_sample_amount = 1
             additional.earth_bear_sample_probability = .95
         elseif i == 3 then
-            ingredient_pairs["reinforced-wooden-chest"].amount = 4
+            ingredient_pairs["auog-approved-reinforced-wooden-chest"].amount = 4
             ingredient_pairs["native-flora"].amount = 0
             ingredient_pairs["ralesia"] = {
                 type = "item",
@@ -192,7 +192,7 @@ RECIPE {
         },
         {
             type = "item",
-            name = "reinforced-wooden-chest",
+            name = "auog-approved-reinforced-wooden-chest",
             amount = 1
         },
     },

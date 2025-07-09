@@ -39,3 +39,41 @@ RECIPE {
         }
     },
 }:add_unlock("alloys-mk01")
+
+ITEM {
+    type = "item",
+    name = "auog-approved-reinforced-wooden-chest",
+    icons = {
+        {icon = "__pyveganism__/graphics/icons/reinforced-wooden-chest.png", icon_size = 64},
+        {icon = "__pyveganism__/graphics/icons/claws.png", icon_size = 64, scale = 0.2, shift = {0, 8}},
+    },
+    subgroup = "storage",
+    stack_size = 30,
+}
+
+RECIPE {
+    type = "item",
+    name = "auog-approved-reinforced-wooden-chest",
+    icons = {
+        {icon = "__pyveganism__/graphics/icons/reinforced-wooden-chest.png", icon_size = 64},
+        {icon = "__pyveganism__/graphics/icons/claws.png", icon_size = 64, scale = 0.2, shift = {0, 8}},
+    },
+    category = "auog",
+    subgroup = "storage",
+    enabled = false,
+    ingredients = {
+        {
+            type = "item",
+            name = "reinforced-wooden-chest",
+            amount = 1
+        },
+    },
+    results = {
+        {
+            type = "item",
+            name = "auog-approved-reinforced-wooden-chest",
+            amount = 1,
+            probability = 0.1
+        }
+    },
+}:add_unlock("auog")
