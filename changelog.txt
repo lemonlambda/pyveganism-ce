@@ -2,7 +2,7 @@
 Version: 1.2.1
 Date: 2025.6.11
   Changes:
-    - Better Fur Tuft and Bag recipe
+    - Better Fur Tuft and Bag icon
 ---------------------------------------------------------------------------------------------------
 Version: 1.2.0
 Date: 2025.6.9
