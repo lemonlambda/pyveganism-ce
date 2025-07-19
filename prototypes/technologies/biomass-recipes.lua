@@ -18,7 +18,7 @@ RECIPE {
     main_product = "combustion-mixture1",
     subgroup = "py-veganism-combustion",
     order = "aaa"
-}:add_unlock("biomass")
+}:add_unlock("compost")
 
 RECIPE {
     type = "recipe",
@@ -38,7 +38,7 @@ RECIPE {
     icon_size = 64,
     subgroup = "py-veganism-biomass",
     order = "aaa"
-}:add_unlock("biomass")
+}:add_unlock("compost")
 
 RECIPE {
     type = "recipe",
@@ -59,7 +59,7 @@ RECIPE {
     icon_size = 64,
     subgroup = "py-veganism-biomass",
     order = "aab"
-}:add_unlock("biomass")
+}:add_unlock("compost")
 
 RECIPE {
     type = "recipe",
@@ -81,7 +81,7 @@ RECIPE {
     icon_size = 64,
     subgroup = "py-veganism-biomass",
     order = "aac"
-}:add_unlock("biomass")
+}:add_unlock("compost")
 
 RECIPE {
     type = "recipe",
@@ -99,4 +99,4 @@ RECIPE {
     icon_size = 32,
     subgroup = "py-veganism-biomass",
     order = "aad"
-}:add_unlock("biomass")
+}:add_unlock("compost")

@@ -3,11 +3,29 @@ Version: 1.3.0
 Date: ???
   Changes:
     - Cottongut Non-viable Mass recipes added.
+Version: 1.2.1
+Date: 2025.6.11
+  Changes:
+    - Better Fur Tuft and Bag icon
 ---------------------------------------------------------------------------------------------------
 Version: 1.2.0
-Date: ???
+Date: 2025.6.9
   Changes:
+    - Renamed Molten Iron Stick to Hot Iron Stick
     - Non-viable Vrauk Mass now requires burlap sacks.
+    - Added Auog Non-viable mass recipes
+    - Non-viable Vrauk Mass recipes reworked
+    - Rebalanced Vrauk meating printing
+    - Oil plants are now earlier
+    - Fixed impossible to research composting recipes.
+    - Removed blood bags and pseudodaemona.
+---------------------------------------------------------------------------------------------------
+Version: 1.1.3
+Date: 2025.6.3
+  Changes:
+    - Citric Acid can be converted between py veganism and py version
+    - Non-viable Vrauk Mass now requires burlap sacks.
+    - Vrauk Frass icon changed
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.2
 Date: 2025.5.30

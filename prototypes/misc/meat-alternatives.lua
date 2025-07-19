@@ -62,3 +62,4 @@ RECIPE {
 
 require("vrauk-meat-alternatives")
 require("cottongut-meat-alternatives")
+require("auog-meat-alternatives")

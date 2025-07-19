@@ -53,8 +53,6 @@ local enabled_concepts = {
     "microorganisms.sludge-recipes",
     "microorganisms.proxae",
     "microorganisms.proxae-recipes",
-    "microorganisms.pseudodaemonas",
-    "microorganisms.pseudodaemonas-recipes",
     "microorganisms.morgenroete",
     "microorganisms.morgenroete-recipes",
     "microorganisms.e-coli",
@@ -64,14 +62,14 @@ local enabled_concepts = {
 
     -- organisms
     "organisms.vrauk-molting",
-    
+
     --fungi
     "fungi.atztazzae",
     "fungi.atztazzae-recipes",
 
     -- yes
     "plant-residues",
-    
+
     --miscellaneous
     "misc.samples",
     "misc.samples-recipes",
@@ -81,8 +79,9 @@ local enabled_concepts = {
     "misc.ammonium-sulfate",
     "misc.ammonium-sulfate-recipes",
     "misc.tofu-recipes",
-    "misc.meat-alternatives",
     "misc.burlap",
+    "misc.reinforced-wooden-chest",
+    "misc.meat-alternatives",
 
     --buildings
     "buildings.bio-printer-mk00",

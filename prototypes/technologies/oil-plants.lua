@@ -5,13 +5,13 @@ TECHNOLOGY {
     icon_size = 128,
     order = "c-a",
     upgrade = false,
-    prerequisites = {"coal-processing-2"},
+    prerequisites = {"auog"},
     effects = {},
     unit = {
-        count = 50,
+        count = 150,
         ingredients = {
             {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            {"py-science-pack-1", 1}
         },
         time = 30
     }

@@ -107,12 +107,6 @@ data:extend {
     },
     {
         type = "item-subgroup",
-        name = "py-veganism-pseudodaemonas",
-        group = "py-veganism",
-        order = "bbj"
-    },
-    {
-        type = "item-subgroup",
         name = "py-veganism-oil-plants",
         group = "py-veganism",
         order = "bce"
@@ -176,6 +170,12 @@ data:extend {
         name = "py-veganism-vrauk",
         group = "py-veganism",
         order = "caa",
+    },
+    {
+        type = "item-subgroup",
+        name = "py-veganism-auog",
+        group = "py-veganism",
+        order = "cba",
     },
     {
         type = "item-subgroup",

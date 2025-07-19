@@ -56,8 +56,6 @@ ENTITY {
     selection_box = {{-4.5, -4.5}, {4.5, 4.5}},
     forced_symmetry = "diagonal-pos",
     module_slots = 1,
-    allowed_effects = {"speed", "productivity", "consumption", "pollution", "quality"},
-    allowed_module_categories = {"speed", "productivity", "efficiency", "bioprinting", "vrauks"},
     crafting_categories = {"bio-printer"},
     crafting_speed = 0.5,
     energy_source = {
@@ -259,3 +257,14 @@ ENTITY {
         apparent_volume = 2.5
     }
 }
+
+local modules = {
+    allowed_effects = {"speed", "productivity", "consumption", "pollution", "quality"},
+    allowed_module_categories = {"speed", "productivity", "efficiency", "bioprinting", "vrauks", "auog"},
+}
+
+ENTITY("bio-printer-mk00"):set_fields(modules)
+ENTITY("bio-printer-mk01"):set_fields(modules)
+ENTITY("bio-printer-mk02"):set_fields(modules)
+ENTITY("bio-printer-mk03"):set_fields(modules)
+ENTITY("bio-printer-mk04"):set_fields(modules)

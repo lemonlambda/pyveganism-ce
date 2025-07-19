@@ -1,0 +1,18 @@
+{
+  "item": [
+    [
+      "molten-iron-stick",
+      "hot-iron-stick"
+    ]
+  ],
+  "recipe": [
+    [
+      "molten-iron-stick",
+      "hot-iron-stick"
+    ],
+    [
+      "molten-iron-stick-pyvoid",
+      "hot-iron-stick-pyvoid"
+    ]
+  ]
+}
