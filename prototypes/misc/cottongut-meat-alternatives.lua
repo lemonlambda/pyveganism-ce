@@ -12,7 +12,7 @@ ITEM {
     stack_size = 200,
 }
 
-local ingredients = {
+py_veganism_globals.repetitive_recipe(1, 3, {
     {
         type = "item",
         name = "bio-sample",
@@ -38,45 +38,137 @@ local ingredients = {
         name = "water",
         amount = 1000,
     },
-}
+    {
+        type = "item",
+        name = "sack",
+        amount = 1
+    }
+    }, function(i, ingredient_pairs)
+    local additional = {
+        cottonguts_prod = 0
+    }
 
-local i = 1
-local sap_count = 0
-local moss_count = 0
+    if i == 1 then
+        additional.energy_required = 7
 
-local icons = table.deepcopy(py_veganism_globals.non_viable_cottongut_mass_icon)
-table.insert(icons,
-    {icon = "__pyalienlifegraphics__/graphics/icons/" .. i .. ".png", icon_size = 64, scale = .25, shift = {-8, 8}}
-)
+        ingredient_pairs["sack"].amount = 6
+        ingredient_pairs["ralesia"] = {
+            type = "item",
+            name = "ralesia",
+            amount = 7
+        }
+        ingredient_pairs["moondrop"] = {
+            type = "item",
+            name = "moondrop",
+            amount = 4
+        }
 
-RECIPE {
-    type = "recipe",
-    name = "synthetic-non-viable-cottongut-mass-1",
-    category = "bio-printer",
-    enabled = false,
-    energy_required = 30 - 5 * math.log(sap_count),
-    ingredients = ingredients,
-    results = {
-        {
+        additional.cottonguts_additional_output = 5
+    elseif i == 2 then
+        ingredient_pairs["sack"].amount = 2
+        ingredient_pairs["non-viable-cottongut-mass"] = {
             type = "item",
             name = "non-viable-cottongut-mass",
-            amount = 2 + 2 * moss_count
-        },
-        {
+            amount = 2
+        }
+        ingredient_pairs["earth-mouse-sample"].amount = 0
+        ingredient_pairs["earth-generic-sample"].amount = 0
+        ingredient_pairs["moondrop"] = {
             type = "item",
-            name = "cottongut-codex",
-            amount = 1,
-            probability = 0.99,
-        },
-    },
-    icons = icons,
-    subgroup = "py-veganism-cottongut",
-    allow_speed = true,
-    allow_productivity = true,
-    allow_efficiency = true,
-    allowed_module_categories = {"cottongut"},
-    order = "aaa",
-}:add_unlock("cottongut-mk01")
+            name = "moondrop",
+            amount = 4
+        }
+        ingredient_pairs["iron-plate"] = {
+            type = "item",
+            name = "iron-plate",
+            amount = 3
+        }
+
+        additional.cottonguts_additional_output = 3
+    elseif i == 3 then
+        ingredient_pairs["sack"].amount = 12
+        additional.energy_required = 20
+        
+        ingredient_pairs["fawogae-substrate"] = {
+            type = "item",
+            name = "fawogae-substrate",
+            amount = 1
+        }
+        ingredient_pairs["moondrop"] = {
+            type = "item",
+            name = "moondrop",
+            amount = 3
+        }
+
+        additional.cottonguts_prod = 1
+    end
+    
+    return ingredient_pairs, additional
+end, function(i, ingredients, counts, additional)
+    local icons = table.deepcopy(py_veganism_globals.non_viable_cottongut_mass_icon)
+    table.insert(icons,
+        {icon = "__pyalienlifegraphics__/graphics/icons/" .. i .. ".png", icon_size = 64, scale = .25, shift = {-8, 8}}
+    )
+
+    RECIPE {
+        type = "recipe",
+        name = "synthetic-non-viable-cottongut-mass-" .. i,
+        category = "bio-printer",
+        enabled = false,
+        energy_required = additional.energy_required or 15,
+        ingredients = ingredients,
+        results = py_veganism_globals.remove_improper_ingredients({
+            {
+                type = "item",
+                name = "non-viable-cottongut-mass",
+                amount = 1 + (additional.cottonguts_additional_output or 0),
+            },
+            {
+                type = "item",
+                name = "non-viable-cottongut-mass",
+                probability = 0.9,
+                amount = 1 * additional.cottonguts_prod,
+            },
+            {
+                type = "item",
+                name = "non-viable-cottongut-mass",
+                probability = 0.7,
+                amount = 2 * additional.cottonguts_prod,
+            },
+            {
+                type = "item",
+                name = "non-viable-cottongut-mass",
+                probability = 0.5,
+                amount = 2 * additional.cottonguts_prod,
+            },
+            {
+                type = "item",
+                name = "non-viable-cottongut-mass",
+                probability = 0.3,
+                amount = 3 * additional.cottonguts_prod,
+            },
+            {
+                type = "item",
+                name = "non-viable-cottongut-mass",
+                probability = 0.1,
+                amount = 3 * additional.cottonguts_prod,
+            },
+            {
+                type = "item",
+                name = "cottongut-codex",
+                amount = 1,
+                probability = 0.99,
+            },
+        }),
+        icons = icons,
+        subgroup = "py-veganism-vrauk",
+        allow_speed = true,
+        allow_productivity = true,
+        allow_efficiency = true,
+        allowed_module_categories = {"vrauks"},
+        order = "aaa",
+    }:add_unlock("cottongut-mk01")
+end)
 
 local new_icon = table.deepcopy(py_veganism_globals.non_viable_cottongut_mass_icon)
 table.insert(new_icon, {
@@ -125,7 +217,7 @@ RECIPE {
         {
             type = "fluid",
             name = "blood",
-            amount = 20,
+            amount = 5,
         },
         {
             type = "item",
