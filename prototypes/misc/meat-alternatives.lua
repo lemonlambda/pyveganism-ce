@@ -61,5 +61,14 @@ RECIPE {
 }:add_unlock("oil-plants")
 
 require("vrauk-meat-alternatives")
-require("cottongut-meat-alternatives")
+
+py_veganism_globals.register_replace_ingredients("vrauks", "non-viable-vrauk-mass")
+
 require("auog-meat-alternatives")
+
+py_veganism_globals.register_replace_ingredients("auog", "non-viable-auog-mass")
+
+require("cottongut-meat-alternatives")
+
+py_veganism_globals.register_replace_ingredients("cottongut", "non-viable-cottongut-mass")
+py_veganism_globals.replace_ingredients()
