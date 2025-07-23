@@ -12,6 +12,162 @@ ITEM {
     stack_size = 200,
 }
 
+ITEM {
+    type = "item",
+    name = "cottongut-fur-tuft",
+    icon = "__pyveganism__/graphics/icons/fur-tuft-gray.png", icon_size = 64, tint = {217/255, 232/255, 232/255},
+    icon_size = 64,
+    subgroup = "py-veganism-cottongut",
+    enabled = false,
+    stack_size = 100,
+}
+
+ITEM {
+    type = "item",
+    name = "brush",
+    icon = "__pyveganism__/graphics/icons/brush.png",
+    icon_size = 64,
+    subgroup = "py-veganism-cottongut",
+    enabled = false,
+    stack_size = 25,
+}
+
+RECIPE {
+    type = "recipe",
+    name = "brush",
+    icon = "__pyveganism__/graphics/icons/brush.png",
+    icon_size = 64,
+    ingredients = {
+        {
+            type = "item",
+            name = "hot-iron-stick",
+            amount = 5
+        },
+        {
+            type = "item",
+            name = "plastic-bar",
+            amount = 2
+        }
+    },
+    results = {
+        {
+            type = "item",
+            name = "brush",
+            amount = 1
+        }
+    }
+}:add_unlock("cottongut-mk01")
+
+RECIPE {
+    type = "recipe",
+    name = "cottongut-fur-tuft-1",
+    icons = {
+        {icon = "__pyveganism__/graphics/icons/fur-tuft-gray.png", icon_size = 64, tint = {217/255, 232/255, 232/255}},
+        {icon = "__pyalienlifegraphics__/graphics/icons/1.png", icon_size = 64, scale = .25, shift = {-8, 8}},
+    },
+    enabled = false,
+    energy_required = 60.0,
+    subgroup = "py-veganism-cottongut",
+    category = "cottongut",
+    ingredients = {
+        {
+            type = "item",
+            name = "water-barrel",
+            amount = 2
+        },
+        {
+            type = "item",
+            name = "wood-seeds",
+            amount = 4,
+        },
+        {
+            type = "item",
+            name = "ralesia-seeds",
+            amount = 3
+        },
+        {
+            type = "item",
+            name = "moondrop",
+            amount = 4
+        },
+    },
+    results = {
+        {
+            type = "item",
+            name = "barrel",
+            amount = 2,
+        },
+        {
+            type = "item",
+            name = "cottongut-fur-tuft",
+            amount = 2
+        },
+    }
+}:add_unlock("cottongut-mk01")
+
+RECIPE {
+    type = "recipe",
+    name = "cottongut-fur-tuft-2",
+    icons = {
+        {icon = "__pyveganism__/graphics/icons/fur-tuft-gray.png", icon_size = 64, tint = {217/255, 232/255, 232/255}},
+        {icon = "__pyalienlifegraphics__/graphics/icons/2.png", icon_size = 64, scale = .25, shift = {-8, 8}},
+    },
+    enabled = false,
+    energy_required = 30.0,
+    subgroup = "py-veganism-cottongut",
+    category = "cottongut",
+    ingredients = {
+        {
+            type = "item",
+            name = "water-barrel",
+            amount = 2
+        },
+        {
+            type = "item",
+            name = "wood-seeds",
+            amount = 4,
+        },
+        {
+            type = "item",
+            name = "ralesia-seeds",
+            amount = 3
+        },
+        {
+            type = "item",
+            name = "moondrop",
+            amount = 4
+        },
+        {
+            type = "item",
+            name = "brush",
+            amount = 5,
+        }
+    },
+    results = {
+        {
+            type = "item",
+            name = "barrel",
+            amount = 2,
+        },
+        {
+            type = "item",
+            name = "cottongut-fur-tuft",
+            amount = 20
+        },
+        {
+            type = "item",
+            name = "brush",
+            amount = 4
+        },
+        {
+            type = "item",
+            name = "brush",
+            amount = 1,
+            probability = 0.8
+        }
+    }
+}:add_unlock("cottongut-mk01")
+
 py_veganism_globals.repetitive_recipe(1, 3, {
     {
         type = "item",
