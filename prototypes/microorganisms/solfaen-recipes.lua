@@ -89,7 +89,7 @@ RECIPE {
     },
     results = {
         {type = "item", name = "solfaen-washed", amount = 5},
-        {type = "fluid", name = "dirty-water-light", amount = 100}
+        {type = "fluid", name = "tailings", amount = 100}
     },
     main_product = "solfaen-washed",
     icons = {
