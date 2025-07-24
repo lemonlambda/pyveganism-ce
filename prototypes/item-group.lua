@@ -2,8 +2,8 @@ data:extend {
     {
         type = "item-group",
         name = "py-veganism",
-        order = "z",
-        inventory_order = "z",
+        order = "y",
+        inventory_order = "y",
         icon = "__pyveganism__/graphics/icons/item-group.png",
         icon_size = 144
     },
