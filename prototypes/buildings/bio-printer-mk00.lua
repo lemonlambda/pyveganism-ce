@@ -260,7 +260,7 @@ ENTITY {
 
 local modules = {
     allowed_effects = {"speed", "productivity", "consumption", "pollution", "quality"},
-    allowed_module_categories = {"speed", "productivity", "efficiency", "bioprinting", "vrauks", "auog"},
+    allowed_module_categories = {"speed", "productivity", "efficiency", "bioprinting", "vrauks", "auog", "cottongut"},
 }
 
 ENTITY("bio-printer-mk00"):set_fields(modules)

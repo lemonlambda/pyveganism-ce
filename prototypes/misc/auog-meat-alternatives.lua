@@ -149,7 +149,7 @@ py_veganism_globals.repetitive_recipe(1, 3,
         {
             type = "item",
             name = "bio-sample",
-            amount = 5,
+            amount = 1,
         },
         {
             type = "item",
@@ -189,7 +189,7 @@ py_veganism_globals.repetitive_recipe(1, 3,
     },
     function(i, ingredient_pairs)
         local additional = {
-            energy_required = 200
+            energy_required = 100
         }
 
         if i == 1 then
@@ -205,7 +205,7 @@ py_veganism_globals.repetitive_recipe(1, 3,
                 amount = 5
             }
             ingredient_pairs["water"].amount = 15000
-            ingredient_pairs["bio-sample"].amount = 10
+            ingredient_pairs["bio-sample"].amount = 3
             ingredient_pairs["earth-generic-sample"].amount = 0
             ingredient_pairs["plastic-bar"] = {
                 type = "item",
@@ -218,7 +218,7 @@ py_veganism_globals.repetitive_recipe(1, 3,
                 amount = 150
             }
             additional.earth_bear_sample_amount = 1
-            additional.earth_bear_sample_probability = .95
+            additional.earth_bear_sample_probability = .99
         elseif i == 3 then
             ingredient_pairs["auog-approved-reinforced-wooden-chest"].amount = 4
             ingredient_pairs["native-flora"].amount = 0
@@ -237,7 +237,7 @@ py_veganism_globals.repetitive_recipe(1, 3,
                 name = "plant-oil",
                 amount = 100
             }
-            additional.nvm_auog_amount = 4
+            additional.nvm_auog_amount = 8
         end
         
         return ingredient_pairs, additional
@@ -259,19 +259,19 @@ py_veganism_globals.repetitive_recipe(1, 3,
                 {
                     type = "item",
                     name = "non-viable-auog-mass",
-                    amount = additional.nvm_auog_amount or 1
+                    amount = additional.nvm_auog_amount or 4
                 },
                 {
                     type = "item",
                     name = "earth-bear-sample",
                     amount = additional.earth_bear_sample_amount or 1,
-                    probability = additional.earth_bear_sample_probability or 0.8,
+                    probability = additional.earth_bear_sample_probability or 0.95,
                 },
                 {
                     type = "item",
                     name = "auog-codex",
                     amount = 1,
-                    probability = 0.99,
+                    probability = 0.9999,
                 },
             },
             subgroup = "py-veganism-auog",
@@ -294,7 +294,7 @@ RECIPE {
     category = "slaughterhouse",
     icons = new_icon,
     subgroup = "py-veganism-auog",
-    energy_required = 30,
+    energy_required = 10,
     ingredients = {
         {
             type = "item",
@@ -331,7 +331,7 @@ RECIPE {
         {
             type = "fluid",
             name = "blood",
-            amount = 10,
+            amount = 20,
         },
         {
             type = "item",
@@ -399,7 +399,7 @@ py_veganism_globals.repetitive_recipe(1, 3,
             }
             
             additional.energy_required = 45
-            additional.blood_amount = 150
+            additional.blood_amount = 340
         end
         
         return ingredient_pairs, additional
@@ -420,7 +420,7 @@ py_veganism_globals.repetitive_recipe(1, 3,
                 {
                     type = "fluid",
                     name = "blood",
-                    amount = additional.blood_amount or 100,
+                    amount = additional.blood_amount or 200,
                 },
                 {
                     type = "item",
@@ -431,7 +431,7 @@ py_veganism_globals.repetitive_recipe(1, 3,
                     type = "item",
                     name = "auog-codex",
                     amount = 1,
-                    probability = 0.99
+                    probability = 0.9999
                 }
             },
         }

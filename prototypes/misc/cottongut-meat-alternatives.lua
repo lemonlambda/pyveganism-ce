@@ -321,7 +321,7 @@ end, function(i, ingredients, counts, additional)
         allow_speed = true,
         allow_productivity = true,
         allow_efficiency = true,
-        allowed_module_categories = {"vrauks"},
+        allowed_module_categories = {"cottongut"},
         order = "aaa",
     }:add_unlock("cottongut-mk01")
 end)
