@@ -125,12 +125,12 @@ RECIPE {
 
 RECIPE {
     type = "recipe",
-    name = "dirty-water-light-purification",
+    name = "tailings-purification",
     category = "fluid-separator",
     enabled = false,
     energy_required = 1,
     ingredients = {
-        {type = "fluid", name = "dirty-water-light", amount = 500},
+        {type = "fluid", name = "tailings", amount = 500},
         {type = "fluid", name = "activated-sludge", amount = 20},
         {type = "item", name = "rake", amount = 1}, 
     },
@@ -186,7 +186,7 @@ RECIPE {
         {type = "item", name = "clogged-rake", amount = 1}
     },
     results = {
-        {type = "fluid", name = "dirty-water-light", amount = 100}, 
+        {type = "fluid", name = "tailings", amount = 100}, 
         {type = "item", name = "rake", amount = 1}, 
         {type = "item", name = "stone", amount = 5, probability = 0.05}, 
         {type = "item", name = "log", amount = 1, probability = 0.02}, 
