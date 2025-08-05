@@ -271,6 +271,7 @@ end, function(i, ingredients, counts, additional)
         name = "synthetic-non-viable-cottongut-mass-" .. i,
         category = "bio-printer",
         enabled = false,
+        hidden = settings.startup["pyveganism-old-recipes"] and settings.startup["pyveganism-old-recipes"].value,
         energy_required = additional.energy_required or 15,
         ingredients = ingredients,
         results = py_veganism_globals.remove_improper_ingredients({

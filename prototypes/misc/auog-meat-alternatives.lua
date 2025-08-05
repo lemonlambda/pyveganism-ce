@@ -253,6 +253,7 @@ py_veganism_globals.repetitive_recipe(1, 3,
             category = "bio-printer",
             icons = icons,
             enabled = false,
+            hidden = settings.startup["pyveganism-old-recipes"] and settings.startup["pyveganism-old-recipes"].value,
             energy_required = additional.energy_required,
             ingredients = ingredients,
             results = {
