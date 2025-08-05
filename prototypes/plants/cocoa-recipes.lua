@@ -34,7 +34,7 @@ RECIPE {
     },
     results = {
         {type = "item", name = "cocoa-fruit-washed", amount = 20},
-        {type = "fluid", name = "dirty-water-light", amount = 200}
+        {type = "fluid", name = "tailings", amount = 200}
     },
     icons = {
         {icon = "__pyveganism__/graphics/icons/cocoa-fruit.png"},
