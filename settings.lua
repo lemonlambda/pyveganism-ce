@@ -4,7 +4,7 @@ data:extend {
         name = "pyveganism-old-recipes",
         order = "aa",
         setting_type = "startup",
-        default_value = false
+        default_value = true
     },
     {
         type = "bool-setting",

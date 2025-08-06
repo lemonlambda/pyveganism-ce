@@ -69,6 +69,7 @@ local enabled_concepts = {
 
     -- yes
     "plant-residues",
+    "automatic-cost-balancer",
 
     --miscellaneous
     "misc.samples",
