@@ -113,11 +113,13 @@ local partial_recipe = py_veganism_globals.create_partial_filament_recipe_from_t
     ["moss"] = 2.55,
     ["water-barrel"] = 0.01,
     ["saps"] = 10
+    ["water"] = 0.01,
+    ["barrel"] = 0,
   },
   -- The traditional recipe name
   "vrauks-1",
   -- The sub recipes used in the traditional recipe
-  {["cocoon"] = "vrauks-cocoon-1"}
+  {["cocoon"] = "vrauks-cocoon-1", ["water-barrel"] = "water-barrel"}
 )
 log("Filament based off of Vrauk: " .. serpent.block(partial_recipe))
 
@@ -128,7 +130,8 @@ local partial_recipe = py_veganism_globals.create_partial_filament_recipe_from_t
   {
     ["native-flora"] = 9.57,
     ["moss"] = 2.55,
-    ["water-barrel"] = 0.01,
+    ["water"] = 0.01,
+    ["barrel"] = 0,
     ["saps"] = 10,
     ["wood-seeds"] = 2.95,
     ["fawogae"] = 0.46,
@@ -139,6 +142,6 @@ local partial_recipe = py_veganism_globals.create_partial_filament_recipe_from_t
   -- The traditional recipe name
   "vrauks-2",
   -- The sub recipes used in the traditional recipe
-  {["cocoon"] = "vrauks-cocoon-2", ["vrauks-food-01"] = "vrauks-food-01"}
+  {["cocoon"] = "vrauks-cocoon-2", ["vrauks-food-01"] = "vrauks-food-01", ["water-barrel"] = "water-barrel"}
 )
 log("Filament based off of Vrauk 2: " .. serpent.block(partial_recipe))
