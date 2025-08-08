@@ -89,6 +89,54 @@ function get_recipe_costs(main_product_amount, ingredients, established_costs, s
   return _get_recipe_costs(_get_recipe_costs, main_product_amount, ingredients, established_costs, sub_recipes)
 end
 
+local function round(num, num_decimal_places)
+  local mult = 10^(num_decimal_places or 0)
+  return math.floor(num * mult) / mult
+end
+
+-- Tries to generate a list of ingredients from costs and a scalar which is applied to the total cost
+-- total cost is obtained from all values in target_costs added up
+-- @param target_costs table<string, number>
+-- @param scalar number
+-- @param cached_costs table<string, number> Cached costs that can be used to scale around an ingredient
+local function ingredients_collapse(target_costs, scalar, cached_costs)
+  local ingredients = {}
+  local total_cost = table.sum(target_costs) * scalar
+  log("Total Cost: " .. serpent.line(total_cost))
+
+  -- Step 1: Match ingredient amounts with the matching cost
+  -- Step 2: Adjust everything to match the total cost roughly
+
+  for name, cost in pairs(target_costs) do
+    if cost == 0 then
+      goto continue
+    end
+    
+    local cached_cost = cached_costs[name]
+    local amount = cost / cached_cost
+
+    log("New ingredient " .. name .. " amount is " .. serpent.line(new_amount))
+
+    -- Get the type
+    local type
+    if data.raw["item"][name] then
+      type = "item"
+    else
+      type = "fluid"
+    end
+    
+    table.insert(ingredients, {
+      name = name,
+      type = type,
+      amount = math.ceil(amount)
+    })
+
+    ::continue::
+  end
+
+  log("Ingredients: " .. serpent.block(ingredients))
+end
+
 -- Create's a partial filament recipe from a traditional recipe
 -- @param main_product_name string The name of the main_product, for example: `vrauks`
 -- @param costs table<string, number> A table of the associated costs of each ingredient
@@ -101,8 +149,17 @@ function py_veganism_globals.create_partial_filament_recipe_from_trad(main_produ
   log("Main product " .. main_product.name .. " with amount: " .. main_product.amount)
 
   local trad_costs = get_recipe_costs(main_product.amount, ingredients, costs, sub_recipes)
-  return trad_costs
+  for name, cost in pairs(trad_costs) do
+    trad_costs[name] = round(cost, 3)
+  end
+
+  log("Costs: " .. serpent.block(trad_costs))
+
+  local new_ingredients = ingredients_collapse(trad_costs, 0.5, costs)
+  
+  return new_ingredients
 end
+
 
 local partial_recipe = py_veganism_globals.create_partial_filament_recipe_from_trad(
   -- Name of the main_product in the recipe
@@ -111,8 +168,7 @@ local partial_recipe = py_veganism_globals.create_partial_filament_recipe_from_t
   {
     ["native-flora"] = 9.57,
     ["moss"] = 2.55,
-    ["water-barrel"] = 0.01,
-    ["saps"] = 10
+    ["saps"] = 10,
     ["water"] = 0.01,
     ["barrel"] = 0,
   },
