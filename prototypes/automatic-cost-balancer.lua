@@ -94,11 +94,15 @@ local function round(num, num_decimal_places)
   return math.floor(num * mult) / mult
 end
 
+-- The base to the cost_factor exponent
+local COST_BASE = 1.1
+
 -- Tries to generate a list of ingredients from costs and a scalar which is applied to the amounts of each ingredient
 -- @param target_costs table<string, number>
+-- @param cost_factor number A number to weight out costs to be more ingredients
 -- @param scalar number
 -- @param cached_costs table<string, number> Cached costs that can be used to scale around an ingredient
-local function ingredients_collapse(target_costs, scalar, cached_costs)
+local function ingredients_collapse(target_costs, cost_factor, scalar, cached_costs)
   local ingredients = {}
 
   for name, cost in pairs(target_costs) do
@@ -107,7 +111,7 @@ local function ingredients_collapse(target_costs, scalar, cached_costs)
     end
     
     local cached_cost = cached_costs[name]
-    local amount = cost / cached_cost
+    local amount = (cost * math.pow(COST_BASE, cost_factor)) / cached_cost
 
     log("New ingredient " .. name .. " amount is " .. serpent.line(new_amount))
 
@@ -134,10 +138,11 @@ end
 -- Create's a partial filament recipe from a traditional recipe
 -- @param main_product_name string The name of the main_product, for example: `vrauks`
 -- @param costs table<string, number> A table of the associated costs of each ingredient
+-- @param cost_factor number A number to weight out costs to be more ingredients
 -- @param trad_recipe_name string the name of the traditional recipe
 -- @param sub_recipes table<string, string> the name of the ingredient matched with it's traditional recipe, for example: `["cocoon"] = "vrauks-cocoon-1"`
 -- @param scalar number How much should we scale the ingredients down by
-function py_veganism_globals.get_filament_ingredients(main_product_name, costs, trad_recipe_name, sub_recipes, scaler)
+function py_veganism_globals.get_filament_ingredients(main_product_name, costs, cost_factor, trad_recipe_name, sub_recipes, scaler)
   local recipe = RECIPE(trad_recipe_name)
   local ingredients = recipe.ingredients
   local main_product = get_main_product(recipe.results, main_product_name)
@@ -150,7 +155,7 @@ function py_veganism_globals.get_filament_ingredients(main_product_name, costs, 
 
   log("Costs: " .. serpent.block(trad_costs))
 
-  local new_ingredients = ingredients_collapse(trad_costs, scaler, costs)
+  local new_ingredients = ingredients_collapse(trad_costs, cost_factor, scaler, costs)
   
   return new_ingredients
 end
@@ -167,6 +172,7 @@ end
 -- 
 -- @param main_product_name string The name of the main_product, for example: `vrauks`
 -- @param costs table<string, number> A table of the associated costs of each ingredient
+-- @param cost_factor number A number to weight out costs to be more ingredients
 -- @param trad_recipe_name string the name of the traditional recipe
 -- @param sub_recipes table<string, string> the name of the ingredient matched with it's traditional recipe, for example: `["cocoon"] = "vrauks-cocoon-1"`
 function py_veganism_globals.generate_new_automatic_filament_recipe(
@@ -181,10 +187,11 @@ function py_veganism_globals.generate_new_automatic_filament_recipe(
   
   main_product_name,
   costs,
+  cost_factor,
   trad_recipe_name,
   sub_recipes
 )
-  local ingredients = py_veganism_globals.get_filament_ingredients(main_product_name, costs, trad_recipe_name, sub_recipes, scalar)
+  local ingredients = py_veganism_globals.get_filament_ingredients(main_product_name, costs, cost_factor, trad_recipe_name, sub_recipes, scalar)
   log("Ingredients: " .. serpent.block(ingredients))
 
   if not data.raw["fluid"][filament_name] then
@@ -208,39 +215,42 @@ function py_veganism_globals.generate_new_automatic_filament_recipe(
       {
         type = "fluid",
         name = filament_name,
-        amount = filament_amount
+        amount = filament_amount * math.pow(COST_BASE, cost_factor)
       }
     }
   }
 end
 
-local new_recipe = py_veganism_globals.generate_new_automatic_filament_recipe(
-  "vrauk-filament-vegan", -- Name
-  "__pyveganism__/graphics/icons/filaments/vrauk-filament.png", -- Filament Icon
-  {}, -- Extra ingredients
-  1, -- Scalar value
-  "vrauk-filament", -- Filament name
-  {59/255, 121/255, 88/255}, -- Filament Color
-  100, -- Filament Amount
-  
-  "vrauks", -- Main Product
-  { -- Ingredient Costs
-    ["native-flora"] = 9.57,
-    ["moss"] = 2.55,
-    ["saps"] = 10,
-    ["water"] = 0.01,
-    ["barrel"] = 0,
-  },
-  "vrauks-1", -- Original Recipe
-  {["cocoon"] = "vrauks-cocoon-1", ["water-barrel"] = "water-barrel"} -- Sub recipes
-)
-new_recipe.category = "bio-printer"
+for i=0,4 do
+  local new_recipe = py_veganism_globals.generate_new_automatic_filament_recipe(
+    "vrauk-filament-" .. i, -- Name
+    "__pyveganism__/graphics/icons/filaments/vrauk-filament.png", -- Filament Icon
+    {}, -- Extra ingredients
+    1, -- Scalar value
+    "vrauk-filament", -- Filament name
+    {59/255, 121/255, 88/255}, -- Filament Color
+    100, -- Filament Amount
 
-log("New recipe: " .. serpent.block(new_recipe))
+    "vrauks", -- Main Product
+    { -- Ingredient Costs
+      ["native-flora"] = 9.57,
+      ["moss"] = 2.55,
+      ["saps"] = 10,
+      ["water"] = 0.01,
+      ["barrel"] = 0,
+    },
+    math.pow(2, i), -- Cost factor
+    "vrauks-1", -- Original Recipe
+    {["cocoon"] = "vrauks-cocoon-1", ["water-barrel"] = "water-barrel"} -- Sub recipes
+  )
+  new_recipe.category = "bio-printer"
 
-data:extend{
-  new_recipe
-}
+  log("New recipe: " .. serpent.block(new_recipe))
+
+  data:extend{
+    new_recipe
+  }
+end
 
 
 -- local partial_recipe = py_veganism_globals.create_partial_filament_recipe_from_trad(
