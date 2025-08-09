@@ -211,7 +211,7 @@ function py_veganism_globals.generate_new_automatic_filament_recipe(
     name = recipe_name,
     icon = icon_path,
     subgroup = "py-veganism-filament",
-    ingredients = py.merge(ingredients, extra_ingredients),
+    ingredients = table.extend(ingredients, extra_ingredients),
     results = {
       {
         type = "fluid",
@@ -222,31 +222,94 @@ function py_veganism_globals.generate_new_automatic_filament_recipe(
   }
 end
 
-local new_recipe = py_veganism_globals.generate_new_automatic_filament_recipe(
-  "vrauk-filament-vegan", -- Name
-  "__pyveganism__/graphics/icons/filaments/vrauk-filament.png", -- Filament Icon
-  {}, -- Extra ingredients
-  1, -- Scalar value
-  "vrauk-filament", -- Filament name
-  {59/255, 121/255, 88/255}, -- Filament Color
-  100, -- Filament Amount
+-- @param animal_name string Animal name
+-- @param filament_color number[3] RGB of the filament's color
+-- @param extra_ingredients table<string, any>[] The extra ingredients in the recipe
+-- 
+-- @param trad_recipe_name string the name of the traditional recipe
+-- @param sub_recipes table<string, string> the name of the ingredient matched with it's traditional recipe, for example: `["cocoon"] = "vrauks-cocoon-1"`
+-- @param vege? to have the vegetarian recipe or not
+function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filament_color, costs, trad_recipe, sub_recipes, vege)
+  local vegan_recipe = py_veganism_globals.generate_new_automatic_filament_recipe(
+    animal_name .. "-filament-vegan", -- Name
+    "__pyveganism__/graphics/icons/filaments/" .. animal_name .. "-filament.png", -- Filament Icon
+    {}, -- Extra ingredients
+    1, -- Scalar value
+    animal_name .. "-filament", -- Filament name
+    filament_color, -- Filament Color
+    100, -- Filament Amount
 
-  "vrauks", -- Main Product
-  { -- Ingredient Costs
-    ["native-flora"] = 9.57,
-    ["moss"] = 2.55,
-    ["saps"] = 10,
-    ["water"] = 0.01,
-    ["barrel"] = 0,
-  },
-  0, -- Cost factor
-  "vrauks-1", -- Original Recipe
-  {["cocoon"] = "vrauks-cocoon-1", ["water-barrel"] = "water-barrel"} -- Sub recipes
-)
-new_recipe.category = "bio-printer"
+    animal_name, -- Main Product
+    costs,
+    0, -- Cost factor
+    trad_recipe, -- Original Recipe
+    sub_recipes -- Sub recipes
+  )
+  vegan_recipe.category = "bio-printer"
 
-log("New recipe: " .. serpent.block(new_recipe))
+  data:extend{
+    vegan_recipe
+  }
 
-data:extend{
-  new_recipe
-}
+  if vege then
+    local vege_recipe = py_veganism_globals.generate_new_automatic_filament_recipe(
+      animal_name .. "-filament-vegetarian", -- Name
+      "__pyveganism__/graphics/icons/filaments/" .. animal_name .. "-filament.png", -- Filament Icon
+      extra_ingredients, -- Extra ingredients
+      1, -- Scalar value
+      animal_name .. "-filament", -- Filament name
+      filament_color, -- Filament Color
+      130, -- Filament Amount
+
+      animal_name, -- Main Product
+      costs,
+      0, -- Cost factor
+      trad_recipe, -- Original Recipe
+      sub_recipes -- Sub recipes
+    )
+    vege_recipe.category = "bio-printer"
+    
+    data:extend{
+      vege_recipe
+    }
+  end
+
+  
+  RECIPE{
+    type = "recipe",
+    name = "print-" .. animal_name,
+    category = "bio-printer",
+    subgroup = "py-veganism-printing",
+    energy_required = 30,
+    icons = {
+      {icon = ITEM(animal_name).icon or ITEM(animal_name).icons[1].icon},
+      {icon = "__pyveganism__/graphics/icons/filaments/" .. animal_name .. "-filament.png", icon_size = 64, scale = 0.25, shift = {-8, 8}}
+    },
+    ingredients = {
+      {
+        type = "item",
+        name = animal_name .. "-codex",
+        amount = 1
+      },
+      {
+        type = "fluid",
+        name = animal_name .. "-filament",
+        amount = 100
+      }
+    },
+    results = {
+      {
+        type = "item",
+        name = animal_name,
+        amount = 1
+      },
+      {
+        type = "item",
+        name = animal_name .. "-codex",
+        amount = 1,
+        probability = .99
+      }
+    },
+    main_product = animal_name
+  }:add_unlock(animal_name)
+end

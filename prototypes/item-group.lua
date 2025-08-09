@@ -15,6 +15,12 @@ data:extend {
         order = "aa"
     },
     {
+        type= "item-subgroup",
+        name = "py-veganism-printing",
+        group = "py-veganism",
+        order = "ab"
+    },
+    {
         type = "item-subgroup",
         name = "py-veganism-plants",
         group = "py-veganism",
