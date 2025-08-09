@@ -1,0 +1,11 @@
+{
+  "recipe": [
+    ["synthetic-non-viable-vrauk-mass-1", "synthetic-non-viable-vrauks-mass-1"],
+    ["synthetic-non-viable-vrauk-mass-2", "synthetic-non-viable-vrauks-mass-2"],
+    ["synthetic-non-viable-vrauk-mass-3", "synthetic-non-viable-vrauks-mass-3"],
+    ["render-non-viable-vrauk-mass", "render-non-viable-vrauks-mass"]
+  ],
+  "item": [
+    ["non-viable-vrauk-mass", "non-viable-vrauks-mass"]
+  ]
+}
