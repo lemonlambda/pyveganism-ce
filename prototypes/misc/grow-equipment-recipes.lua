@@ -83,7 +83,7 @@ RECIPE {
     enabled = false,
     energy_required = 0.5,
     ingredients = {
-        {type = "fluid", name = "tailings", amount = 100},
+        {type = "fluid", name = "dirty-water-light", amount = 100},
         {type = "item", name = "urea", amount = 9}, 
         {type = "item", name = "morgenroete-endospores", amount = 1},
         {type = "item", name = "biomass", amount = 3},
