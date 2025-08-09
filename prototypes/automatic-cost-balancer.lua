@@ -247,7 +247,7 @@ function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filam
     sub_recipes -- Sub recipes
   )
   vegan_recipe.results[1].probability = extra_properties.filament_result_probability
-  vegan_recipe.category = "bio-printer"
+  vegan_recipe.category = "biofactory"
 
   data:extend{
     vegan_recipe
@@ -269,7 +269,7 @@ function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filam
       trad_recipe, -- Original Recipe
       sub_recipes -- Sub recipes
     )
-    vege_recipe.category = "bio-printer"
+    vege_recipe.category = "biofactory"
     
     data:extend{
       vege_recipe
