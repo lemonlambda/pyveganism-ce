@@ -34,7 +34,7 @@ RECIPE {
     },
     results = {
         {type = "item", name = "sugar-beet-washed", amount = 10},
-        {type = "fluid", name = "tailings", amount = 200}
+        {type = "fluid", name = "dirty-water-light", amount = 200}
     },
     icons = {
         {icon = "__pyveganism__/graphics/icons/sugar-beet.png"},
@@ -62,7 +62,7 @@ RECIPE {
         {type = "item", name = "limestone", amount = 6},
         {type = "item", name = "plant-residues-dry", amount = 2},
         {type = "item", name = "molasses", amount = 5},
-        {type = "fluid", name = "tailings", amount = 50}
+        {type = "fluid", name = "dirty-water-light", amount = 50}
     },
     icons = {
         {icon = "__pyveganism__/graphics/icons/sugar-beet-washed.png"},
