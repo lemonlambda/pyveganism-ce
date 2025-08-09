@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.4.0
+Date: 2025.8.9
+  Changes:
+    - Added new option to use old NVM recipes
+    - Added new filament recipes to print things instead
+---------------------------------------------------------------------------------------------------
 Version: 1.3.2
 Date: 2025.7.23
   Changes:
