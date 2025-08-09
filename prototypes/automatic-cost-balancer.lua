@@ -94,18 +94,12 @@ local function round(num, num_decimal_places)
   return math.floor(num * mult) / mult
 end
 
--- Tries to generate a list of ingredients from costs and a scalar which is applied to the total cost
--- total cost is obtained from all values in target_costs added up
+-- Tries to generate a list of ingredients from costs and a scalar which is applied to the amounts of each ingredient
 -- @param target_costs table<string, number>
 -- @param scalar number
 -- @param cached_costs table<string, number> Cached costs that can be used to scale around an ingredient
 local function ingredients_collapse(target_costs, scalar, cached_costs)
   local ingredients = {}
-  local total_cost = table.sum(target_costs) * scalar
-  log("Total Cost: " .. serpent.line(total_cost))
-
-  -- Step 1: Match ingredient amounts with the matching cost
-  -- Step 2: Adjust everything to match the total cost roughly
 
   for name, cost in pairs(target_costs) do
     if cost == 0 then
@@ -119,7 +113,7 @@ local function ingredients_collapse(target_costs, scalar, cached_costs)
 
     -- Get the type
     local type
-    if data.raw["item"][name] then
+    if data.raw["item"][name] or data.raw["module"][name] then
       type = "item"
     else
       type = "fluid"
@@ -128,13 +122,13 @@ local function ingredients_collapse(target_costs, scalar, cached_costs)
     table.insert(ingredients, {
       name = name,
       type = type,
-      amount = math.ceil(amount)
+      amount = math.ceil(amount * scalar)
     })
 
     ::continue::
   end
 
-  log("Ingredients: " .. serpent.block(ingredients))
+  return ingredients
 end
 
 -- Create's a partial filament recipe from a traditional recipe
@@ -142,7 +136,8 @@ end
 -- @param costs table<string, number> A table of the associated costs of each ingredient
 -- @param trad_recipe_name string the name of the traditional recipe
 -- @param sub_recipes table<string, string> the name of the ingredient matched with it's traditional recipe, for example: `["cocoon"] = "vrauks-cocoon-1"`
-function py_veganism_globals.create_partial_filament_recipe_from_trad(main_product_name, costs, trad_recipe_name, sub_recipes)
+-- @param scalar number How much should we scale the ingredients down by
+function py_veganism_globals.get_filament_ingredients(main_product_name, costs, trad_recipe_name, sub_recipes, scaler)
   local recipe = RECIPE(trad_recipe_name)
   local ingredients = recipe.ingredients
   local main_product = get_main_product(recipe.results, main_product_name)
@@ -155,49 +150,136 @@ function py_veganism_globals.create_partial_filament_recipe_from_trad(main_produ
 
   log("Costs: " .. serpent.block(trad_costs))
 
-  local new_ingredients = ingredients_collapse(trad_costs, 0.5, costs)
+  local new_ingredients = ingredients_collapse(trad_costs, scaler, costs)
   
   return new_ingredients
 end
 
+-- Generates a new filament recipe based off of some criteria
+-- @param recipe_name string The new recipe's name
+-- @param icon_path string The path to the icon
+-- @param extra_ingredients table<string, any>[] The extra ingredients in the recipe
+-- @param scalar number The scalar to scale the trad ingredients by
+--
+-- @param filament_name string The name of the filament
+-- @param filament_color number[3] RGB of the filament's color
+-- @param filament_amount number The amount of filament to output
+-- 
+-- @param main_product_name string The name of the main_product, for example: `vrauks`
+-- @param costs table<string, number> A table of the associated costs of each ingredient
+-- @param trad_recipe_name string the name of the traditional recipe
+-- @param sub_recipes table<string, string> the name of the ingredient matched with it's traditional recipe, for example: `["cocoon"] = "vrauks-cocoon-1"`
+function py_veganism_globals.generate_new_automatic_filament_recipe(
+  recipe_name,
+  icon_path,
+  extra_ingredients,
+  scalar,
+  
+  filament_name,
+  filament_color,
+  filament_amount,
+  
+  main_product_name,
+  costs,
+  trad_recipe_name,
+  sub_recipes
+)
+  local ingredients = py_veganism_globals.get_filament_ingredients(main_product_name, costs, trad_recipe_name, sub_recipes, scalar)
+  log("Ingredients: " .. serpent.block(ingredients))
 
-local partial_recipe = py_veganism_globals.create_partial_filament_recipe_from_trad(
-  -- Name of the main_product in the recipe
-  "vrauks",
-  -- List of ingredient-cost associated values
-  {
+  if not data.raw["fluid"][filament_name] then
+    FLUID {
+      type = "fluid",
+      name = filament_name,
+      icon = icon_path,
+      default_temperature = 15,
+      base_color = filament_color,
+      flow_color = filament_color,
+    }
+    log("New Filament: " .. serpent.block(data.raw["fluid"][filament_name]))
+  end
+
+  return {
+    type = "recipe",
+    name = recipe_name,
+    icon = icon_path,
+    ingredients = py.merge(ingredients, extra_ingredients),
+    results = {
+      {
+        type = "fluid",
+        name = filament_name,
+        amount = filament_amount
+      }
+    }
+  }
+end
+
+local new_recipe = py_veganism_globals.generate_new_automatic_filament_recipe(
+  "vrauk-filament-vegan", -- Name
+  "__pyveganism__/graphics/icons/filaments/vrauk-filament.png", -- Filament Icon
+  {}, -- Extra ingredients
+  1, -- Scalar value
+  "vrauk-filament", -- Filament name
+  {59/255, 121/255, 88/255}, -- Filament Color
+  100, -- Filament Amount
+  
+  "vrauks", -- Main Product
+  { -- Ingredient Costs
     ["native-flora"] = 9.57,
     ["moss"] = 2.55,
     ["saps"] = 10,
     ["water"] = 0.01,
     ["barrel"] = 0,
   },
-  -- The traditional recipe name
-  "vrauks-1",
-  -- The sub recipes used in the traditional recipe
-  {["cocoon"] = "vrauks-cocoon-1", ["water-barrel"] = "water-barrel"}
+  "vrauks-1", -- Original Recipe
+  {["cocoon"] = "vrauks-cocoon-1", ["water-barrel"] = "water-barrel"} -- Sub recipes
 )
-log("Filament based off of Vrauk: " .. serpent.block(partial_recipe))
+new_recipe.category = "bio-printer"
 
-local partial_recipe = py_veganism_globals.create_partial_filament_recipe_from_trad(
-  -- Name of the main_product in the recipe
-  "vrauks",
-  -- List of ingredient-cost associated values
-  {
-    ["native-flora"] = 9.57,
-    ["moss"] = 2.55,
-    ["water"] = 0.01,
-    ["barrel"] = 0,
-    ["saps"] = 10,
-    ["wood-seeds"] = 2.95,
-    ["fawogae"] = 0.46,
-    ["agar"] = 17.70,
-    ["cellulose"] = 7.73,
-    ["steam"] = 0.02,
-  },
-  -- The traditional recipe name
-  "vrauks-2",
-  -- The sub recipes used in the traditional recipe
-  {["cocoon"] = "vrauks-cocoon-2", ["vrauks-food-01"] = "vrauks-food-01", ["water-barrel"] = "water-barrel"}
-)
-log("Filament based off of Vrauk 2: " .. serpent.block(partial_recipe))
+log("New recipe: " .. serpent.block(new_recipe))
+
+data:extend{
+  new_recipe
+}
+
+
+-- local partial_recipe = py_veganism_globals.create_partial_filament_recipe_from_trad(
+--   -- Name of the main_product in the recipe
+--   "vrauks",
+--   -- List of ingredient-cost associated values
+--   {
+--     ["native-flora"] = 9.57,
+--     ["moss"] = 2.55,
+--     ["saps"] = 10,
+--     ["water"] = 0.01,
+--     ["barrel"] = 0,
+--   },
+--   -- The traditional recipe name
+--   "vrauks-1",
+--   -- The sub recipes used in the traditional recipe
+--   {["cocoon"] = "vrauks-cocoon-1", ["water-barrel"] = "water-barrel"}
+-- )
+-- log("Filament based off of Vrauk: " .. serpent.block(partial_recipe))
+
+-- local partial_recipe = py_veganism_globals.create_partial_filament_recipe_from_trad(
+--   -- Name of the main_product in the recipe
+--   "vrauks",
+--   -- List of ingredient-cost associated values
+--   {
+--     ["native-flora"] = 9.57,
+--     ["moss"] = 2.55,
+--     ["water"] = 0.01,
+--     ["barrel"] = 0,
+--     ["saps"] = 10,
+--     ["wood-seeds"] = 2.95,
+--     ["fawogae"] = 0.46,
+--     ["agar"] = 17.70,
+--     ["cellulose"] = 7.73,
+--     ["steam"] = 0.02,
+--   },
+--   -- The traditional recipe name
+--   "vrauks-2",
+--   -- The sub recipes used in the traditional recipe
+--   {["cocoon"] = "vrauks-cocoon-2", ["vrauks-food-01"] = "vrauks-food-01", ["water-barrel"] = "water-barrel"}
+-- )
+-- log("Filament based off of Vrauk 2: " .. serpent.block(partial_recipe))
