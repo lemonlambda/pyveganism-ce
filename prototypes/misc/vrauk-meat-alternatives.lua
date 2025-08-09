@@ -88,7 +88,7 @@ py_veganism_globals.non_viable_vrauk_mass_icon = {
 
 ITEM {
     type = "item",
-    name = "non-viable-vrauk-mass",
+    name = "non-viable-vrauks-mass",
     icons = py_veganism_globals.non_viable_vrauk_mass_icon,
     subgroup = "py-veganism-vrauk",
     enabled = false,
@@ -205,7 +205,7 @@ py_veganism_globals.repetitive_recipe(1, 3,
     
         RECIPE {
             type = "recipe",
-            name = "synthetic-non-viable-vrauk-mass-" .. i,
+            name = "synthetic-non-viable-vrauks-mass-" .. i,
             category = "bio-printer",
             enabled = false,
             hidden = settings.startup["pyveganism-old-recipes"] and settings.startup["pyveganism-old-recipes"].value,
@@ -214,7 +214,7 @@ py_veganism_globals.repetitive_recipe(1, 3,
             results = py_veganism_globals.remove_improper_ingredients({
                 {
                     type = "item",
-                    name = "non-viable-vrauk-mass",
+                    name = "non-viable-vrauks-mass",
                     amount = additional.nvm_vrauk_amount or 1,
                     probability = additional.nvm_vrauk_probability
                 },
@@ -247,13 +247,13 @@ table.insert(new_icon, {
 })
 RECIPE {
     type = "recipe",
-    name = "render-non-viable-vrauk-mass",
+    name = "render-non-viable-vrauks-mass",
     category = "slaughterhouse",
     energy_required = 10,
     ingredients = {
         {
             type = "item",
-            name = "non-viable-vrauk-mass",
+            name = "non-viable-vrauks-mass",
             amount = 1
         }
     },

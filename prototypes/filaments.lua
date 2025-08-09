@@ -7,13 +7,23 @@ local costs = {
   ["saps"] = 10,
   ["water"] = 0.01,
   ["barrel"] = 0,
+  ["natural-gas"] = 3.35/50,
+  ["arqad-honey"] = 45.7/50,
+  ["fawogae"] = 0.46,
+  ["agar"] = 17.7,
+  ["cellulose"] = 7.73,
+  ["steam"] = 0.02
 }
 
 local sub_recipes = {
+  ["vrauks"] = "vrauks-1",
   ["cocoon"] = "vrauks-cocoon-1",
   ["auog-pup"] = "auog-pup-breeding-1",
   ["cottongut-pup"] = "cottongut-cub-1",
-  ["water-barrel"] = "water-barrel"
+  ["arqad-egg-nest"] = "arqad-egg-nests-1", 
+  ["water-barrel"] = "water-barrel",
+  ["natural-gas-barrel"] = "fill-natural-gas-barrel",
+  ["arqad-honey-barrel"] = "fill-arqad-honey-barrel"
 }
 
 function hex2rgb(hex)
@@ -30,6 +40,7 @@ py_veganism_globals.create_recipe(
   costs,
   "vrauks-1",
   sub_recipes,
+  {},
   true
 )
 py_veganism_globals.create_recipe(
@@ -40,6 +51,9 @@ py_veganism_globals.create_recipe(
   costs,
   "auog-maturing-1",
   sub_recipes,
+  {
+    special_container = "auog-approved-reinforced-wooden-chest"
+  },
   true
 )
 py_veganism_globals.create_recipe(
@@ -50,16 +64,21 @@ py_veganism_globals.create_recipe(
   costs,
   "caged-cottongut-1",
   sub_recipes,
+  {},
   true
 )
 -- py_veganism_globals.create_recipe(
---   "arqad",
+--   "arqad-queen",
 --   {}
 --   hex2rgb("#531f51"),
 
 --   costs,
---   "",
---   sub_recipes
+--   "arqad-queen-1",
+--   sub_recipes,
+--   {
+--     filament_result_probability = 0.01
+--   },
+--   false
 -- )
 -- py_veganism_globals.create_recipe(
 --   "ulric",

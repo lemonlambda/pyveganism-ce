@@ -228,12 +228,13 @@ end
 -- 
 -- @param trad_recipe_name string the name of the traditional recipe
 -- @param sub_recipes table<string, string> the name of the ingredient matched with it's traditional recipe, for example: `["cocoon"] = "vrauks-cocoon-1"`
--- @param vege? to have the vegetarian recipe or not
-function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filament_color, costs, trad_recipe, sub_recipes, vege)
+-- @param extra_properties table Extra properties like codex return
+-- @param vege (bool|nil) to have the vegetarian recipe or not
+function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filament_color, costs, trad_recipe, sub_recipes, extra_properties, vege)
   local vegan_recipe = py_veganism_globals.generate_new_automatic_filament_recipe(
     animal_name .. "-filament-vegan", -- Name
     "__pyveganism__/graphics/icons/filaments/" .. animal_name .. "-filament.png", -- Filament Icon
-    {}, -- Extra ingredients
+    extra_properties.vegan_extra_ingredients or {}, -- Extra ingredients
     1, -- Scalar value
     animal_name .. "-filament", -- Filament name
     filament_color, -- Filament Color
@@ -245,6 +246,7 @@ function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filam
     trad_recipe, -- Original Recipe
     sub_recipes -- Sub recipes
   )
+  vegan_recipe.results[1].probability = extra_properties.filament_result_probability
   vegan_recipe.category = "bio-printer"
 
   data:extend{
@@ -295,21 +297,27 @@ function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filam
         type = "fluid",
         name = animal_name .. "-filament",
         amount = 100
+      },
+      {
+        type = "item",
+        name = extra_properties.special_container or "sack",
+        amount = 1
       }
     },
     results = {
       {
         type = "item",
-        name = animal_name,
-        amount = 1
+        name = "non-viable-" .. animal_name .. "-mass",
+        amount = 1,
+        probability = extra_properties.result_probability
       },
       {
         type = "item",
         name = animal_name .. "-codex",
         amount = 1,
-        probability = .99
+        probability = extra_properties.codex_return or .99
       }
     },
-    main_product = animal_name
+    main_product = "non-viable-" .. animal_name .. "-mass"
   }:add_unlock(animal_name)
 end
