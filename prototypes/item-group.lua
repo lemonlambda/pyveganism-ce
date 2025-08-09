@@ -9,6 +9,18 @@ data:extend {
     },
     --general
     {
+        type= "item-subgroup",
+        name = "py-veganism-filament",
+        group = "py-veganism",
+        order = "aa"
+    },
+    {
+        type= "item-subgroup",
+        name = "py-veganism-printing",
+        group = "py-veganism",
+        order = "ab"
+    },
+    {
         type = "item-subgroup",
         name = "py-veganism-plants",
         group = "py-veganism",

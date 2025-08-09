@@ -253,6 +253,7 @@ py_veganism_globals.repetitive_recipe(1, 3,
             category = "bio-printer",
             icons = icons,
             enabled = false,
+            hidden = settings.startup["pyveganism-old-recipes"] and settings.startup["pyveganism-old-recipes"].value,
             energy_required = additional.energy_required,
             ingredients = ingredients,
             results = {
@@ -412,6 +413,8 @@ py_veganism_globals.repetitive_recipe(1, 3,
                 {icon = "__pyalienlifegraphics__/graphics/icons/blood.png", icon_size = 64, scale = 0.25, shift = {8, -8}},
                 {icon = "__pyalienlifegraphics__/graphics/icons/" .. i .. ".png", icon_size = 64, scale = 0.25, shift = {-8, 8}},
             },
+            enabled = false,
+            hidden = settings.startup["pyveganism-old-recipes"] and settings.startup["pyveganism-old-recipes"].value,
             energy_required = additional.energy_required,
             subgroup = "py-veganism-auog",
             category = "bio-printer",
@@ -434,7 +437,7 @@ py_veganism_globals.repetitive_recipe(1, 3,
                     probability = 0.9999
                 }
             },
-        }
+        }:add_unlock("auog")
     end
 )
 

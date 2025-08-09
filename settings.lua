@@ -1,5 +1,12 @@
 data:extend {
-	{
+    {
+        type = "bool-setting",
+        name = "pyveganism-old-recipes",
+        order = "aa",
+        setting_type = "startup",
+        default_value = true
+    },
+    {
         type = "bool-setting",
         name = "pyveganism-hardcore-vegan",
         order = "aaa",
