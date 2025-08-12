@@ -3,7 +3,6 @@ Version: 1.4.4
 Date: 2025.8.12
   Changes:
     - Updated to the new dirty-water-light rename (get teased by changelog forever)
-
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.3
 Date: 2025.8.9
