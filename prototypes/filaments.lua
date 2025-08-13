@@ -96,7 +96,7 @@ py_veganism_globals.create_recipe(
 
 FLUID {
   type = "fluid",
-  name = "arqad-maggot-slurry-filament",
+  name = "arqad-precursor-filament",
   icon = "__pyveganism__/graphics/icons/filaments/arqad-filament.png",
   default_temperature = 15,
   base_color = hex2rgb("#fcbbff"),
@@ -104,7 +104,7 @@ FLUID {
 }
 RECIPE {
   type = "recipe",
-  name = "arqad-maggot-slurry-filament",
+  name = "arqad-precursor-filament",
   category = "biofactory",
   subgroup = "py-veganism-filament",
   ingredients = {
