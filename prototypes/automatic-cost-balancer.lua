@@ -232,7 +232,7 @@ end
 -- @param vege (bool|nil) to have the vegetarian recipe or not
 function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filament_color, costs, trad_recipe, sub_recipes, extra_properties, vege)
   local vegan_recipe = py_veganism_globals.generate_new_automatic_filament_recipe(
-    animal_name .. "-filament-vegan", -- Name
+    animal_name .. "-filament-" .. (extra_properties.recipe_name or "vegan"), -- Name
     "__pyveganism__/graphics/icons/filaments/" .. animal_name .. "-filament.png", -- Filament Icon
     extra_properties.vegan_extra_ingredients or {}, -- Extra ingredients
     1, -- Scalar value
@@ -248,6 +248,9 @@ function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filam
   )
   vegan_recipe.results[1].probability = extra_properties.filament_result_probability
   vegan_recipe.category = "biofactory"
+  if extra_properties.additional_results then
+    vegan_recipe.results = table.extend(vegan_recipe.results, extra_properties.additional_results)
+  end
 
   data:extend{
     vegan_recipe
@@ -276,7 +279,10 @@ function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filam
     }
   end
 
-  
+  if extra_properties.skip_nvm then
+    return
+  end
+    
   RECIPE{
     type = "recipe",
     name = "print-" .. animal_name,
@@ -290,7 +296,7 @@ function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filam
     ingredients = {
       {
         type = "item",
-        name = animal_name .. "-codex",
+        name = extra_properties.codex_name or animal_name .. "-codex",
         amount = 1
       },
       {
@@ -313,7 +319,7 @@ function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filam
       },
       {
         type = "item",
-        name = animal_name .. "-codex",
+        name = extra_properties.codex_name or animal_name .. "-codex",
         amount = 1,
         probability = extra_properties.codex_return or .99
       }

@@ -193,7 +193,13 @@ data:extend {
         type = "item-subgroup",
         name = "py-veganism-cottongut",
         group = "py-veganism",
-        order = "cba",
+        order = "cca",
+    },
+    {
+        type = "item-subgroup",
+        name = "py-veganism-arqad",
+        group = "py-veganism",
+        order = "cda",
     },
     {
         type = "item-subgroup",
