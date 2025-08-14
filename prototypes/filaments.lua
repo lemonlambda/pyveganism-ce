@@ -25,6 +25,17 @@ py_veganism_globals.costs = {
   ["seaweed"] = 1, -- placeholder
   ["salt"] = 1, -- placeholder
   ["fish-oil"] = 1, -- placeholder
+  ["stone-wool"] = 1, -- placeholder
+  ["pressured-water"] = 1, -- placeholder
+  ["fawogae-substrate"] = 1, -- placeholder
+  ["bones"] = 1, -- placeholder
+  ["starch"] = 1, -- placeholder
+  ["guar-gum"] = 1, -- placeholder
+  ["water-saline"] = 1, -- placeholder
+  ["phytoplankton"] = 1, -- placeholder
+  ["rennea"] = 1, -- placeholder
+  ["navens"] = 1, -- placeholder
+  ["blood"] = 1, -- placeholder
 }
 
 py_veganism_globals.sub_recipes = {
@@ -49,6 +60,11 @@ py_veganism_globals.sub_recipes = {
   ["korlex-pup"] = "korlex-pup-1",
   ["korlex-food-01"] = "korlex-food-01",
 
+  -- Zipir
+  ["zipir-eggs"] = "zipir-eggs-1",
+  ["zipir-food-01"] = "zipir-food-01",
+  ["zipir-food-02"] = "zipir-food-02",
+
   -- Arqad
   ["natural-gas-barrel"] = "natural-gas-barrel",
   ["arqad-honey-barrel"] = "arqad-honey-barrel",
@@ -57,19 +73,30 @@ py_veganism_globals.sub_recipes = {
 }
 
 function py_veganism_globals.create_non_viable_mass(name, extra)
-  py_veganism_globals["non_viable_" .. string.gsub(name, "-", "_") .. "_mass_icon"] = {
-      {icon = "__pyveganism__/graphics/icons/" .. (extra.sack_icon or "burlap-sack") .. ".png", icon_size = 64},
-      {icon = "__pyveganism__/graphics/icons/" .. name .. "-gray.png", icon_size = 64, scale = 0.25, shift = {0, 3}},
-  }
+  if not extra.empty then
+    py_veganism_globals["non_viable_" .. string.gsub(name, "-", "_") .. "_mass_icon"] = {
+        {icon = "__pyveganism__/graphics/icons/" .. (extra.sack_icon or "burlap-sack") .. ".png", icon_size = 64},
+        {icon = "__pyveganism__/graphics/icons/" .. name .. "-gray.png", icon_size = 64, scale = 0.25, shift = {0, 3}},
+    }
 
-  ITEM {
-      type = "item",
-      name = "non-viable-" .. name .. "-mass",
-      icons = py_veganism_globals["non_viable_" .. string.gsub(name, "-", "_") .. "_mass_icon"],
-      subgroup = "py-veganism-" .. (extra.subgroup_name or name),
-      enabled = false,
-      stack_size = 200,
-  }
+    ITEM {
+        type = "item",
+        name = "non-viable-" .. name .. "-mass",
+        icons = py_veganism_globals["non_viable_" .. string.gsub(name, "-", "_") .. "_mass_icon"],
+        subgroup = "py-veganism-" .. (extra.subgroup_name or name),
+        enabled = false,
+        stack_size = 200,
+    }
+  else
+    ITEM {
+        type = "item",
+        name = "non-viable-" .. name .. "-mass",
+        icon = "__pyveganism__/graphics/icons/filaments/lemon-filament.png",
+        subgroup = "py-veganism-" .. (extra.subgroup_name or name),
+        enabled = false,
+        stack_size = 200,
+    }
+  end
 end
 
 function py_veganism_globals.hex2rgb(hex)
@@ -117,6 +144,7 @@ py_veganism_globals.create_recipe(
 require("arqad-filaments")
 require("ulric-filaments")
 require("korlex-filaments")
+require("zipir-filaments")
 
 -- py_veganism_globals.create_recipe(
 --   "korlex",

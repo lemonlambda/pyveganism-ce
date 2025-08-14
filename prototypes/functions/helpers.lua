@@ -94,9 +94,6 @@ local blacklisted_recipes = {
     ["arqad-egg-5"] = true,
     ["arqad-egg-5-cold"] = true,
     ["charged-auog"] = true,
-    ["caged-ulric"] = true,
-    ["caged-auog"] = true,
-    ["caged-korlex"] = true,
 }
 
 function py_veganism_globals.replace_ingredients()

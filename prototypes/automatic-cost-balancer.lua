@@ -4,7 +4,7 @@ local function get_main_product(results, name, mode)
     log(serpent.line(result))
     if result.name == name then
       local mode_value
-      if not result.amount then 
+      if result.amount_min then 
         if mode == "max" then
           mode_value = result.amount_max
         elseif mode == "min" then
@@ -312,7 +312,8 @@ function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filam
       {
         type = "item",
         name = animal_name,
-        amount = 1,
+        amount = 1 * (extra_properties.result_alive_multiplier or 1),
+        probability = extra_properties.result_alive_probability
       },
       {
         type = "item",
@@ -354,8 +355,8 @@ function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filam
     results = {
       {
         type = "item",
-        name = "non-viable-" .. animal_name .. "-mass",
-        amount = 1,
+        name = extra_properties.nvm_name or ("non-viable-" .. animal_name .. "-mass"),
+        amount = 1 * (extra_properties.result_multiplier or 1),
         probability = extra_properties.result_probability
       },
       {
@@ -365,6 +366,6 @@ function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filam
         probability = extra_properties.codex_return or .99
       }
     },
-    main_product = "non-viable-" .. animal_name .. "-mass"
+    main_product = extra_properties.nvm_name or ("non-viable-" .. animal_name .. "-mass")
   }:add_unlock(animal_name)
 end

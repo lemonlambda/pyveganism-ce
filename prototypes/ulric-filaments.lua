@@ -64,6 +64,7 @@ RECIPE {
 }
 
 py_veganism_globals.register_replace_ingredients("ulric", "non-viable-ulric-mass")
+py_veganism_globals.register_replace_ingredients("caged-ulric", "non-viable-ulric-mass", "reinforced-wooden-chest")
 py_veganism_globals.create_recipe(
   "ulric",
   {},

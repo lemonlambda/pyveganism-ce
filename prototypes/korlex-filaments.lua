@@ -64,6 +64,7 @@ RECIPE {
 }
 
 py_veganism_globals.register_replace_ingredients("korlex", "non-viable-korlex-mass")
+py_veganism_globals.register_replace_ingredients("caged-korlex", "non-viable-korlex-mass", "reinforced-wooden-chest")
 py_veganism_globals.create_recipe(
   "korlex",
   {},

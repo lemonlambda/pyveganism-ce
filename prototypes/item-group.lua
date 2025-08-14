@@ -221,6 +221,18 @@ data:extend {
     },
     {
         type = "item-subgroup",
+        name = "py-veganism-zipir1",
+        group = "py-veganism",
+        order = "cga",
+    },
+    {
+        type = "item-subgroup",
+        name = "py-veganism-zipir",
+        group = "py-veganism",
+        order = "cga",
+    },
+    {
+        type = "item-subgroup",
         name = "py-veganism-burlap",
         group = "py-veganism",
         order = "daa",
