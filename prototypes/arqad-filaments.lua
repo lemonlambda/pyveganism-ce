@@ -97,6 +97,52 @@ py_veganism_globals.create_recipe(
 )
 
 py_veganism_globals.create_non_viable_mass("arqad", {})
+RECIPE {
+    type = "recipe",
+    name = "render-non-viable-arqad-mass",
+    icons = table.extend(
+      ITEM("non-viable-arqad-mass").icons,
+      {{icon = "__pyveganism__/graphics/icons/rendering.png"}}
+    ),
+    category = "slaughterhouse",
+    energy_required = 10,
+    ingredients = {
+        {
+            type = "item",
+            name = "non-viable-arqad-mass",
+            amount = 1
+        }
+    },
+    results = {
+        {
+            type = "item",
+            name = "meat",
+            amount = 1
+        },
+        {
+            type = "item",
+            name = "guts",
+            amount = 2
+        },
+        {
+            type = "fluid",
+            name = "arthropod-blood",
+            amount = 40
+        },
+        {
+            type = "fluid",
+            name = "bee-venom",
+            amount = 30
+        },
+        {
+            type = "item",
+            name = "sack",
+            amount = 1
+        }
+    },
+    subgroup = "py-veganism-arqad",
+}
+
 py_veganism_globals.register_replace_ingredients("arqad", "non-viable-arqad-mass")
 py_veganism_globals.create_recipe(
   "arqad",

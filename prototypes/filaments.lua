@@ -48,7 +48,7 @@ function py_veganism_globals.create_non_viable_mass(name, extra)
   ITEM {
       type = "item",
       name = "non-viable-" .. name .. "-mass",
-      icons = py_veganism_globals.non_viable_vrauk_mass_icon,
+      icons = py_veganism_globals["non_viable_" .. string.gsub(name, "-", "_") .. "_mass_icon"],
       subgroup = "py-veganism-" .. (extra.subgroup_name or name),
       enabled = false,
       stack_size = 200,
