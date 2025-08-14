@@ -20,8 +20,7 @@ local enabled_concepts = {
     "technologies.plant-breeding",
     "technologies.cultivation-expertise",
     "technologies.biotechnology",
-    --
-    --
+
     --plants
     "plants.tiriscefing-willow",
     "plants.tiriscefing-willow-recipes",
@@ -69,6 +68,7 @@ local enabled_concepts = {
 
     -- yes
     "plant-residues",
+    "digosaurus-prime",
 
     --miscellaneous
     "misc.samples",
