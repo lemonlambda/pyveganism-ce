@@ -203,9 +203,15 @@ data:extend {
     },
     {
         type = "item-subgroup",
-        name = "py-veganism-arqad",
+        name = "py-veganism-ulric",
         group = "py-veganism",
         order = "cda",
+    },
+    {
+        type = "item-subgroup",
+        name = "py-veganism-arqad",
+        group = "py-veganism",
+        order = "cea",
     },
     {
         type = "item-subgroup",

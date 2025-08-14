@@ -16,6 +16,8 @@ py_veganism_globals.costs = {
   ["honeycomb"] = 1, -- placeholder
   ["redhot-coke"] = 1, -- placeholder
   ["ralesia"] = 1, -- placeholder
+  ["ash"] = 1, -- placeholder
+  ["steam"] = 1, -- placeholder
 }
 
 py_veganism_globals.sub_recipes = {
@@ -32,6 +34,10 @@ py_veganism_globals.sub_recipes = {
   -- Cottonguts
   ["cottongut-pup"] = "cottongut-cub-1",
 
+  -- Ulric
+  ["ulric-cub"] = "ulric-cub-1",
+  ["ulric-food-01"] = "ulric-food-01",
+
   -- Arqad
   ["natural-gas-barrel"] = "natural-gas-barrel",
   ["arqad-honey-barrel"] = "arqad-honey-barrel",
@@ -41,7 +47,7 @@ py_veganism_globals.sub_recipes = {
 
 function py_veganism_globals.create_non_viable_mass(name, extra)
   py_veganism_globals["non_viable_" .. string.gsub(name, "-", "_") .. "_mass_icon"] = {
-      {icon = "__pyveganism__/graphics/icons/burlap-sack.png", icon_size = 64},
+      {icon = "__pyveganism__/graphics/icons/" .. (extra.sack_icon or "burlap-sack") .. ".png", icon_size = 64},
       {icon = "__pyveganism__/graphics/icons/" .. name .. "-gray.png", icon_size = 64, scale = 0.25, shift = {0, 3}},
   }
 
@@ -69,9 +75,7 @@ py_veganism_globals.create_recipe(
   py_veganism_globals.costs,
   "vrauks-1",
   py_veganism_globals.sub_recipes,
-  {
-    vege = true
-  },
+  {},
   true
 )
 py_veganism_globals.create_recipe(
@@ -84,7 +88,6 @@ py_veganism_globals.create_recipe(
   py_veganism_globals.sub_recipes,
   {
     special_container = "auog-approved-reinforced-wooden-chest",
-    vege = true,
   },
   true
 )
@@ -96,23 +99,13 @@ py_veganism_globals.create_recipe(
   py_veganism_globals.costs,
   "caged-cottongut-1",
   py_veganism_globals.sub_recipes,
-  {
-    vege = true
-  },
+  {},
   true
 )
 
 require("arqad-filaments")
+require("ulric-filaments")
 
--- py_veganism_globals.create_recipe(
---   "ulric",
---   {}
---   py_veganism_globals.py_veganism_globals.hex2rgb("#304657"),
-
---   py_veganism_globals.costs,
---   "",
---   py_veganism_globals.sub_recipes
--- )
 -- py_veganism_globals.create_recipe(
 --   "korlex",
 --   {}

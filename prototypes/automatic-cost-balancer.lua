@@ -271,7 +271,12 @@ function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filam
       trad_recipe, -- Original Recipe
       sub_recipes -- Sub recipes
     )
+    vege_recipe.results[1].probability = extra_properties.filament_result_probability
     vege_recipe.category = "biofactory"
+    if extra_properties.additional_results then
+      vege_recipe.results = table.extend(vege_recipe.results, extra_properties.additional_results)
+    end
+    vege_recipe.main_product = extra_properties.main_product
 
     RECIPE(vege_recipe)
   end

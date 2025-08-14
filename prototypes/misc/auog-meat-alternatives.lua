@@ -311,6 +311,11 @@ RECIPE {
         },
         {
             type = "item",
+            name = "mukmoux-fat",
+            amount = 3
+        },
+        {
+            type = "item",
             name = "guts",
             amount = 3
         },
