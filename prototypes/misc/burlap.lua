@@ -116,7 +116,7 @@ RECIPE{
         {
             type = "item",
             name = "burlap-cloth",
-            amount = 20,
+            amount = 5,
         },
         {
             type = "item",
@@ -144,7 +144,7 @@ RECIPE{
         {
             type = "item",
             name = "fiber",
-            amount = 10
+            amount = 5
         },
         {
             type = "item",

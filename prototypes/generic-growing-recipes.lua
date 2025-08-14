@@ -300,3 +300,7 @@ for recipe, _ in pairs(combination_details) do
         error("Error while creating growing recipes for: " .. recipe .. "\n" .. err)
     end
 end
+
+RECIPE("log2-biomass"):set_fields{
+    hidden = true,
+}

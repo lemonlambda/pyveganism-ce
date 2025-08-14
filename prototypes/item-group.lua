@@ -21,6 +21,12 @@ data:extend {
         order = "ab"
     },
     {
+        type= "item-subgroup",
+        name = "py-veganism-printing-alive",
+        group = "py-veganism",
+        order = "ac"
+    },
+    {
         type = "item-subgroup",
         name = "py-veganism-plants",
         group = "py-veganism",
@@ -193,7 +199,13 @@ data:extend {
         type = "item-subgroup",
         name = "py-veganism-cottongut",
         group = "py-veganism",
-        order = "cba",
+        order = "cca",
+    },
+    {
+        type = "item-subgroup",
+        name = "py-veganism-arqad",
+        group = "py-veganism",
+        order = "cda",
     },
     {
         type = "item-subgroup",

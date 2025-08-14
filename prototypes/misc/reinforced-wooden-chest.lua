@@ -23,12 +23,12 @@ RECIPE {
         {
             type = "item",
             name = "steel-plate",
-            amount = 10,
+            amount = 1,
         },
         {
             type = "item",
             name = "titanium-plate",
-            amount = 7
+            amount = 3
         },
     },
     results = {
