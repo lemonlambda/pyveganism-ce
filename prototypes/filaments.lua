@@ -25,8 +25,11 @@ local sub_recipes = {
   ["non-viable-vrauk-mass"] = "vrauks-1",
   ["vrauks"] = "vrauks-1",
   ["cocoon"] = "vrauks-cocoon-1",
-  
+
+  -- Auogs
   ["auog-pup"] = "auog-pup-breeding-1",
+
+  -- Cottonguts
   ["cottongut-pup"] = "cottongut-cub-1",
 
   -- Arqad
@@ -66,7 +69,9 @@ py_veganism_globals.create_recipe(
   costs,
   "vrauks-1",
   sub_recipes,
-  {},
+  {
+    vege = true
+  },
   true
 )
 py_veganism_globals.create_recipe(
@@ -78,7 +83,8 @@ py_veganism_globals.create_recipe(
   "auog-maturing-1",
   sub_recipes,
   {
-    special_container = "auog-approved-reinforced-wooden-chest"
+    special_container = "auog-approved-reinforced-wooden-chest",
+    vege = true,
   },
   true
 )
@@ -90,14 +96,16 @@ py_veganism_globals.create_recipe(
   costs,
   "caged-cottongut-1",
   sub_recipes,
-  {},
+  {
+    vege = true
+  },
   true
 )
 
 FLUID {
   type = "fluid",
   name = "arqad-precursor-filament",
-  icon = "__pyveganism__/graphics/icons/filaments/arqad-filament.png",
+  icon = "__pyveganism__/graphics/icons/filaments/arqad-precursor-filament.png",
   default_temperature = 15,
   base_color = hex2rgb("#fcbbff"),
   flow_color = hex2rgb("#fcbbff"),
@@ -132,7 +140,7 @@ RECIPE {
   results = {
     {
       type = "fluid",
-      name = "arqad-maggot-slurry-filament",
+      name = "arqad-precursor-filament",
       amount = 1000
     },
     {
@@ -142,7 +150,7 @@ RECIPE {
       probability = 0.99
     }
   },
-  main_product = "arqad-maggot-slurry-filament"
+  main_product = "arqad-precursor-filament"
 }
 
 create_non_viable_mass("arqad-queen", {
@@ -161,7 +169,7 @@ py_veganism_globals.create_recipe(
     codex_name = "arqad-codex",
     filament_result_probability = 0.01,
     vegan_extra_ingredients = {
-      {type = "fluid", name = "arqad-maggot-slurry-filament", amount = 3000}
+      {type = "fluid", name = "arqad-precursor-filament", amount = 3000}
     }
   },
   false
@@ -184,13 +192,16 @@ py_veganism_globals.create_recipe(
       {type = "fluid", name = "arqad-filament", amount = 500}
     },
     additional_results = {
-      {type = "fluid", name = "arqad-maggot-slurry-filament", amount = 1000}
-    }
+      {type = "fluid", name = "arqad-precursor-filament", amount = 1000}
+    },
+    main_product = "arqad-precursor-filament",
+    filament_icon_name = "arqad-precursor"
   },
   false
 )
 
 create_non_viable_mass("arqad", {})
+py_veganism_globals.register_replace_ingredients("arqad", "non-viable-arqad-mass")
 py_veganism_globals.create_recipe(
   "arqad",
   {},
@@ -201,7 +212,7 @@ py_veganism_globals.create_recipe(
   sub_recipes,
   {
     vegan_extra_ingredients = {
-      {type = "fluid", name = "arqad-maggot-slurry-filament", amount = 500}
+      {type = "fluid", name = "arqad-precursor-filament", amount = 500}
     }
   },
   false

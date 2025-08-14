@@ -21,6 +21,12 @@ data:extend {
         order = "ab"
     },
     {
+        type= "item-subgroup",
+        name = "py-veganism-printing-alive",
+        group = "py-veganism",
+        order = "ac"
+    },
+    {
         type = "item-subgroup",
         name = "py-veganism-plants",
         group = "py-veganism",
