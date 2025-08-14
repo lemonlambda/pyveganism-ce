@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
-Version: ???
-Date: ???
+Version: 1.5.0
+Date: 2025.8.14
   Changes:
     - DCM can be made earlier on with methyl chloride
     - Vegan arqad queen loop
