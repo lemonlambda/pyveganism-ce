@@ -18,6 +18,13 @@ py_veganism_globals.costs = {
   ["ralesia"] = 1, -- placeholder
   ["ash"] = 1, -- placeholder
   ["steam"] = 1, -- placeholder
+  ["tuuphra"] = 1, -- placeholder
+  ["kicalk"] = 1, -- placeholder
+  ["fish"] = 1, -- placeholder
+  ["kicalk-seeds"] = 1, -- placeholder
+  ["seaweed"] = 1, -- placeholder
+  ["salt"] = 1, -- placeholder
+  ["fish-oil"] = 1, -- placeholder
 }
 
 py_veganism_globals.sub_recipes = {
@@ -37,6 +44,10 @@ py_veganism_globals.sub_recipes = {
   -- Ulric
   ["ulric-cub"] = "ulric-cub-1",
   ["ulric-food-01"] = "ulric-food-01",
+
+  -- Korlex
+  ["korlex-pup"] = "korlex-pup-1",
+  ["korlex-food-01"] = "korlex-food-01",
 
   -- Arqad
   ["natural-gas-barrel"] = "natural-gas-barrel",
@@ -105,6 +116,7 @@ py_veganism_globals.create_recipe(
 
 require("arqad-filaments")
 require("ulric-filaments")
+require("korlex-filaments")
 
 -- py_veganism_globals.create_recipe(
 --   "korlex",

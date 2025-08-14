@@ -96,6 +96,7 @@ local blacklisted_recipes = {
     ["charged-auog"] = true,
     ["caged-ulric"] = true,
     ["caged-auog"] = true,
+    ["caged-korlex"] = true,
 }
 
 function py_veganism_globals.replace_ingredients()

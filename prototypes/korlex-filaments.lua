@@ -1,12 +1,12 @@
-py_veganism_globals.create_non_viable_mass("ulric", {
+py_veganism_globals.create_non_viable_mass("korlex", {
   sack_icon = "reinforced-wooden-chest"
 })
 
 RECIPE {
   type = "recipe",
-  name = "render-non-viable-ulric-mass",
+  name = "render-non-viable-korlex-mass",
   icons = table.extend(
-    ITEM("non-viable-ulric-mass").icons,
+    ITEM("non-viable-korlex-mass").icons,
     {{icon = "__pyveganism__/graphics/icons/rendering.png"}}
   ),
   category = "slaughterhouse",
@@ -14,15 +14,15 @@ RECIPE {
   ingredients = {
     {
       type = "item",
-      name = "non-viable-ulric-mass",
+      name = "non-viable-korlex-mass",
       amount = 1
     }
   },
   results = {
     {
       type = "item",
-      name = "bonemeal",
-      amount = 4
+      name = "bones",
+      amount = 2
     },
     {
       type = "item",
@@ -32,12 +32,12 @@ RECIPE {
     {
       type = "item",
       name = "skin",
-      amount = 1
+      amount = 3
     },
     {
       type = "item",
       name = "guts",
-      amount = 15
+      amount = 1
     },
     {
       type = "item",
@@ -47,12 +47,12 @@ RECIPE {
     {
       type = "fluid",
       name = "blood",
-      amount = 30
+      amount = 10
     },
     {
       type = "item",
-      name = "manure",
-      amount = 10
+      name = "mukmoux-fat",
+      amount = 6
     },
     {
       type = "item",
@@ -63,17 +63,45 @@ RECIPE {
   subgroup = "py-veganism-arqad",
 }
 
-py_veganism_globals.register_replace_ingredients("ulric", "non-viable-ulric-mass")
+py_veganism_globals.register_replace_ingredients("korlex", "non-viable-korlex-mass")
 py_veganism_globals.create_recipe(
-  "ulric",
+  "korlex",
   {},
   py_veganism_globals.hex2rgb("#304657"),
 
   py_veganism_globals.costs,
-  "ulric-1",
+  "korlex-1",
   py_veganism_globals.sub_recipes,
   {
     special_container = "reinforced-wooden-chest",
   },
   false
 )
+
+RECIPE {
+  type = "recipe",
+  name = "print-milk",
+  category = "bio-printer",
+  energy_required = 2,
+  subgroup = "py-veganism-korlex",
+  ingredients = {
+    {
+      type = "fluid",
+      name = "korlex-filament",
+      amount = 1
+    },
+    {
+      type = "item",
+      name = "empty-barrel-milk",
+      amount = 1
+    }
+  },
+  results = {
+    {
+      type = "item",
+      name = "barrel-milk",
+      amount = 1
+    }
+  },
+  main_product = "barrel-milk"
+}:add_unlock("korlex")

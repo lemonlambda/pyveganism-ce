@@ -215,6 +215,12 @@ data:extend {
     },
     {
         type = "item-subgroup",
+        name = "py-veganism-korlex",
+        group = "py-veganism",
+        order = "cfa",
+    },
+    {
+        type = "item-subgroup",
         name = "py-veganism-burlap",
         group = "py-veganism",
         order = "daa",
