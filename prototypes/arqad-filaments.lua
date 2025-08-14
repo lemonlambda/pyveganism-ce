@@ -3,8 +3,8 @@ FLUID {
   name = "arqad-precursor-filament",
   icon = "__pyveganism__/graphics/icons/filaments/arqad-precursor-filament.png",
   default_temperature = 15,
-  base_color = hex2rgb("#fcbbff"),
-  flow_color = hex2rgb("#fcbbff"),
+  base_color = py_veganism_globals.hex2rgb("#fcbbff"),
+  flow_color = py_veganism_globals.hex2rgb("#fcbbff"),
 }
 RECIPE {
   type = "recipe",
@@ -49,18 +49,18 @@ RECIPE {
   main_product = "arqad-precursor-filament"
 }
 
-create_non_viable_mass("arqad-queen", {
+py_veganism_globals.create_non_viable_mass("arqad-queen", {
   subgroup_name = "arqad"
 })
 py_veganism_globals.register_replace_ingredients("arqad-queen", "non-viable-arqad-queen-mass")
 py_veganism_globals.create_recipe(
   "arqad-queen",
   {},
-  hex2rgb("#536f51"),
+  py_veganism_globals.hex2rgb("#536f51"),
 
-  costs,
+  py_veganism_globals.costs,
   "arqad-queen-1",
-  sub_recipes,
+  py_veganism_globals.sub_recipes,
   {
     codex_name = "arqad-codex",
     filament_result_probability = 0.01,
@@ -73,11 +73,11 @@ py_veganism_globals.create_recipe(
 py_veganism_globals.create_recipe(
   "arqad-queen",
   {},
-  hex2rgb("#536f51"),
+  py_veganism_globals.hex2rgb("#536f51"),
 
-  costs,
+  py_veganism_globals.costs,
   "arqad-egg-1",
-  sub_recipes,
+  py_veganism_globals.sub_recipes,
   {
     skip_nvm = true,
     recipe_name = "from-filament",
@@ -96,16 +96,16 @@ py_veganism_globals.create_recipe(
   false
 )
 
-create_non_viable_mass("arqad", {})
+py_veganism_globals.create_non_viable_mass("arqad", {})
 py_veganism_globals.register_replace_ingredients("arqad", "non-viable-arqad-mass")
 py_veganism_globals.create_recipe(
   "arqad",
   {},
-  hex2rgb("#536f51"),
+  py_veganism_globals.hex2rgb("#536f51"),
 
-  costs,
+  py_veganism_globals.costs,
   "caged-arqad-1",
-  sub_recipes,
+  py_veganism_globals.sub_recipes,
   {
     vegan_extra_ingredients = {
       {type = "fluid", name = "arqad-precursor-filament", amount = 500}
@@ -113,3 +113,12 @@ py_veganism_globals.create_recipe(
   },
   false
 )
+
+-- Honey making
+RECIPE {
+  type = "recipe",
+  name = "dichloromethane",
+  ingredients = {
+  
+  }
+}

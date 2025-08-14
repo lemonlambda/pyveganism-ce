@@ -1,4 +1,4 @@
-local costs = {
+py_veganism_globals.costs = {
   ["native-flora"] = 9.57,
   ["moondrop"] = 6.07,
   ["ralesia-seeds"] = 1.89,
@@ -18,7 +18,7 @@ local costs = {
   ["ralesia"] = 1, -- placeholder
 }
 
-local sub_recipes = {
+py_veganism_globals.sub_recipes = {
   ["water-barrel"] = "water-barrel",
 
   -- Vrauks
@@ -39,7 +39,7 @@ local sub_recipes = {
   ["arqad-maggots"] = "arqad-maggots-1-vegan",
 }
 
-local function create_non_viable_mass(name, extra)
+function py_veganism_globals.create_non_viable_mass(name, extra)
   py_veganism_globals["non_viable_" .. string.gsub(name, "-", "_") .. "_mass_icon"] = {
       {icon = "__pyveganism__/graphics/icons/burlap-sack.png", icon_size = 64},
       {icon = "__pyveganism__/graphics/icons/" .. name .. "-gray.png", icon_size = 64, scale = 0.25, shift = {0, 3}},
@@ -55,7 +55,7 @@ local function create_non_viable_mass(name, extra)
   }
 end
 
-local function hex2rgb(hex)
+function py_veganism_globals.hex2rgb(hex)
     hex = hex:gsub("#","")
     return {tonumber("0x"..hex:sub(1,2))/255, tonumber("0x"..hex:sub(3,4))/255, tonumber("0x"..hex:sub(5,6))/255}
 end
@@ -64,11 +64,11 @@ end
 py_veganism_globals.create_recipe(
   "vrauks",
   {{type = "item", name = "vrauk-molt", amount = 2}},
-  hex2rgb("#3b7958"),
+  py_veganism_globals.hex2rgb("#3b7958"),
 
-  costs,
+  py_veganism_globals.costs,
   "vrauks-1",
-  sub_recipes,
+  py_veganism_globals.sub_recipes,
   {
     vege = true
   },
@@ -77,11 +77,11 @@ py_veganism_globals.create_recipe(
 py_veganism_globals.create_recipe(
   "auog",
   {{type = "item", name = "auog-fur-tuft", amount = 2}},
-  hex2rgb("#0f131d"),
+  py_veganism_globals.hex2rgb("#0f131d"),
 
-  costs,
+  py_veganism_globals.costs,
   "auog-maturing-1",
-  sub_recipes,
+  py_veganism_globals.sub_recipes,
   {
     special_container = "auog-approved-reinforced-wooden-chest",
     vege = true,
@@ -91,11 +91,11 @@ py_veganism_globals.create_recipe(
 py_veganism_globals.create_recipe(
   "cottongut",
   {{type = "item", name = "cottongut-fur-tuft", amount = 2}},
-  hex2rgb("#323d44"),
+  py_veganism_globals.hex2rgb("#323d44"),
 
-  costs,
+  py_veganism_globals.costs,
   "caged-cottongut-1",
-  sub_recipes,
+  py_veganism_globals.sub_recipes,
   {
     vege = true
   },
@@ -107,128 +107,128 @@ require("arqad-filaments")
 -- py_veganism_globals.create_recipe(
 --   "ulric",
 --   {}
---   hex2rgb("#304657"),
+--   py_veganism_globals.py_veganism_globals.hex2rgb("#304657"),
 
---   costs,
+--   py_veganism_globals.costs,
 --   "",
---   sub_recipes
+--   py_veganism_globals.sub_recipes
 -- )
 -- py_veganism_globals.create_recipe(
 --   "korlex",
 --   {}
---   hex2rgb("#38677e"),
+--   py_veganism_globals.hex2rgb("#38677e"),
 
---   costs,
+--   py_veganism_globals.costs,
 --   "",
---   sub_recipes
+--   py_veganism_globals.sub_recipes
 -- )
 -- py_veganism_globals.create_recipe(
 --   "xyhiphoe",
 --   {}
---   hex2rgb("#ab7a3c"),
+--   py_veganism_globals.hex2rgb("#ab7a3c"),
 
---   costs,
+--   py_veganism_globals.costs,
 --   "",
---   sub_recipes
+--   py_veganism_globals.sub_recipes
 -- )
 -- py_veganism_globals.create_recipe(
 --   "",
 --   {}
---   hex2rgb("#"),
+--   py_veganism_globals.hex2rgb("#"),
 
---   costs,
+--   py_veganism_globals.costs,
 --   "",
---   sub_recipes
+--   py_veganism_globals.sub_recipes
 -- )
 -- py_veganism_globals.create_recipe(
 --   "",
 --   {}
---   hex2rgb("#"),
+--   py_veganism_globals.hex2rgb("#"),
 
---   costs,
+--   py_veganism_globals.costs,
 --   "",
---   sub_recipes
+--   py_veganism_globals.sub_recipes
 -- )
 -- py_veganism_globals.create_recipe(
 --   "",
 --   {}
---   hex2rgb("#"),
+--   py_veganism_globals.hex2rgb("#"),
 
---   costs,
+--   py_veganism_globals.costs,
 --   "",
---   sub_recipes
+--   py_veganism_globals.sub_recipes
 -- )
 -- py_veganism_globals.create_recipe(
 --   "",
 --   {}
---   hex2rgb("#"),
+--   py_veganism_globals.hex2rgb("#"),
 
---   costs,
+--   py_veganism_globals.costs,
 --   "",
---   sub_recipes
+--   py_veganism_globals.sub_recipes
 -- )
 -- py_veganism_globals.create_recipe(
 --   "",
 --   {}
---   hex2rgb("#"),
+--   py_veganism_globals.hex2rgb("#"),
 
---   costs,
+--   py_veganism_globals.costs,
 --   "",
---   sub_recipes
+--   py_veganism_globals.sub_recipes
 -- )
 -- py_veganism_globals.create_recipe(
 --   "",
 --   {}
---   hex2rgb("#"),
+--   py_veganism_globals.hex2rgb("#"),
 
---   costs,
+--   py_veganism_globals.costs,
 --   "",
---   sub_recipes
+--   py_veganism_globals.sub_recipes
 -- )
 -- py_veganism_globals.create_recipe(
 --   "",
 --   {}
---   hex2rgb("#"),
+--   py_veganism_globals.hex2rgb("#"),
 
---   costs,
+--   py_veganism_globals.costs,
 --   "",
---   sub_recipes
+--   py_veganism_globals.sub_recipes
 -- )
 -- py_veganism_globals.create_recipe(
 --   "",
 --   {}
---   hex2rgb("#"),
+--   py_veganism_globals.hex2rgb("#"),
 
---   costs,
+--   py_veganism_globals.costs,
 --   "",
---   sub_recipes
+--   py_veganism_globals.sub_recipes
 -- )
 -- py_veganism_globals.create_recipe(
 --   "",
 --   {}
---   hex2rgb("#"),
+--   py_veganism_globals.hex2rgb("#"),
 
---   costs,
+--   py_veganism_globals.costs,
 --   "",
---   sub_recipes
+--   py_veganism_globals.sub_recipes
 -- )
 -- py_veganism_globals.create_recipe(
 --   "",
 --   {}
---   hex2rgb("#"),
+--   py_veganism_globals.hex2rgb("#"),
 
---   costs,
+--   py_veganism_globals.costs,
 --   "",
---   sub_recipes
+--   py_veganism_globals.sub_recipes
 -- )
 -- py_veganism_globals.create_recipe(
 --   "",
 --   {}
---   hex2rgb("#"),
+--   py_veganism_globals.hex2rgb("#"),
 
---   costs,
+--   py_veganism_globals.costs,
 --   "",
---   sub_recipes
+--   py_veganism_globals.sub_recipes
 -- )
 
 py_veganism_globals.replace_ingredients()
