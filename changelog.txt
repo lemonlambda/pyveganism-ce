@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: ???
+Date: ???
+  Changes:
+    - DCM can be made earlier on with methyl chloride
+    - Vegan arqad queen loop
+    - You can print animals directly from filament now
+    - Made containers cheaper
+    - Arqad honey from nectar process using DCM and Benzene
+---------------------------------------------------------------------------------------------------
 Version: 1.4.5
 Date: 2025.8.12
   Changes:
