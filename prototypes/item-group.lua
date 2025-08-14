@@ -203,9 +203,33 @@ data:extend {
     },
     {
         type = "item-subgroup",
-        name = "py-veganism-arqad",
+        name = "py-veganism-ulric",
         group = "py-veganism",
         order = "cda",
+    },
+    {
+        type = "item-subgroup",
+        name = "py-veganism-arqad",
+        group = "py-veganism",
+        order = "cea",
+    },
+    {
+        type = "item-subgroup",
+        name = "py-veganism-korlex",
+        group = "py-veganism",
+        order = "cfa",
+    },
+    {
+        type = "item-subgroup",
+        name = "py-veganism-zipir1",
+        group = "py-veganism",
+        order = "cga",
+    },
+    {
+        type = "item-subgroup",
+        name = "py-veganism-zipir",
+        group = "py-veganism",
+        order = "cga",
     },
     {
         type = "item-subgroup",

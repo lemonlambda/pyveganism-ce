@@ -60,6 +60,7 @@ local enabled_concepts = {
     "microorganisms.pemtenn-recipes",
 
     -- organisms
+    "filament-prefluids",
     "organisms.vrauk-molting",
 
     --fungi
