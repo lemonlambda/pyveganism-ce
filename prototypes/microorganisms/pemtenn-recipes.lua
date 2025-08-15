@@ -6,7 +6,7 @@ RECIPE {
     energy_required = 2,
     ingredients = {
         {type = "fluid", name = "sugar-growth-medium", amount = 50},
-        {type = "item", name = "sugar-beet-washed", amount = 2}
+        {type = "item", name = "sugar-cane", amount = 2}
     },
     results = {
         {type = "fluid", name = "pemtenn", amount = 50}

@@ -1,10 +1,9 @@
 {
     "name": "pyveganism",
-    "version": "1.6.0",
+    "version": "1.6.1",
     "title": "pY Veganism",
     "author": "tiriscef,lambdalemon",
-    "contact": "tiriscef@protonmail.com",
-    "homepage": "https://forums.factorio.com/viewtopic.php?f=219&t=71587",
+    "contact": "tiriscef@protonmail.com,lemonjameslem@protonmail.com",
     "factorio_version": "2.0",
     "dependencies": [
         "pyalternativeenergy"
