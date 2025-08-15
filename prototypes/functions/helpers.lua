@@ -64,6 +64,7 @@ end
 
 local caching = false
 local cached = {}
+local tech_unlocked_cached = {}
 
 -- Define this somewhere global
 local blacklisted_recipes = {
@@ -103,6 +104,7 @@ function py_veganism_globals.replace_ingredients()
     end
 
     local changed_recipes = {}
+    local changed_effects = {}
 
     for name, recipe in pairs(data.raw.recipe) do
         -- Skip manually blacklisted recipes
@@ -182,19 +184,36 @@ function py_veganism_globals.replace_ingredients()
         end
 
         if modified and not data.raw.recipe[new_recipe.name] then
-            log("New vegan recipe replacement: " .. serpent.block(new_recipe))
-            if caching then
-                table.insert(cached, new_recipe)
-            else
-                data:extend{new_recipe}
+            for _, technology in pairs(data.raw.technology) do
+                for _, unlock in pairs(technology.effects) do
+                    if unlock.type ~= "unlock-recipe" then
+                        goto tech_continue
+                    end
+
+                    if unlock.recipe == name then
+                        changed_effects[technology.name] = {
+                            type = "unlock-recipe",
+                            recipe = new_recipe.name
+                        }
+                    
+                        table.insert(technology.effects, {
+                            type = "unlock-recipe",
+                            recipe = new_recipe.name
+                        })
+                    end
+                
+                    ::tech_continue::
+                end
             end
+
+            log("New vegan recipe replacement: " .. serpent.block(new_recipe))
+            RECIPE(new_recipe)
             table.insert(changed_recipes, new_recipe)
         end
 
         ::continue::
     end
 
-    if not caching then
-        log("New cached recipes: " .. serpent.line(changed_recipes))
-    end
+    log("New cached recipes: " .. serpent.line(changed_recipes))
+    log("New cached tech effects: " .. serpent.line(changed_recipes))
 end
