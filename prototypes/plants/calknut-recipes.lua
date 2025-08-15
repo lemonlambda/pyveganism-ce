@@ -10,7 +10,6 @@ RECIPE {
     },
     results = {
         {type = "item", name = "calknut", amount = 10},
-        {type = "item", name = "plant-residues", amount = 2}
     },
     main_product = "calknut",
     icons = {
@@ -33,7 +32,6 @@ RECIPE {
     },
     results = {
         {type = "item", name = "copra", amount = 20},
-        {type = "item", name = "plant-residues-dry", amount = 4}
     },
     icons = {
         {icon = "__pyveganism__/graphics/icons/calknut.png"},
@@ -97,7 +95,6 @@ RECIPE {
     },
     results = {
         {type = "item", name = "calknut-butter", amount = 10},
-        {type = "item", name = "plant-residues-dry", amount = 4}
     },
     icons = {
         {icon = "__pyveganism__/graphics/icons/copra-halved-dry.png"},

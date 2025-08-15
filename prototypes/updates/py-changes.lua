@@ -1,19 +1,3 @@
-local recipe_plankton_farm = RECIPE("plankton-farm")
-recipe_plankton_farm:set_fields{ enabled = true, }
-recipe_plankton_farm:replace_ingredient("storage-tank", "py-tank-1500")
-recipe_plankton_farm:replace_ingredient("niobium-plate", "iron-plate")
-
-local recipe_bio_reactor = RECIPE("bio-reactor")
-recipe_bio_reactor:set_fields{ enabled = true, }
-recipe_bio_reactor:replace_ingredient("advanced-circuit", "electronic-circuit")
-recipe_bio_reactor:replace_ingredient("gasturbinemk02", "gasturbinemk01")
-recipe_bio_reactor:remove_ingredient("super-alloy")
-recipe_bio_reactor:remove_ingredient("mixer-mk01")
-
-RECIPE("chemical-plant"):set_fields{ enabled = true, }
-RECIPE("mixer-mk01"):set_fields{ enabled = true, }
-
-
 for i = 1, 4 do
     local name = "bio-reactor-mk0" .. i
 

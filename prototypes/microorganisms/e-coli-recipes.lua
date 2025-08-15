@@ -6,7 +6,6 @@ RECIPE {
     energy_required = 2,
     ingredients = {
         {type = "fluid", name = "sugar-growth-medium", amount = 50},
-        {type = "item", name = "stool-sample", amount = 1}, 
         {type = "item", name = "limestone", amount = 2}
     },
     results = {

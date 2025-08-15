@@ -6,7 +6,6 @@ RECIPE {
     energy_required = 2,
     ingredients = {
         {type = "fluid", name = "sugar-growth-medium", amount = 50},
-        {type = "item", name = "toe-nail-sample", amount = 1}
     },
     results = {
         {type = "fluid", name = "proxae", amount = 50}
@@ -55,7 +54,7 @@ RECIPE {
         {type = "fluid", name = "proxae", amount = 300}
     },
     results = {
-        {type = "fluid", name = "citric-acid", amount = 200},
+        {type = "item", name = "citric-acid", amount = 200},
         {type = "fluid", name = "waste-water", amount = 100}
     },
     icons = {

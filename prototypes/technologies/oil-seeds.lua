@@ -5,7 +5,7 @@ TECHNOLOGY {
     icon_size = 128,
     order = "c-a",
     upgrade = false,
-    prerequisites = {"oil-plants", "protein-plants"},
+    prerequisites = {"oil-plants"},
     effects = {},
     unit = {
         count = 100,

@@ -10,7 +10,6 @@ RECIPE {
     },
     results = {
         {type = "item", name = "sugar-cane", amount = 15},
-        {type = "item", name = "plant-residues", amount = 2}
     },
     main_product = "sugar-cane",
     icons = {
@@ -37,7 +36,6 @@ RECIPE {
     results = {
         {type = "item", name = "sugar", amount = 20},
         {type = "item", name = "limestone", amount = 6},
-        {type = "item", name = "plant-residues-dry", amount = 2},
         {type = "item", name = "molasses", amount = 15},
         {type = "fluid", name = "tailings", amount = 50}
     },

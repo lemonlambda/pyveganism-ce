@@ -1,6 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.6.1
+Date: 2025.8.14
+  Changes:
+    - Removed a lot of old recipes that had no use essentially
+---------------------------------------------------------------------------------------------------
 Version: 1.6.0
-Date: ???
+Date: 2025.8.14
   Changes:
     - Ulric non viable mass added
     - Zipir non viable fluid added
