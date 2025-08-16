@@ -18,7 +18,7 @@ RECIPE {
         {
             type = "item",
             name = "log",
-            amount = 10,
+            amount = 5,
         },
         {
             type = "item",
@@ -28,7 +28,7 @@ RECIPE {
         {
             type = "item",
             name = "titanium-plate",
-            amount = 3
+            amount = 2
         },
     },
     results = {
@@ -73,7 +73,7 @@ RECIPE {
             type = "item",
             name = "auog-approved-reinforced-wooden-chest",
             amount = 1,
-            probability = 0.1
+            probability = 0.65
         }
     },
     energy_required = 30,
@@ -101,7 +101,7 @@ RECIPE {
             type = "item",
             name = "auog-approved-reinforced-wooden-chest",
             amount = 1,
-            probability = 0.05
+            probability = 0.4
         }
     },
     energy_required = 10,

@@ -116,7 +116,7 @@ RECIPE{
         {
             type = "item",
             name = "burlap-cloth",
-            amount = 5,
+            amount = 3,
         },
         {
             type = "item",
@@ -179,7 +179,7 @@ RECIPE{
         {
             type = "item",
             name = "fiber",
-            amount = 50
+            amount = 10
         },
         {
             type = "item",
@@ -204,4 +204,4 @@ RECIPE{
     subgroup = "py-veganism-burlap",
 }:add_unlock("fiber-refining")
 
-RECIPE("fiber"):remove_unlock("filtration"):add_unlock("fiber-refining")
+RECIPE("fiber"):add_unlock("fiber-refining")
