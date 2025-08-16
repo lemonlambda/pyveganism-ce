@@ -54,7 +54,7 @@ RECIPE {
   subgroup = "py-veganism-zipir1",
 }
 
-py_veganism_globals.register_replace_ingredients("zipir1", "non-viable-zipir-fluid-barrel")
+py_veganism_globals.register_replace_ingredients_caged("zipir1", "non-viable-zipir-fluid-barrel", "barrel")
 py_veganism_globals.create_recipe(
   "zipir1",
   {},

@@ -62,15 +62,15 @@ RECIPE {
 
 require("vrauk-meat-alternatives")
 
-py_veganism_globals.register_replace_ingredients("vrauks", "non-viable-vrauks-mass")
+py_veganism_globals.register_replace_ingredients_caged("vrauks", "non-viable-vrauks-mass", "sack")
 py_veganism_globals.register_replace_ingredients_caged("caged-vrauks", "non-viable-vrauks-mass", "sack")
 
 require("auog-meat-alternatives")
 
-py_veganism_globals.register_replace_ingredients("auog", "non-viable-auog-mass")
+py_veganism_globals.register_replace_ingredients_caged("auog", "non-viable-auog-mass", "auog-approved-reinforced-wooden-container")
 py_veganism_globals.register_replace_ingredients_caged("caged-auog", "non-viable-auog-mass", "auog-approved-reinforced-wooden-container")
 
 require("cottongut-meat-alternatives")
 
-py_veganism_globals.register_replace_ingredients("cottongut", "non-viable-cottongut-mass")
+py_veganism_globals.register_replace_ingredients_caged("cottongut", "non-viable-cottongut-mass", "sack")
 py_veganism_globals.register_replace_ingredients_caged("caged-cottongut", "non-viable-cottongut-mass", "sack")

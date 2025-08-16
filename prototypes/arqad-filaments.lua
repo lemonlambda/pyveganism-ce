@@ -52,7 +52,7 @@ RECIPE {
 py_veganism_globals.create_non_viable_mass("arqad-queen", {
   subgroup_name = "arqad"
 })
-py_veganism_globals.register_replace_ingredients("arqad-queen", "non-viable-arqad-queen-mass")
+py_veganism_globals.register_replace_ingredients_caged("arqad-queen", "non-viable-arqad-queen-mass", "sack")
 py_veganism_globals.create_recipe(
   "arqad-queen",
   {},
@@ -143,7 +143,7 @@ RECIPE {
     subgroup = "py-veganism-arqad",
 }
 
-py_veganism_globals.register_replace_ingredients("arqad", "non-viable-arqad-mass")
+py_veganism_globals.register_replace_ingredients_caged("arqad", "non-viable-arqad-mass", "sack")
 py_veganism_globals.create_recipe(
   "arqad",
   {},
