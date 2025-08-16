@@ -112,17 +112,8 @@ function py_veganism_globals.replace_ingredients()
             goto continue
         end
 
-
         if not recipe.ingredients or not recipe.results then
             goto continue
-        end
-
-        -- Skip recipes that produce any from-item (auto-blacklist)
-        for _, result in pairs(recipe.results) do
-            local result_name = result.name or result[1]
-            if ingredients_to_replace[result_name] then
-                goto continue
-            end
         end
 
         if recipe.category == "slaughterhouse" then
@@ -131,53 +122,60 @@ function py_veganism_globals.replace_ingredients()
 
         local new_recipe = nil
         local modified = false
+        local cage_return_amount = {}
 
         -- Replace ingredients
         for i, ingredient in pairs(recipe.ingredients) do
-            local ing_name = ingredient.name or ingredient[1]
             for from, to in pairs(ingredients_to_replace) do
-                if ing_name == from then
+                if ingredient.name == from then
                     if not modified then
                         new_recipe = table.deepcopy(recipe)
                         new_recipe.name = name .. "-vegan"
                         modified = true
                     end
-                    if new_recipe.ingredients[i].name then
-                        new_recipe.ingredients[i].name = to
-                    else
-                        new_recipe.ingredients[i][1] = to
+                    new_recipe.ingredients[i].name = to
+                    if caged[to] then
+                        cage_return_amount[caged[to]] = (cage_return_amount[caged[to]] or 0) + new_recipe.ingredients[i].amount
                     end
                 end
             end
         end
 
+        local has_cage = false
         -- Replace results
         for i, result in pairs(recipe.results) do
-            local res_name = result.name or result[1]
             for from, to in pairs(ingredients_to_replace) do
-                if res_name == from then
+                if result.name == from then
                     if not modified then
                         new_recipe = table.deepcopy(recipe)
                         new_recipe.name = name .. "-vegan"
                         modified = true
                     end
-                    if new_recipe.results[i].name then
-                        new_recipe.results[i].name = to
-                    else
-                        new_recipe.results[i][1] = to
+                    new_recipe.results[i].name = to
+                    if new_recipe.main_product == from then
+                        new_recipe.main_product = to
                     end
                 end
 
-                if res_name == "cage" and caged[to] then
-                    if not modified then
-                        new_recipe = table.deepcopy(recipe)
-                        new_recipe.name = name .. "-vegan"
-                        modified = true
-                    end
-                    if new_recipe.results[i].name then
-                        new_recipe.results[i].name = caged[to]
-                    else
-                        new_recipe.results[i][1] = caged[to]
+                if res_name == "cage" and caged[to] and modified then
+                    has_cage = true
+                    new_recipe.results[i].name = caged[to]
+                end
+
+                -- Change the main_product
+            end
+        end
+
+
+        if not has_cage and modified then
+            for name, amount in pairs(cage_return_amount) do
+                if new_recipe.main_product ~= nil then
+                    if amount > 0 then
+                        table.insert(new_recipe.results, {
+                            type = "item",
+                            name = name,
+                            amount = amount
+                        })
                     end
                 end
             end

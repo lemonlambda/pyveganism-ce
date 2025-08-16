@@ -67,8 +67,8 @@ py_veganism_globals.register_replace_ingredients_caged("caged-vrauks", "non-viab
 
 require("auog-meat-alternatives")
 
-py_veganism_globals.register_replace_ingredients_caged("auog", "non-viable-auog-mass", "auog-approved-reinforced-wooden-container")
-py_veganism_globals.register_replace_ingredients_caged("caged-auog", "non-viable-auog-mass", "auog-approved-reinforced-wooden-container")
+py_veganism_globals.register_replace_ingredients_caged("auog", "non-viable-auog-mass", "auog-approved-reinforced-wooden-chest")
+py_veganism_globals.register_replace_ingredients_caged("caged-auog", "non-viable-auog-mass", "auog-approved-reinforced-wooden-chest")
 
 require("cottongut-meat-alternatives")
 
