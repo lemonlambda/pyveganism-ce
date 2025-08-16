@@ -199,6 +199,7 @@ function py_veganism_globals.generate_new_automatic_filament_recipe(
       type = "fluid",
       name = filament_name,
       icon = icon_path,
+      subgroup = "py-veganism-filament",
       default_temperature = 15,
       base_color = filament_color,
       flow_color = filament_color,
