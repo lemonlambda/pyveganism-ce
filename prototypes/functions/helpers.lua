@@ -95,6 +95,11 @@ local blacklisted_recipes = {
     ["arqad-egg-5"] = true,
     ["arqad-egg-5-cold"] = true,
     ["charged-auog"] = true,
+    ["vrauks-mk02"] = true,
+    ["korlex-mk02"] = true,
+    ["korlex-mk03"] = true,
+    ["korlex-mk04"] = true,
+    ["zipir-mk02"] = true,
 }
 
 function py_veganism_globals.replace_ingredients()
