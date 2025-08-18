@@ -18,6 +18,11 @@ py_veganism_globals.create_recipe(
   py_veganism_globals.costs,
   "vrauks-mk02",
   py_veganism_globals.sub_recipes,
-  {},
+  {
+    filament_icon_name = "vrauks",
+    mk_level = 2,
+    codex_name = "vrauks-codex",
+    not_nvm = true
+  },
   true
 )

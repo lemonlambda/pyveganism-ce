@@ -189,16 +189,24 @@ function py_veganism_globals.generate_new_automatic_filament_recipe(
   costs,
   cost_factor,
   trad_recipe_name,
-  sub_recipes
+  sub_recipes,
+  mk_level
 )
   local ingredients = py_veganism_globals.get_filament_ingredients(main_product_name, costs, cost_factor, trad_recipe_name, sub_recipes, scalar)
   log("Ingredients: " .. serpent.block(ingredients))
 
   if not data.raw["fluid"][filament_name] then
+    local mk_icon
+    if mk_level then
+      mk_icon = {icon = "__pyalienlifegraphics__/graphics/icons/over-mk0" .. mk_level .. ".png", icon_size = 64}
+    end
     FLUID {
       type = "fluid",
       name = filament_name,
-      icon = icon_path,
+      icons = {
+        {icon = icon_path, icon_size = 64},
+        mk_icon
+      },
       subgroup = "py-veganism-filament",
       default_temperature = 15,
       base_color = filament_color,
@@ -245,7 +253,8 @@ function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filam
     costs,
     0, -- Cost factor
     trad_recipe, -- Original Recipe
-    sub_recipes -- Sub recipes
+    sub_recipes, -- Sub recipes,
+    extra_properties.mk_level
   )
   vegan_recipe.results[1].probability = extra_properties.filament_result_probability
   vegan_recipe.category = "biofactory"
@@ -254,13 +263,20 @@ function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filam
   end
   vegan_recipe.main_product = extra_properties.main_product
   vegan_recipe.energy_required = RECIPE(trad_recipe).energy_required / 1.5
+  if extra_properties.mk_level then
+    vegan_recipe.icons = {
+      {icon = vegan_recipe.icon, icon_size = vegan_recipe.icon_size},
+      {icon = "__pyalienlifegraphics__/graphics/icons/over-mk0" .. extra_properties.mk_level .. ".png", icon_size = 64},
+    }
+    vegan_recipe.icon = nil
+  end
 
   RECIPE(vegan_recipe)
 
   if vege then
     local vege_recipe = py_veganism_globals.generate_new_automatic_filament_recipe(
       animal_name .. "-filament-vegetarian", -- Name
-      "__pyveganism__/graphics/icons/filaments/" .. animal_name .. "-filament.png", -- Filament Icon
+      "__pyveganism__/graphics/icons/filaments/" .. (extra_properties.filament_icon_name or animal_name) .. "-filament.png", -- Filament Icon
       extra_ingredients, -- Extra ingredients
       1, -- Scalar value
       animal_name .. "-filament", -- Filament name
@@ -280,6 +296,13 @@ function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filam
     end
     vege_recipe.main_product = extra_properties.main_product
     vege_recipe.energy_required = RECIPE(trad_recipe).energy_required / 1.5
+    if extra_properties.mk_level then
+      vege_recipe.icons = {
+        {icon = vege_recipe.icon, icon_size = vege_recipe.icon_size},
+        {icon = "__pyalienlifegraphics__/graphics/icons/over-mk0" .. extra_properties.mk_level .. ".png", icon_size = 64},
+      }
+      vege_recipe.icon = nil
+    end
 
     RECIPE(vege_recipe)
   end
@@ -288,87 +311,99 @@ function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filam
     return
   end
 
-  RECIPE{
-    type = "recipe",
-    name = "print-" .. animal_name .. "-alive",
-    energy_required = 400,
-    icons = {
-      {icon = ITEM(animal_name).icon or ITEM(animal_name).icons[1].icon},
-      {icon = "__pyveganism__/graphics/icons/filaments/" .. animal_name .. "-filament.png", icon_size = 64, scale = 0.25, shift = {-8, -8}},
-      {icon = "__pyveganism__/graphics/icons/vegan.png", icon_size = 64},
-    },
-    category = "bio-printer",
-    subgroup = "py-veganism-printing-alive",
-    ingredients = {
-      {
-        type = "item",
-        name = extra_properties.codex_name or animal_name .. "-codex",
-        amount = 1
+  local mk_icon1
+  local mk_icon2
+  if extra_properties.mk_level then
+    mk_icon = {icon = "__pyalienlifegraphics__/graphics/icons/over-mk0" .. extra_properties.mk_level .. ".png", icon_size = 64, scale = 0.25, shift = {-8, -8}}
+    mk_icon = {icon = "__pyalienlifegraphics__/graphics/icons/over-mk0" .. extra_properties.mk_level .. ".png", icon_size = 64, scale = 0.25, shift = {-8, 8}}
+  end
+  if not extra_properties.not_alive then
+    RECIPE{
+      type = "recipe",
+      name = "print-" .. animal_name .. "-alive",
+      energy_required = 400,
+      icons = {
+        {icon = ITEM(animal_name).icon or ITEM(animal_name).icons[1].icon},
+        {icon = "__pyveganism__/graphics/icons/filaments/" .. (extra_properties.filament_icon_name or animal_name) .. "-filament.png", icon_size = 64, scale = 0.25, shift = {-8, -8}},
+        {icon = "__pyveganism__/graphics/icons/vegan.png", icon_size = 64},
+        mk_icon1
       },
-      {
-        type = "fluid",
-        name = animal_name .. "-filament",
-        amount = 100
+      category = "bio-printer",
+      subgroup = "py-veganism-printing-alive",
+      ingredients = {
+        {
+          type = "item",
+          name = extra_properties.codex_name or animal_name .. "-codex",
+          amount = 1
+        },
+        {
+          type = "fluid",
+          name = animal_name .. "-filament",
+          amount = 100
+        },
       },
-    },
-    results = {
-      {
-        type = "item",
-        name = animal_name,
-        amount = 1 * (extra_properties.result_alive_multiplier or 1),
-        probability = extra_properties.result_alive_probability
+      results = {
+        {
+          type = "item",
+          name = animal_name,
+          amount = 1 * (extra_properties.result_alive_multiplier or 1),
+          probability = extra_properties.result_alive_probability
+        },
+        {
+          type = "item",
+          name = extra_properties.codex_name or animal_name .. "-codex",
+          amount = 1,
+          probability = extra_properties.codex_return or .99
+        }
       },
-      {
-        type = "item",
-        name = extra_properties.codex_name or animal_name .. "-codex",
-        amount = 1,
-        probability = extra_properties.codex_return or .99
-      }
-    },
-    main_product = animal_name
-  }:add_unlock(animal_name)
+      main_product = animal_name
+    }:add_unlock(animal_name)
+  end
 
-  RECIPE{
-    type = "recipe",
-    name = "print-" .. animal_name,
-    category = "bio-printer",
-    subgroup = "py-veganism-printing",
-    energy_required = 30,
-    icons = {
-      {icon = ITEM(animal_name).icon or ITEM(animal_name).icons[1].icon},
-      {icon = "__pyveganism__/graphics/icons/filaments/" .. animal_name .. "-filament.png", icon_size = 64, scale = 0.25, shift = {-8, 8}}
-    },
-    ingredients = {
-      {
-        type = "item",
-        name = extra_properties.codex_name or animal_name .. "-codex",
-        amount = 1
+  if not extra_properties.not_nvm then
+    RECIPE{
+      type = "recipe",
+      name = "print-" .. animal_name,
+      category = "bio-printer",
+      subgroup = "py-veganism-printing",
+      energy_required = 30,
+      icons = {
+        {icon = ITEM(animal_name).icon or ITEM(animal_name).icons[1].icon},
+        {icon = "__pyveganism__/graphics/icons/filaments/" .. (extra_properties.filament_icon_name or animal_name) .. "-filament.png", icon_size = 64, scale = 0.25, shift = {-8, 8}},
+        mk_icon2
       },
-      {
-        type = "fluid",
-        name = animal_name .. "-filament",
-        amount = 100
+      ingredients = {
+        {
+          type = "item",
+          name = extra_properties.codex_name or animal_name .. "-codex",
+          amount = 1
+        },
+        {
+          type = "fluid",
+          name = animal_name .. "-filament",
+          amount = 100
+        },
+        {
+          type = "item",
+          name = extra_properties.special_container or "sack",
+          amount = 1
+        }
       },
-      {
-        type = "item",
-        name = extra_properties.special_container or "sack",
-        amount = 1
-      }
-    },
-    results = {
-      {
-        type = "item",
-        name = extra_properties.nvm_name or ("non-viable-" .. animal_name .. "-mass"),
-        amount = 1 * (extra_properties.result_multiplier or 1),
-        probability = extra_properties.result_probability
+      results = {
+        {
+          type = "item",
+          name = extra_properties.nvm_name or ("non-viable-" .. animal_name .. "-mass"),
+          amount = 1 * (extra_properties.result_multiplier or 1),
+          probability = extra_properties.result_probability
+        },
+        {
+          type = "item",
+          name = extra_properties.codex_name or animal_name .. "-codex",
+          amount = 1,
+          probability = extra_properties.codex_return or .99
+        }
       },
-      {
-        type = "item",
-        name = extra_properties.codex_name or animal_name .. "-codex",
-        amount = 1,
-        probability = extra_properties.codex_return or .99
-      }
-    },
-    main_product = extra_properties.nvm_name or ("non-viable-" .. animal_name .. "-mass")
-  }:add_unlock(animal_name)
+      main_product = extra_properties.nvm_name or ("non-viable-" .. animal_name .. "-mass")
+    }:add_unlock(animal_name)
+  end
 end

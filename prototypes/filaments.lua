@@ -36,6 +36,14 @@ py_veganism_globals.costs = {
   ["rennea"] = 1, -- placeholder
   ["navens"] = 1, -- placeholder
   ["blood"] = 1, -- placeholder
+  ["vrauks-food-01"] = 1, -- placeholder
+  ["ulric-food-01"] = 1, -- placeholder
+  ["korlex-food-01"] = 1, -- placeholder
+  ["zipir-food-01"] = 1, -- placeholder
+  ["zipir-food-02"] = 1, -- placeholder
+  -- [""] = 1, -- placeholder
+  -- [""] = 1, -- placeholder
+
 }
 
 py_veganism_globals.sub_recipes = {
@@ -54,16 +62,16 @@ py_veganism_globals.sub_recipes = {
 
   -- Ulric
   ["ulric-cub"] = "ulric-cub-1",
-  ["ulric-food-01"] = "ulric-food-01",
+  -- ["ulric-food-01"] = "ulric-food-01",
 
   -- Korlex
   ["korlex-pup"] = "korlex-pup-1",
-  ["korlex-food-01"] = "korlex-food-01",
+  -- ["korlex-food-01"] = "korlex-food-01",
 
   -- Zipir
   ["zipir-eggs"] = "zipir-eggs-1",
-  ["zipir-food-01"] = "zipir-food-01",
-  ["zipir-food-02"] = "zipir-food-02",
+  -- ["zipir-food-01"] = "zipir-food-01",
+  -- ["zipir-food-02"] = "zipir-food-02",
 
   -- Arqad
   ["natural-gas-barrel"] = "natural-gas-barrel",
