@@ -2,7 +2,8 @@
 Version: 1.6.8
 Date: 2025.8.18
   Changes
-    - Vrauk mk02 exists ty
+    - Vrauk mk02-4 exists now!
+    - Fixed game crashing when loading save
 ---------------------------------------------------------------------------------------------------
 Version: 1.6.7
 Date: 2025.8.18
