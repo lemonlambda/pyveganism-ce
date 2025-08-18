@@ -513,3 +513,41 @@ RECIPE {
   main_product = "honeycomb"
 }:add_unlock("arqad")
 
+RECIPE {
+  type = "recipe",
+  name = "arqad-honeycomb-from-ulric",
+  subgroup = "py-veganism-arqad",
+  category = "bio-printer",
+  energy_required = 140,
+  ingredients = {
+    {
+      type = "item",
+      name = "empty-honeycomb",
+      amount = 3
+    },
+    {
+      type = "fluid",
+      name = "ulric-filament",
+      amount = 100
+    },
+    {
+      type = "fluid",
+      name = "arqad-filament",
+      amount = 1000
+    }
+  },
+  results = {
+    {
+      type = "item",
+      name = "honeycomb",
+      amount = 3
+    },
+    {
+      type = "fluid",
+      name = "arqad-filament",
+      amount = 1000
+    }
+  },
+  main_product = "honeycomb"
+}:add_unlock("arqad")
+
