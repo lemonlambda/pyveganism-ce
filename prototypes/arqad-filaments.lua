@@ -65,7 +65,7 @@ py_veganism_globals.create_recipe(
     codex_name = "arqad-codex",
     filament_result_probability = 0.01,
     vegan_extra_ingredients = {
-      {type = "fluid", name = "arqad-precursor-filament", amount = 3000}
+      {type = "fluid", name = "arqad-precursor-filament", amount = 2500}
     }
   },
   false
@@ -88,7 +88,7 @@ py_veganism_globals.create_recipe(
       {type = "fluid", name = "arqad-filament", amount = 500}
     },
     additional_results = {
-      {type = "fluid", name = "arqad-precursor-filament", amount = 3500}
+      {type = "fluid", name = "arqad-precursor-filament", amount = 6000}
     },
     main_product = "arqad-precursor-filament",
     filament_icon_name = "arqad-precursor"
