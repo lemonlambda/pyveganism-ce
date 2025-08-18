@@ -141,6 +141,10 @@ function py_veganism_globals.replace_ingredients()
             end
         end
 
+        if not modified then
+            goto continue
+        end
+
         local has_cage = false
         -- Replace results
         for i, result in pairs(recipe.results) do
