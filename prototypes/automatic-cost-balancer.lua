@@ -316,7 +316,7 @@ function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filam
       {icon = ITEM(animal_name).icon}
     }
     if ITEM(animal_name).icons then
-      icons = ITEM(animal_name).icons
+      icons = table.deepcopy(ITEM(animal_name).icons)
     end
 
     table.insert(icons, {icon = "__pyveganism__/graphics/icons/filaments/" .. (extra_properties.filament_icon_name or animal_name) .. "-filament.png", icon_size = 64, scale = 0.25, shift = {-8, -8}})
