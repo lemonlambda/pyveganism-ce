@@ -25,7 +25,7 @@ RECIPE {
     {
       type = "item",
       name = "cdna",
-      amount = 2
+      amount = 1
     },
     {
       type = "fluid",
@@ -37,7 +37,7 @@ RECIPE {
     {
       type = "fluid",
       name = "arqad-precursor-filament",
-      amount = 1000
+      amount = 2000
     },
     {
       type = "item",
@@ -88,7 +88,7 @@ py_veganism_globals.create_recipe(
       {type = "fluid", name = "arqad-filament", amount = 500}
     },
     additional_results = {
-      {type = "fluid", name = "arqad-precursor-filament", amount = 1000}
+      {type = "fluid", name = "arqad-precursor-filament", amount = 3500}
     },
     main_product = "arqad-precursor-filament",
     filament_icon_name = "arqad-precursor"
@@ -307,19 +307,19 @@ RECIPE {
     {
       type = "item",
       name = "native-flora",
-      amount = 10
+      amount = 20
     },
     {
       type = "fluid",
       name = "dcm",
-      amount = 10
+      amount = 5
     }
   },
   results = {
     {
       type = "fluid",
       name = "flora-solution",
-      amount = 10
+      amount = 80
     }
   },
   main_product = "flora-solution"
@@ -334,19 +334,19 @@ RECIPE {
     {
       type = "item",
       name = "moondrop",
-      amount = 10
+      amount = 5
     },
     {
       type = "fluid",
       name = "benzene",
-      amount = 10
+      amount = 5
     }
   },
   results = {
     {
       type = "fluid",
       name = "moondrop-solution",
-      amount = 10
+      amount = 30
     }
   },
   main_product = "moondrop-solution"
@@ -361,19 +361,19 @@ RECIPE {
     {
       type = "item",
       name = "ralesia",
-      amount = 10
+      amount = 3
     },
     {
       type = "fluid",
       name = "dcm",
-      amount = 10
+      amount = 4
     }
   },
   results = {
     {
       type = "fluid",
       name = "ralesia-solution",
-      amount = 10
+      amount = 25
     }
   },
   main_product = "ralesia-solution"
@@ -396,7 +396,7 @@ RECIPE {
     {
       type = "fluid",
       name = "nectar-1",
-      amount = 50
+      amount = 65
     }
   },
   main_product = "nectar-1"
@@ -412,7 +412,7 @@ RECIPE {
     {
       type = "fluid",
       name = "moondrop-solution",
-      amount = 100
+      amount = 80
     },
     {
       type = "fluid",
@@ -424,7 +424,7 @@ RECIPE {
     {
       type = "fluid",
       name = "nectar-2",
-      amount = 50
+      amount = 70
     }
   },
   main_product = "nectar-2"
@@ -445,14 +445,14 @@ RECIPE {
     {
       type = "fluid",
       name = "nectar-2",
-      amount = 100
+      amount = 40
     }
   },
   results = {
     {
       type = "fluid",
       name = "nectar-3",
-      amount = 50
+      amount = 60
     }
   },
   main_product = "nectar-3"
@@ -467,12 +467,12 @@ RECIPE {
     {
       type = "fluid",
       name = "nectar-3",
-      amount = 100
+      amount = 70
     },
     {
       type = "fluid",
       name = "hot-air",
-      amount = 100
+      amount = 20
     }
   },
   results = {

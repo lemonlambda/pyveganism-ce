@@ -81,3 +81,5 @@ end
 if DEBUG then
     require("prototypes.testing")
 end
+
+py.compound_attach_entity_to("jaw-crusher", "beacon", {})
