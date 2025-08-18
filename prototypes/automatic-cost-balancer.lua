@@ -311,23 +311,21 @@ function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filam
     return
   end
 
-  local mk_icon1
-  local mk_icon2
-  if extra_properties.mk_level then
-    mk_icon = {icon = "__pyalienlifegraphics__/graphics/icons/over-mk0" .. extra_properties.mk_level .. ".png", icon_size = 64, scale = 0.25, shift = {-8, -8}}
-    mk_icon = {icon = "__pyalienlifegraphics__/graphics/icons/over-mk0" .. extra_properties.mk_level .. ".png", icon_size = 64, scale = 0.25, shift = {-8, 8}}
-  end
   if not extra_properties.not_alive then
+    local icons = {
+      {icon = ITEM(animal_name).icon}
+    }
+    if ITEM(animal_name).icons then
+      icons = ITEM(animal_name).icons
+    end
+
+    table.insert(icons, {icon = "__pyveganism__/graphics/icons/filaments/" .. (extra_properties.filament_icon_name or animal_name) .. "-filament.png", icon_size = 64, scale = 0.25, shift = {-8, -8}})
+    
     RECIPE{
       type = "recipe",
       name = "print-" .. animal_name .. "-alive",
       energy_required = 400,
-      icons = {
-        {icon = ITEM(animal_name).icon or ITEM(animal_name).icons[1].icon},
-        {icon = "__pyveganism__/graphics/icons/filaments/" .. (extra_properties.filament_icon_name or animal_name) .. "-filament.png", icon_size = 64, scale = 0.25, shift = {-8, -8}},
-        {icon = "__pyveganism__/graphics/icons/vegan.png", icon_size = 64},
-        mk_icon1
-      },
+      icons = icons,
       category = "bio-printer",
       subgroup = "py-veganism-printing-alive",
       ingredients = {
@@ -370,7 +368,6 @@ function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filam
       icons = {
         {icon = ITEM(animal_name).icon or ITEM(animal_name).icons[1].icon},
         {icon = "__pyveganism__/graphics/icons/filaments/" .. (extra_properties.filament_icon_name or animal_name) .. "-filament.png", icon_size = 64, scale = 0.25, shift = {-8, 8}},
-        mk_icon2
       },
       ingredients = {
         {
