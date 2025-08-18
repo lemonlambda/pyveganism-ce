@@ -253,6 +253,7 @@ function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filam
     vegan_recipe.results = table.extend(vegan_recipe.results, extra_properties.additional_results)
   end
   vegan_recipe.main_product = extra_properties.main_product
+  vegan_recipe.energy_required = RECIPE(trad_recipe).energy_required / 1.5
 
   RECIPE(vegan_recipe)
 
@@ -278,6 +279,7 @@ function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filam
       vege_recipe.results = table.extend(vege_recipe.results, extra_properties.additional_results)
     end
     vege_recipe.main_product = extra_properties.main_product
+    vege_recipe.energy_required = RECIPE(trad_recipe).energy_required / 1.5
 
     RECIPE(vege_recipe)
   end
