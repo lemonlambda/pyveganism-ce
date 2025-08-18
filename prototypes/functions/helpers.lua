@@ -112,6 +112,10 @@ function py_veganism_globals.replace_ingredients()
             goto continue
         end
 
+        if string.find(name, "caged") then
+            goto continue
+        end
+
         if not recipe.ingredients or not recipe.results then
             goto continue
         end

@@ -241,7 +241,7 @@ end
 -- @param vege (bool|nil) to have the vegetarian recipe or not
 function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filament_color, costs, trad_recipe, sub_recipes, extra_properties, vege)
   local vegan_recipe = py_veganism_globals.generate_new_automatic_filament_recipe(
-    animal_name .. "-filament-" .. (extra_properties.recipe_name or "vegan"), -- Name
+    animal_name .. "-".. trad_recipe .. "-filament-" .. (extra_properties.recipe_name or "vegan"), -- Name
     "__pyveganism__/graphics/icons/filaments/" .. (extra_properties.filament_icon_name or animal_name) .. "-filament.png", -- Filament Icon
     extra_properties.vegan_extra_ingredients or {}, -- Extra ingredients
     1, -- Scalar value
@@ -271,11 +271,11 @@ function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filam
     vegan_recipe.icon = nil
   end
 
-  RECIPE(vegan_recipe)
+  RECIPE(vegan_recipe):add_unlock(animal_name)
 
   if vege then
     local vege_recipe = py_veganism_globals.generate_new_automatic_filament_recipe(
-      animal_name .. "-filament-vegetarian", -- Name
+      animal_name .. "-" .. trad_recipe .. "-filament-vegetarian", -- Name
       "__pyveganism__/graphics/icons/filaments/" .. (extra_properties.filament_icon_name or animal_name) .. "-filament.png", -- Filament Icon
       extra_ingredients, -- Extra ingredients
       1, -- Scalar value
@@ -304,7 +304,7 @@ function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filam
       vege_recipe.icon = nil
     end
 
-    RECIPE(vege_recipe)
+    RECIPE(vege_recipe):add_unlock(animal_name)
   end
 
   if extra_properties.skip_nvm then
@@ -313,10 +313,10 @@ function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filam
 
   if not extra_properties.not_alive then
     local icons = {
-      {icon = ITEM(animal_name).icon}
+      {icon = table.deepcopy(ITEM(animal_name)).icon}
     }
     if ITEM(animal_name).icons then
-      icons = table.deepcopy(ITEM(animal_name).icons)
+      icons = table.deepcopy(ITEM(animal_name)).icons
     end
 
     table.insert(icons, {icon = "__pyveganism__/graphics/icons/filaments/" .. (extra_properties.filament_icon_name or animal_name) .. "-filament.png", icon_size = 64, scale = 0.25, shift = {-8, -8}})

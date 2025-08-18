@@ -36,11 +36,21 @@ py_veganism_globals.costs = {
   ["rennea"] = 1, -- placeholder
   ["navens"] = 1, -- placeholder
   ["blood"] = 1, -- placeholder
+  ["sea-sponge"] = 1, -- placeholder
+  ["alien-sample-02"] = 1, -- placeholder
+  ["alien-sample-03"] = 1, -- placeholder
   ["vrauks-food-01"] = 1, -- placeholder
+  ["vrauks-food-02"] = 1, -- placeholder
+  ["vrauks-food-03"] = 1, -- placeholder
   ["ulric-food-01"] = 1, -- placeholder
+  ["ulric-food-02"] = 1, -- placeholder
+  ["ulric-food-03"] = 1, -- placeholder
   ["korlex-food-01"] = 1, -- placeholder
+  ["korlex-food-02"] = 1, -- placeholder
+  ["korlex-food-03"] = 1, -- placeholder
   ["zipir-food-01"] = 1, -- placeholder
   ["zipir-food-02"] = 1, -- placeholder
+  ["zipir-food-03"] = 1, -- placeholder
   -- [""] = 1, -- placeholder
   -- [""] = 1, -- placeholder
 
@@ -53,6 +63,9 @@ py_veganism_globals.sub_recipes = {
   ["non-viable-vrauk-mass"] = "vrauks-1",
   ["vrauks"] = "vrauks-1",
   ["cocoon"] = "vrauks-cocoon-1",
+  ["cocoon-mk02"] = "vrauks-mk02-cocoon",
+  ["cocoon-mk03"] = "vrauks-mk03-cocoon",
+  ["cocoon-mk04"] = "vrauks-mk04-cocoon",
 
   -- Auogs
   ["auog-pup"] = "auog-pup-breeding-1",
