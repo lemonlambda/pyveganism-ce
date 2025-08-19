@@ -2,6 +2,11 @@
 Version: 1.6.9
 Date: 2025.8.19
   Changes:
+    - Arqad recipes now output the barrels instead of eating them
+---------------------------------------------------------------------------------------------------
+Version: 1.6.9
+Date: 2025.8.19
+  Changes:
     - Changed the arqad recipes to use barrels! (breaking changes my beloved)
     - Undid the bio-factory fluid pipe change
     - Added arqad honey recipes

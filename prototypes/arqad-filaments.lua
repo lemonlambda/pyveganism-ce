@@ -66,7 +66,8 @@ py_veganism_globals.create_recipe(
     filament_result_probability = 0.01,
     vegan_extra_ingredients = {
       {type = "fluid", name = "arqad-precursor-filament", amount = 2500}
-    }
+    },
+    main_product = "arqad-queen-filament"
   },
   false
 )
@@ -155,7 +156,8 @@ py_veganism_globals.create_recipe(
   {
     vegan_extra_ingredients = {
       {type = "fluid", name = "arqad-precursor-filament", amount = 500}
-    }
+    },
+    main_product = "arqad-filament"
   },
   false
 )
@@ -168,15 +170,26 @@ local replace_with_barrel_recipes = {
 
 for _, recipe in pairs(replace_with_barrel_recipes) do
   for _, ingredient in pairs(data.raw.recipe[recipe].ingredients) do
+    local results = data.raw.recipe[recipe].results
     if ingredient.name == "natural-gas" then
       ingredient.type = "item"
       ingredient.name = "natural-gas-barrel"
       ingredient.amount = math.ceil(ingredient.amount / 50)
+      table.insert(results, {
+        type = "item",
+        name = "barrel",
+        amount = ingredient.amount
+      })
     end
     if ingredient.name == "water" then
       ingredient.type = "item"
       ingredient.name = "water-barrel"
       ingredient.amount = math.ceil(ingredient.amount / 50)
+      table.insert(results, {
+        type = "item",
+        name = "barrel",
+        amount = ingredient.amount
+      })
     end
   end
 end
