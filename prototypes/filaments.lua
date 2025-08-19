@@ -51,6 +51,14 @@ py_veganism_globals.costs = {
   ["zipir-food-01"] = 1, -- placeholder
   ["zipir-food-02"] = 1, -- placeholder
   ["zipir-food-03"] = 1, -- placeholder
+  ["dna-polymerase"] = 1, -- placeholder
+  ["fetal-serum"] = 1, -- placeholder
+  ["artificial-blood"] = 1, -- placeholder
+  ["fish-egg"] = 1, -- placeholder
+  ["cottongut-food-01"] = 1, -- placeholder
+  ["cottongut-food-02"] = 1, -- placeholder
+  ["cottongut-food-03"] = 1, -- placeholder
+  ["cottongut-food-04"] = 1, -- placeholder
   -- [""] = 1, -- placeholder
   -- [""] = 1, -- placeholder
 
@@ -72,6 +80,9 @@ py_veganism_globals.sub_recipes = {
 
   -- Cottonguts
   ["cottongut-pup"] = "cottongut-cub-1",
+  ["cottongut-mk01"] = "cottongut-mature-basic-01",
+  ["cottongut-pup-mk01"] = "cottongut-pup-mk01-raising",
+  
 
   -- Ulric
   ["ulric-cub"] = "ulric-cub-1",
