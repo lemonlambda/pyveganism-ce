@@ -160,6 +160,27 @@ py_veganism_globals.create_recipe(
   false
 )
 
+local replace_with_barrel_recipes = {
+  "arqad-caged-arqad-1-filament-vegan",
+  "arqad-queen-arqad-egg-1-filament-from-filament",
+  "arqad-queen-arqad-queen-1-filament-vegan"
+}
+
+for _, recipe in pairs(replace_with_barrel_recipes) do
+  for _, ingredient in pairs(data.raw.recipe[recipe].ingredients) do
+    if ingredient.name == "natural-gas" then
+      ingredient.type = "item"
+      ingredient.name = "natural-gas-barrel"
+      ingredient.amount = math.ceil(ingredient.amount / 50)
+    end
+    if ingredient.name == "water" then
+      ingredient.type = "item"
+      ingredient.name = "water-barrel"
+      ingredient.amount = math.ceil(ingredient.amount / 50)
+    end
+  end
+end
+
 -- Honey making
 
 FLUID {

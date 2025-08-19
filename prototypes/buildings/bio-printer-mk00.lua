@@ -269,21 +269,21 @@ ENTITY("bio-printer-mk02"):set_fields(modules)
 ENTITY("bio-printer-mk03"):set_fields(modules)
 ENTITY("bio-printer-mk04"):set_fields(modules)
 
-for i=1,4 do
-    ENTITY("biofactory-mk0" .. i).fluid_boxes[7] = {
-        production_type = "input",
-        pipe_covers = py.pipe_covers(false, true, true, true),
-        pipe_picture = py.pipe_pictures("assembling-machine-3", nil, {0.0, -0.88}, nil, nil),
-        volume = 1000,
-        pipe_connections = {{flow_direction = "input", position = {-3.0, -0.0}, direction = defines.direction.west}},
-        secondary_draw_orders = {north = -1}
-    }
-    ENTITY("biofactory-mk0" .. i).fluid_boxes[8] = {
-        production_type = "input",
-        pipe_covers = py.pipe_covers(false, true, true, true),
-        pipe_picture = py.pipe_pictures("assembling-machine-3", nil, {0.0, -0.88}, nil, nil),
-        volume = 1000,
-        pipe_connections = {{flow_direction = "input", position = {3.0, -0.0}, direction = defines.direction.east}},
-        secondary_draw_orders = {north = -1}
-    }
-end
+-- for i=1,4 do
+--     ENTITY("biofactory-mk0" .. i).fluid_boxes[7] = {
+--         production_type = "input",
+--         pipe_covers = py.pipe_covers(false, true, true, true),
+--         pipe_picture = py.pipe_pictures("assembling-machine-3", nil, {0.0, -0.88}, nil, nil),
+--         volume = 1000,
+--         pipe_connections = {{flow_direction = "input", position = {-3.0, -0.0}, direction = defines.direction.west}},
+--         secondary_draw_orders = {north = -1}
+--     }
+--     ENTITY("biofactory-mk0" .. i).fluid_boxes[8] = {
+--         production_type = "input",
+--         pipe_covers = py.pipe_covers(false, true, true, true),
+--         pipe_picture = py.pipe_pictures("assembling-machine-3", nil, {0.0, -0.88}, nil, nil),
+--         volume = 1000,
+--         pipe_connections = {{flow_direction = "input", position = {3.0, -0.0}, direction = defines.direction.east}},
+--         secondary_draw_orders = {north = -1}
+--     }
+-- end
