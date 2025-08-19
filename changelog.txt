@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.6.9
-Date: 2025.?.??
+Date: 2025.8.19
   Changes:
     - Changed the arqad recipes to use barrels! (breaking changes my beloved)
     - Undid the bio-factory fluid pipe change
