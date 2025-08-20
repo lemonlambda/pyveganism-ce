@@ -2,6 +2,7 @@ FLUID {
   type = "fluid",
   name = "cottongut-chikawawa-filament",
   icon = "__pyveganism__/graphics/icons/filaments/cottongut-chikawawa-filament.png",
+  subgroup = "py-veganism-cottongut",
   default_temperature = 15,
   base_color = py_veganism_globals.hex2rgb("#323d44"),
   flow_color = py_veganism_globals.hex2rgb("#323d44"),
@@ -11,6 +12,17 @@ FLUID {
   type = "fluid",
   name = "cottongut-mije-filament",
   icon = "__pyveganism__/graphics/icons/filaments/cottongut-mije-filament.png",
+  subgroup = "py-veganism-cottongut",
+  default_temperature = 15,
+  base_color = py_veganism_globals.hex2rgb("#323d44"),
+  flow_color = py_veganism_globals.hex2rgb("#323d44"),
+}
+
+FLUID {
+  type = "fluid",
+  name = "cottongut-monsi-filament",
+  icon = "__pyveganism__/graphics/icons/filaments/cottongut-monsi-filament.png",
+  subgroup = "py-veganism-cottongut",
   default_temperature = 15,
   base_color = py_veganism_globals.hex2rgb("#323d44"),
   flow_color = py_veganism_globals.hex2rgb("#323d44"),
@@ -27,7 +39,7 @@ py_veganism_globals.create_recipe(
   {
     vegan_extra_ingredients = {{
       type = "fluid",
-      name = "cottongut-chikawawa-filament",
+      name = "cottongut-monsi-filament",
       amount = 100
     }}
   },
@@ -120,6 +132,11 @@ RECIPE {
       amount = 100
     },
     {
+      type = "fluid",
+      name = "cottongut-monsi-filament",
+      amount = 50
+    },
+    {
       type = "item",
       name = "wood",
       amount = 1
@@ -149,5 +166,160 @@ RECIPE {
   },
   allowed_module_categories = {"cottongut"},
   main_product = "cottongut-mk01-filament"
+}
+
+RECIPE {
+  type = "recipe",
+  name = "cottongut-filament-rotation-1",
+  category = "bio-printer",
+  ingredients = {
+    {
+      type = "fluid",
+      name = "cottongut-mije-filament",
+      amount = 100
+    },
+    {
+      type = "fluid",
+      name = "cottongut-monsi-filament",
+      amount = 50
+    },
+    {
+      type = "item",
+      name = "moondrop",
+      amount = 2
+    }
+  },
+  results = {
+    {
+      type = "fluid",
+      name = "cottongut-chikawawa-filament",
+      amount = 50,
+    },
+    {
+      type = "fluid",
+      name = "cottongut-monsi-filament",
+      amount = 100
+    }
+  },
+  allowed_module_categories = {"cottongut"},
+  main_product = "cottongut-monsi-filament"
+}
+
+RECIPE {
+  type = "recipe",
+  name = "cottongut-filament-rotation-2",
+  category = "bio-printer",
+  ingredients = {
+    {
+      type = "fluid",
+      name = "cottongut-chikawawa-filament",
+      amount = 100
+    },
+    {
+      type = "fluid",
+      name = "cottongut-monsi-filament",
+      amount = 50
+    },
+    {
+      type = "item",
+      name = "moondrop",
+      amount = 2
+    }
+  },
+  results = {
+    {
+      type = "fluid",
+      name = "cottongut-mije-filament",
+      amount = 50,
+    },
+    {
+      type = "fluid",
+      name = "cottongut-monsi-filament",
+      amount = 100
+    }
+  },
+  allowed_module_categories = {"cottongut"},
+  main_product = "cottongut-monsi-filament"
+}
+
+RECIPE {
+  type = "recipe",
+  name = "cottongut-filament-rotation-3",
+  category = "bio-printer",
+  ingredients = {
+    {
+      type = "fluid",
+      name = "cottongut-chikawawa-filament",
+      amount = 70
+    },
+    {
+      type = "fluid",
+      name = "cottongut-monsi-filament",
+      amount = 50
+    },
+    {
+      type = "fluid",
+      name = "cottongut-mk01-filament",
+      amount = 5
+    },
+    {
+      type = "item",
+      name = "moondrop",
+      amount = 2
+    }
+  },
+  results = {
+    {
+      type = "fluid",
+      name = "cottongut-mije-filament",
+      amount = 50,
+    },
+    {
+      type = "fluid",
+      name = "cottongut-monsi-filament",
+      amount = 20,
+      probability = .6
+    }
+  },
+  allowed_module_categories = {"cottongut"},
+  main_product = "cottongut-monsi-filament"
+}
+
+RECIPE {
+  type = "recipe",
+  name = "cottongut-filament-rotation-4",
+  category = "bio-printer",
+  ingredients = {
+    {
+      type = "fluid",
+      name = "cottongut-mije-filament",
+      amount = 70
+    },
+    {
+      type = "fluid",
+      name = "cottongut-mk01-filament",
+      amount = 55
+    },
+    {
+      type = "item",
+      name = "moondrop",
+      amount = 2
+    }
+  },
+  results = {
+    {
+      type = "fluid",
+      name = "cottongut-chikawawa-filament",
+      amount = 50,
+    },
+    {
+      type = "fluid",
+      name = "cottongut-monsi-filament",
+      amount = 20,
+      probability = .4
+    }
+  },
+  allowed_module_categories = {"cottongut"},
+  main_product = "cottongut-monsi-filament"
 }
 
