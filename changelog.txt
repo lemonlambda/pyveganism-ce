@@ -4,6 +4,7 @@ Date: 2025.8.19
   Changes:
     - Cottongut rework
     - Korlex milk recipe debuff
+    - Buff to formic acid from vrauk nvm
 ---------------------------------------------------------------------------------------------------
 Version: 1.6.9
 Date: 2025.8.19

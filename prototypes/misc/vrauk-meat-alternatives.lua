@@ -276,7 +276,7 @@ RECIPE {
         {
             type = "fluid",
             name = "formic-acid",
-            amount = 25
+            amount = 150
         },
         {
             type = "item",
