@@ -281,7 +281,7 @@ function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filam
       1, -- Scalar value
       animal_name .. "-filament", -- Filament name
       filament_color, -- Filament Color
-      130, -- Filament Amount
+      250, -- Filament Amount
 
       animal_name, -- Main Product
       costs,
