@@ -354,6 +354,7 @@ function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filam
           probability = extra_properties.codex_return or .99
         }
       },
+      allowed_module_categories = {extra_properties.module_category or animal_name},
       main_product = animal_name
     }:add_unlock(animal_name)
   end
@@ -400,6 +401,7 @@ function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filam
           probability = extra_properties.codex_return or .99
         }
       },
+      allowed_module_categories = {extra_properties.module_category or animal_name},
       main_product = extra_properties.nvm_name or ("non-viable-" .. animal_name .. "-mass")
     }:add_unlock(animal_name)
   end

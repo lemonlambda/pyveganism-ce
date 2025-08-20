@@ -71,6 +71,7 @@ py_veganism_globals.create_recipe(
     result_alive_multiplier = 1,
     nvm_name = "non-viable-zipir-fluid-barrel",
     special_container = "barrel",
+    module_category = "zipir"
   },
   false
 )

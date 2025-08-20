@@ -5,6 +5,7 @@ Date: 2025.8.19
     - Cottongut rework
     - Korlex milk recipe debuff
     - Buff to formic acid from vrauk nvm
+    - Fixed the recipes allowing any modules
 ---------------------------------------------------------------------------------------------------
 Version: 1.6.9
 Date: 2025.8.19

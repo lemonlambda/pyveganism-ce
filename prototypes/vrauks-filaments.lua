@@ -27,7 +27,8 @@ py_veganism_globals.create_recipe(
     main_product = "vrauks-mk02-filament",
     mk_level = 2,
     codex_name = "vrauks-codex",
-    not_nvm = true
+    not_nvm = true,
+    module_category = "vrauks"
   },
   false
 )
@@ -50,7 +51,8 @@ for i=3,4 do
       main_product = "vrauks-mk0" .. i .. "-filament",
       mk_level = i,
       codex_name = "vrauks-codex",
-      not_nvm = true
+      not_nvm = true,
+      module_category = "vrauks"
     },
     false
   )
@@ -77,7 +79,8 @@ for i=2,4 do
       mk_level = i,
       codex_name = "vrauks-codex",
       not_alive = true,
-      not_nvm = true
+      not_nvm = true,
+      module_category = "vrauks"
     },
     false
   )
@@ -100,7 +103,7 @@ for i=2,4 do
       {
         type = "fluid",
         name = (i == 2 and "vrauks-filament") or ("vrauks-mk0" .. (i - 1) .. "-filament"),
-        amount = 100 * math.pow(2, i)
+        amount = 300 * math.pow(2, i)
       }
     },
     main_product = (i == 2 and "vrauks-filament") or ("vrauks-mk0" .. (i - 1) .. "-filament")
