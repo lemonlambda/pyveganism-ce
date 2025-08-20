@@ -277,7 +277,7 @@ function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filam
     local vege_recipe = py_veganism_globals.generate_new_automatic_filament_recipe(
       animal_name .. "-" .. trad_recipe .. "-filament-vegetarian", -- Name
       "__pyveganism__/graphics/icons/filaments/" .. (extra_properties.filament_icon_name or animal_name) .. "-filament.png", -- Filament Icon
-      extra_ingredients, -- Extra ingredients
+      table.extend(extra_ingredients, extra_properties.vegan_extra_ingredients or {}), -- Extra ingredients
       1, -- Scalar value
       animal_name .. "-filament", -- Filament name
       filament_color, -- Filament Color
