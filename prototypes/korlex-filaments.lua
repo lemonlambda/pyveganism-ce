@@ -89,7 +89,7 @@ RECIPE {
     {
       type = "fluid",
       name = "korlex-filament",
-      amount = 1
+      amount = 5
     },
     {
       type = "item",
