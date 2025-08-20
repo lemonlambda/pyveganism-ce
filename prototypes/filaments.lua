@@ -59,6 +59,11 @@ py_veganism_globals.costs = {
   ["cottongut-food-02"] = 1, -- placeholder
   ["cottongut-food-03"] = 1, -- placeholder
   ["cottongut-food-04"] = 1, -- placeholder
+  ["earth-mouse-sample"] = 1, -- placeholder
+  ["earth-generic-sample"] = 1, -- placeholder
+  ["cottongut-codex"] = 1, -- placeholder
+  ["bio-sample"] = 1, -- placeholder
+  ["cdna"] = 1, -- placeholder
   -- [""] = 1, -- placeholder
   -- [""] = 1, -- placeholder
 
