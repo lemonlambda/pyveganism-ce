@@ -125,6 +125,12 @@ data:extend {
     },
     {
         type = "item-subgroup",
+        name = "py-veganism-manure",
+        group = "py-veganism",
+        order = "bbj"
+    },
+    {
+        type = "item-subgroup",
         name = "py-veganism-oil-plants",
         group = "py-veganism",
         order = "bce"
