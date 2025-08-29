@@ -68,6 +68,7 @@ local enabled_concepts = {
     "misc.burlap",
     "misc.reinforced-wooden-chest",
     "misc.meat-alternatives",
+    "misc.retrovirus",
 
     --buildings
     "buildings.bio-printer-mk00",
