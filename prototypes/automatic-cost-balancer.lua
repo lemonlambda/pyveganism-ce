@@ -1,97 +1,97 @@
 local function get_main_product(results, name, mode)
-  log(serpent.block(results))
-  for _, result in pairs(table.deepcopy(results)) do
-    log(serpent.line(result))
-    if result.name == name then
-      local mode_value
-      if result.amount_min then 
-        if mode == "max" then
-          mode_value = result.amount_max
-        elseif mode == "min" then
-          mode_value = result.amount_min
-        else
-          mode_value = (result.amount_min + result.amount_max) / 2
+    log(serpent.block(results))
+    for _, result in pairs(table.deepcopy(results)) do
+        log(serpent.line(result))
+        if result.name == name then
+            local mode_value
+            if result.amount_min then
+                if mode == "max" then
+                    mode_value = result.amount_max
+                elseif mode == "min" then
+                    mode_value = result.amount_min
+                else
+                    mode_value = (result.amount_min + result.amount_max) / 2
+                end
+            end
+            result.amount = result.amount or mode_value
+            return result
         end
-      end
-      result.amount = result.amount or mode_value
-      return result
     end
-  end
 end
 
 -- Gets the recipe costs by passing ingredients and sub_recipes
 -- Uses the main_product_amount as a dividing factor
 local function _get_recipe_costs(self_func, main_product_amount, ingredients, established_costs, sub_recipes)
-  -- Overall cost of each ingredient in the recipe
-  local costs = {}
+    -- Overall cost of each ingredient in the recipe
+    local costs = {}
 
-  for _, ingredient in pairs(ingredients) do
-    local individual_cost
+    for _, ingredient in pairs(ingredients) do
+        local individual_cost
 
-    -- If ingredient has a sub recipe go find out that sub recipes cost
-    if sub_recipes[ingredient.name] and data.raw["recipe"][sub_recipes[ingredient.name]] then
-      local recipe = RECIPE(sub_recipes[ingredient.name])
-      local sub_ingredients = recipe.ingredients
-      local ingredient_main_product = get_main_product(recipe.results, ingredient.name)
+        -- If ingredient has a sub recipe go find out that sub recipes cost
+        if sub_recipes[ingredient.name] and data.raw["recipe"][sub_recipes[ingredient.name]] then
+            local recipe = RECIPE(sub_recipes[ingredient.name])
+            local sub_ingredients = recipe.ingredients
+            local ingredient_main_product = get_main_product(recipe.results, ingredient.name)
 
-      -- Find the associated costs of that ingredient
-      -- main_product.amount / ingredient.amount is what's used to find out how much of a product is
-      -- main_product.amount = 5 cocoons
-      -- ingredient.amount = 10 cocoons
-      -- 0.5 cocoons is the result which we use to divide the cost which results in doubling the cost
-      local additional_costs = self_func(self_func, ingredient_main_product.amount / ingredient.amount, sub_ingredients, established_costs, sub_recipes)
+            -- Find the associated costs of that ingredient
+            -- main_product.amount / ingredient.amount is what's used to find out how much of a product is
+            -- main_product.amount = 5 cocoons
+            -- ingredient.amount = 10 cocoons
+            -- 0.5 cocoons is the result which we use to divide the cost which results in doubling the cost
+            local additional_costs = self_func(self_func, ingredient_main_product.amount / ingredient.amount, sub_ingredients, established_costs, sub_recipes)
 
-      for name, cost in pairs(additional_costs) do
-        -- The cost needs to be divided by the main_product_amount
-        -- main_product_amount is the amount of the main_product the trad recipe produces
-        -- We need to divide cost by this because we need to scale down to per 1
-        -- If we have a cost of $10 and we only use half of it's cost per main_product then we need to halve the cost
-        -- The main product amount would be 2 in that example
-        local additional_cost = cost / main_product_amount
-        log("Ingredient " .. name .. " with cost: " .. serpent.block(additional_cost))
-        costs[name] = (costs[name] or 0) + additional_cost
-      end
+            for name, cost in pairs(additional_costs) do
+                -- The cost needs to be divided by the main_product_amount
+                -- main_product_amount is the amount of the main_product the trad recipe produces
+                -- We need to divide cost by this because we need to scale down to per 1
+                -- If we have a cost of $10 and we only use half of it's cost per main_product then we need to halve the cost
+                -- The main product amount would be 2 in that example
+                local additional_cost = cost / main_product_amount
+                log("Ingredient " .. name .. " with cost: " .. serpent.block(additional_cost))
+                costs[name] = (costs[name] or 0) + additional_cost
+            end
 
-      goto continue
-    else
-      -- Invidial cached cost of an ingredient
-      individual_cost = established_costs[ingredient.name] or 0
+            goto continue
+        else
+            -- Invidial cached cost of an ingredient
+            individual_cost = established_costs[ingredient.name] or 0
+        end
+
+        local additional_cost = ingredient.amount / main_product_amount * individual_cost
+        log("Ingredient " .. ingredient.name .. " amount: " .. ingredient.amount .. " with cost: " .. serpent.block(additional_cost))
+        costs[ingredient.name] = (costs[ingredient.name] or 0) + additional_cost
+
+        ::continue::
     end
 
-    local additional_cost = ingredient.amount / main_product_amount * individual_cost
-    log("Ingredient " .. ingredient.name .. " amount: " .. ingredient.amount .. " with cost: " .. serpent.block(additional_cost))
-    costs[ingredient.name] = (costs[ingredient.name] or 0) + additional_cost
-
-    ::continue::
-  end
-
-  return costs
+    return costs
 end
 
 -- Gets the individual cost of a recipe
 local function _get_recipe_cost(get_recipe_costs_func, main_product_amount, ingredients, established_costs, sub_recipes)
-  local costs = get_recipe_costs_func(get_recipe_costs_func, main_product_amount, ingredients, established_costs, sub_recipes)
+    local costs = get_recipe_costs_func(get_recipe_costs_func, main_product_amount, ingredients, established_costs, sub_recipes)
 
-  local total_cost = 0
-  for _, ingredient_cost in pairs(costs) do
-    total_cost = total_cost + ingredient_cost
-  end
+    local total_cost = 0
+    for _, ingredient_cost in pairs(costs) do
+        total_cost = total_cost + ingredient_cost
+    end
 
-  return total_cost
+    return total_cost
 end
 
 -- Public API
 function get_recipe_cost(main_product_amount, ingredients, established_costs, sub_recipes)
-  return _get_recipe_cost(_get_recipe_costs, main_product_amount, ingredients, established_costs, sub_recipes)
+    return _get_recipe_cost(_get_recipe_costs, main_product_amount, ingredients, established_costs, sub_recipes)
 end
 
 function get_recipe_costs(main_product_amount, ingredients, established_costs, sub_recipes)
-  return _get_recipe_costs(_get_recipe_costs, main_product_amount, ingredients, established_costs, sub_recipes)
+    return _get_recipe_costs(_get_recipe_costs, main_product_amount, ingredients, established_costs, sub_recipes)
 end
 
 local function round(num, num_decimal_places)
-  local mult = 10^(num_decimal_places or 0)
-  return math.floor(num * mult) / mult
+    local mult = 10 ^ (num_decimal_places or 0)
+    return math.floor(num * mult) / mult
 end
 
 -- The base to the cost_factor exponent
@@ -103,36 +103,36 @@ local COST_BASE = 1.1
 -- @param scalar number
 -- @param cached_costs table<string, number> Cached costs that can be used to scale around an ingredient
 local function ingredients_collapse(target_costs, cost_factor, scalar, cached_costs)
-  local ingredients = {}
+    local ingredients = {}
 
-  for name, cost in pairs(target_costs) do
-    if cost == 0 then
-      goto continue
+    for name, cost in pairs(target_costs) do
+        if cost == 0 then
+            goto continue
+        end
+
+        local cached_cost = cached_costs[name]
+        local amount = (cost * math.pow(COST_BASE, cost_factor)) / cached_cost
+
+        log("New ingredient " .. name .. " amount is " .. serpent.line(new_amount))
+
+        -- Get the type
+        local type
+        if data.raw["item"][name] or data.raw["module"][name] then
+            type = "item"
+        else
+            type = "fluid"
+        end
+
+        table.insert(ingredients, {
+            name = name,
+            type = type,
+            amount = math.ceil(amount * scalar)
+        })
+
+        ::continue::
     end
-    
-    local cached_cost = cached_costs[name]
-    local amount = (cost * math.pow(COST_BASE, cost_factor)) / cached_cost
 
-    log("New ingredient " .. name .. " amount is " .. serpent.line(new_amount))
-
-    -- Get the type
-    local type
-    if data.raw["item"][name] or data.raw["module"][name] then
-      type = "item"
-    else
-      type = "fluid"
-    end
-    
-    table.insert(ingredients, {
-      name = name,
-      type = type,
-      amount = math.ceil(amount * scalar)
-    })
-
-    ::continue::
-  end
-
-  return ingredients
+    return ingredients
 end
 
 -- Create's a partial filament recipe from a traditional recipe
@@ -143,21 +143,21 @@ end
 -- @param sub_recipes table<string, string> the name of the ingredient matched with it's traditional recipe, for example: `["cocoon"] = "vrauks-cocoon-1"`
 -- @param scalar number How much should we scale the ingredients down by
 function py_veganism_globals.get_filament_ingredients(main_product_name, costs, cost_factor, trad_recipe_name, sub_recipes, scaler)
-  local recipe = RECIPE(trad_recipe_name)
-  local ingredients = recipe.ingredients
-  local main_product = get_main_product(recipe.results, main_product_name)
-  log("Main product " .. main_product.name .. " with amount: " .. main_product.amount)
+    local recipe = RECIPE(trad_recipe_name)
+    local ingredients = recipe.ingredients
+    local main_product = get_main_product(recipe.results, main_product_name)
+    log("Main product " .. main_product.name .. " with amount: " .. main_product.amount)
 
-  local trad_costs = get_recipe_costs(main_product.amount, ingredients, costs, sub_recipes)
-  for name, cost in pairs(trad_costs) do
-    trad_costs[name] = round(cost, 3)
-  end
+    local trad_costs = get_recipe_costs(main_product.amount, ingredients, costs, sub_recipes)
+    for name, cost in pairs(trad_costs) do
+        trad_costs[name] = round(cost, 3)
+    end
 
-  log("Costs: " .. serpent.block(trad_costs))
+    log("Costs: " .. serpent.block(trad_costs))
 
-  local new_ingredients = ingredients_collapse(trad_costs, cost_factor, scaler, costs)
-  
-  return new_ingredients
+    local new_ingredients = ingredients_collapse(trad_costs, cost_factor, scaler, costs)
+
+    return new_ingredients
 end
 
 -- Generates a new filament recipe based off of some criteria
@@ -169,240 +169,240 @@ end
 -- @param filament_name string The name of the filament
 -- @param filament_color number[3] RGB of the filament's color
 -- @param filament_amount number The amount of filament to output
--- 
+--
 -- @param main_product_name string The name of the main_product, for example: `vrauks`
 -- @param costs table<string, number> A table of the associated costs of each ingredient
 -- @param cost_factor number A number to weight out costs to be more ingredients
 -- @param trad_recipe_name string the name of the traditional recipe
 -- @param sub_recipes table<string, string> the name of the ingredient matched with it's traditional recipe, for example: `["cocoon"] = "vrauks-cocoon-1"`
 function py_veganism_globals.generate_new_automatic_filament_recipe(
-  recipe_name,
-  icon_path,
-  extra_ingredients,
-  scalar,
-  
-  filament_name,
-  filament_color,
-  filament_amount,
-  
-  main_product_name,
-  costs,
-  cost_factor,
-  trad_recipe_name,
-  sub_recipes,
-  mk_level
+    recipe_name,
+    icon_path,
+    extra_ingredients,
+    scalar,
+
+    filament_name,
+    filament_color,
+    filament_amount,
+
+    main_product_name,
+    costs,
+    cost_factor,
+    trad_recipe_name,
+    sub_recipes,
+    mk_level
 )
-  local ingredients = py_veganism_globals.get_filament_ingredients(main_product_name, costs, cost_factor, trad_recipe_name, sub_recipes, scalar)
-  log("Ingredients: " .. serpent.block(ingredients))
+    local ingredients = py_veganism_globals.get_filament_ingredients(main_product_name, costs, cost_factor, trad_recipe_name, sub_recipes, scalar)
+    log("Ingredients: " .. serpent.block(ingredients))
 
-  if not data.raw["fluid"][filament_name] then
-    local mk_icon
-    if mk_level then
-      mk_icon = {icon = "__pyalienlifegraphics__/graphics/icons/over-mk0" .. mk_level .. ".png", icon_size = 64}
+    if not data.raw["fluid"][filament_name] then
+        local mk_icon
+        if mk_level then
+            mk_icon = { icon = "__pyalienlifegraphics__/graphics/icons/over-mk0" .. mk_level .. ".png", icon_size = 64 }
+        end
+        FLUID {
+            type = "fluid",
+            name = filament_name,
+            icons = {
+                { icon = icon_path, icon_size = 64 },
+                mk_icon
+            },
+            subgroup = "py-veganism-filament",
+            default_temperature = 15,
+            base_color = filament_color,
+            flow_color = filament_color,
+        }
+        log("New Filament: " .. serpent.block(data.raw["fluid"][filament_name]))
     end
-    FLUID {
-      type = "fluid",
-      name = filament_name,
-      icons = {
-        {icon = icon_path, icon_size = 64},
-        mk_icon
-      },
-      subgroup = "py-veganism-filament",
-      default_temperature = 15,
-      base_color = filament_color,
-      flow_color = filament_color,
-    }
-    log("New Filament: " .. serpent.block(data.raw["fluid"][filament_name]))
-  end
 
-  return {
-    type = "recipe",
-    name = recipe_name,
-    icon = icon_path,
-    subgroup = "py-veganism-filament",
-    ingredients = table.extend(ingredients, extra_ingredients),
-    results = {
-      {
-        type = "fluid",
-        name = filament_name,
-        amount = filament_amount * math.pow(COST_BASE, cost_factor)
-      }
+    return {
+        type = "recipe",
+        name = recipe_name,
+        icon = icon_path,
+        subgroup = "py-veganism-filament",
+        ingredients = table.extend(ingredients, extra_ingredients),
+        results = {
+            {
+                type = "fluid",
+                name = filament_name,
+                amount = filament_amount * math.pow(COST_BASE, cost_factor)
+            }
+        }
     }
-  }
 end
 
 -- @param animal_name string Animal name
 -- @param filament_color number[3] RGB of the filament's color
 -- @param extra_ingredients table<string, any>[] The extra ingredients in the recipe
--- 
+--
 -- @param trad_recipe_name string the name of the traditional recipe
 -- @param sub_recipes table<string, string> the name of the ingredient matched with it's traditional recipe, for example: `["cocoon"] = "vrauks-cocoon-1"`
 -- @param extra_properties table Extra properties like codex return
 -- @param vege (bool|nil) to have the vegetarian recipe or not
 function py_veganism_globals.create_recipe(animal_name, extra_ingredients, filament_color, costs, trad_recipe, sub_recipes, extra_properties, vege)
-  local vegan_recipe = py_veganism_globals.generate_new_automatic_filament_recipe(
-    animal_name .. "-".. trad_recipe .. "-filament-" .. (extra_properties.recipe_name or "vegan"), -- Name
-    "__pyveganism__/graphics/icons/filaments/" .. (extra_properties.filament_icon_name or animal_name) .. "-filament.png", -- Filament Icon
-    extra_properties.vegan_extra_ingredients or {}, -- Extra ingredients
-    1, -- Scalar value
-    animal_name .. "-filament", -- Filament name
-    filament_color, -- Filament Color
-    100, -- Filament Amount
+    local vegan_recipe = py_veganism_globals.generate_new_automatic_filament_recipe(
+        animal_name .. "-" .. trad_recipe .. "-filament-" .. (extra_properties.recipe_name or "vegan"),                    -- Name
+        "__pyveganism__/graphics/icons/filaments/" .. (extra_properties.filament_icon_name or animal_name) .. "-filament.png", -- Filament Icon
+        extra_properties.vegan_extra_ingredients or {},                                                                    -- Extra ingredients
+        1,                                                                                                                 -- Scalar value
+        animal_name .. "-filament",                                                                                        -- Filament name
+        filament_color,                                                                                                    -- Filament Color
+        100,                                                                                                               -- Filament Amount
 
-    animal_name, -- Main Product
-    costs,
-    0, -- Cost factor
-    trad_recipe, -- Original Recipe
-    sub_recipes, -- Sub recipes,
-    extra_properties.mk_level
-  )
-  vegan_recipe.results[1].probability = extra_properties.filament_result_probability
-  vegan_recipe.category = "biofactory"
-  if extra_properties.additional_results then
-    vegan_recipe.results = table.extend(vegan_recipe.results, extra_properties.additional_results)
-  end
-  vegan_recipe.main_product = extra_properties.main_product
-  vegan_recipe.energy_required = RECIPE(trad_recipe).energy_required / 1.5
-  if extra_properties.mk_level then
-    vegan_recipe.icons = {
-      {icon = vegan_recipe.icon, icon_size = vegan_recipe.icon_size},
-      {icon = "__pyalienlifegraphics__/graphics/icons/over-mk0" .. extra_properties.mk_level .. ".png", icon_size = 64},
-    }
-    vegan_recipe.icon = nil
-  end
-
-  RECIPE(vegan_recipe):add_unlock(animal_name)
-
-  if vege then
-    local vege_recipe = py_veganism_globals.generate_new_automatic_filament_recipe(
-      animal_name .. "-" .. trad_recipe .. "-filament-vegetarian", -- Name
-      "__pyveganism__/graphics/icons/filaments/" .. (extra_properties.filament_icon_name or animal_name) .. "-filament.png", -- Filament Icon
-      table.extend(extra_ingredients, extra_properties.vegan_extra_ingredients or {}), -- Extra ingredients
-      1, -- Scalar value
-      animal_name .. "-filament", -- Filament name
-      filament_color, -- Filament Color
-      250, -- Filament Amount
-
-      animal_name, -- Main Product
-      costs,
-      0, -- Cost factor
-      trad_recipe, -- Original Recipe
-      sub_recipes -- Sub recipes
+        animal_name,                                                                                                       -- Main Product
+        costs,
+        0,                                                                                                                 -- Cost factor
+        trad_recipe,                                                                                                       -- Original Recipe
+        sub_recipes,                                                                                                       -- Sub recipes,
+        extra_properties.mk_level
     )
-    vege_recipe.results[1].probability = extra_properties.filament_result_probability
-    vege_recipe.category = "biofactory"
+    vegan_recipe.results[1].probability = extra_properties.filament_result_probability
+    vegan_recipe.category = "biofactory"
     if extra_properties.additional_results then
-      vege_recipe.results = table.extend(vege_recipe.results, extra_properties.additional_results)
+        vegan_recipe.results = table.extend(vegan_recipe.results, extra_properties.additional_results)
     end
-    vege_recipe.main_product = extra_properties.main_product
-    vege_recipe.energy_required = RECIPE(trad_recipe).energy_required / 1.5
+    vegan_recipe.main_product = extra_properties.main_product
+    vegan_recipe.energy_required = RECIPE(trad_recipe).energy_required / 1.5
     if extra_properties.mk_level then
-      vege_recipe.icons = {
-        {icon = vege_recipe.icon, icon_size = vege_recipe.icon_size},
-        {icon = "__pyalienlifegraphics__/graphics/icons/over-mk0" .. extra_properties.mk_level .. ".png", icon_size = 64},
-      }
-      vege_recipe.icon = nil
+        vegan_recipe.icons = {
+            { icon = vegan_recipe.icon,                                                                        icon_size = vegan_recipe.icon_size },
+            { icon = "__pyalienlifegraphics__/graphics/icons/over-mk0" .. extra_properties.mk_level .. ".png", icon_size = 64 },
+        }
+        vegan_recipe.icon = nil
     end
 
-    RECIPE(vege_recipe):add_unlock(animal_name)
-  end
+    RECIPE(vegan_recipe):add_unlock(animal_name)
 
-  if extra_properties.skip_nvm then
-    return
-  end
+    if vege then
+        local vege_recipe = py_veganism_globals.generate_new_automatic_filament_recipe(
+            animal_name .. "-" .. trad_recipe .. "-filament-vegetarian",                                                     -- Name
+            "__pyveganism__/graphics/icons/filaments/" .. (extra_properties.filament_icon_name or animal_name) .. "-filament.png", -- Filament Icon
+            table.extend(extra_ingredients, extra_properties.vegan_extra_ingredients or {}),                                 -- Extra ingredients
+            1,                                                                                                               -- Scalar value
+            animal_name .. "-filament",                                                                                      -- Filament name
+            filament_color,                                                                                                  -- Filament Color
+            250,                                                                                                             -- Filament Amount
 
-  if not extra_properties.not_alive then
-    local icons = {
-      {icon = table.deepcopy(ITEM(animal_name)).icon}
-    }
-    if ITEM(animal_name).icons then
-      icons = table.deepcopy(ITEM(animal_name)).icons
+            animal_name,                                                                                                     -- Main Product
+            costs,
+            0,                                                                                                               -- Cost factor
+            trad_recipe,                                                                                                     -- Original Recipe
+            sub_recipes                                                                                                      -- Sub recipes
+        )
+        vege_recipe.results[1].probability = extra_properties.filament_result_probability
+        vege_recipe.category = "biofactory"
+        if extra_properties.additional_results then
+            vege_recipe.results = table.extend(vege_recipe.results, extra_properties.additional_results)
+        end
+        vege_recipe.main_product = extra_properties.main_product
+        vege_recipe.energy_required = RECIPE(trad_recipe).energy_required / 1.5
+        if extra_properties.mk_level then
+            vege_recipe.icons = {
+                { icon = vege_recipe.icon,                                                                         icon_size = vege_recipe.icon_size },
+                { icon = "__pyalienlifegraphics__/graphics/icons/over-mk0" .. extra_properties.mk_level .. ".png", icon_size = 64 },
+            }
+            vege_recipe.icon = nil
+        end
+
+        RECIPE(vege_recipe):add_unlock(animal_name)
     end
 
-    table.insert(icons, {icon = "__pyveganism__/graphics/icons/filaments/" .. (extra_properties.filament_icon_name or animal_name) .. "-filament.png", icon_size = 64, scale = 0.25, shift = {-8, -8}})
-    
-    RECIPE{
-      type = "recipe",
-      name = "print-" .. animal_name .. "-alive",
-      energy_required = 400,
-      icons = icons,
-      category = "bio-printer",
-      subgroup = "py-veganism-printing-alive",
-      ingredients = {
-        {
-          type = "item",
-          name = extra_properties.codex_name or animal_name .. "-codex",
-          amount = 1
-        },
-        {
-          type = "fluid",
-          name = animal_name .. "-filament",
-          amount = 100
-        },
-      },
-      results = {
-        {
-          type = "item",
-          name = animal_name,
-          amount = 1 * (extra_properties.result_alive_multiplier or 1),
-          probability = extra_properties.result_alive_probability
-        },
-        {
-          type = "item",
-          name = extra_properties.codex_name or animal_name .. "-codex",
-          amount = 1,
-          probability = extra_properties.codex_return or .99
-        }
-      },
-      allowed_module_categories = {extra_properties.module_category or animal_name},
-      main_product = animal_name
-    }:add_unlock(animal_name)
-  end
+    if extra_properties.skip_nvm then
+        return
+    end
 
-  if not extra_properties.not_nvm then
-    RECIPE{
-      type = "recipe",
-      name = "print-" .. animal_name,
-      category = "bio-printer",
-      subgroup = "py-veganism-printing",
-      energy_required = 30,
-      icons = {
-        {icon = ITEM(animal_name).icon or ITEM(animal_name).icons[1].icon},
-        {icon = "__pyveganism__/graphics/icons/filaments/" .. (extra_properties.filament_icon_name or animal_name) .. "-filament.png", icon_size = 64, scale = 0.25, shift = {-8, 8}},
-      },
-      ingredients = {
-        {
-          type = "item",
-          name = extra_properties.codex_name or animal_name .. "-codex",
-          amount = 1
-        },
-        {
-          type = "fluid",
-          name = animal_name .. "-filament",
-          amount = 100
-        },
-        {
-          type = "item",
-          name = extra_properties.special_container or "sack",
-          amount = 1
+    if not extra_properties.not_alive then
+        local icons = {
+            { icon = table.deepcopy(ITEM(animal_name)).icon }
         }
-      },
-      results = {
-        {
-          type = "item",
-          name = extra_properties.nvm_name or ("non-viable-" .. animal_name .. "-mass"),
-          amount = 1 * (extra_properties.result_multiplier or 1),
-          probability = extra_properties.result_probability
-        },
-        {
-          type = "item",
-          name = extra_properties.codex_name or animal_name .. "-codex",
-          amount = 1,
-          probability = extra_properties.codex_return or .99
-        }
-      },
-      allowed_module_categories = {extra_properties.module_category or animal_name},
-      main_product = extra_properties.nvm_name or ("non-viable-" .. animal_name .. "-mass")
-    }:add_unlock(animal_name)
-  end
+        if ITEM(animal_name).icons then
+            icons = table.deepcopy(ITEM(animal_name)).icons
+        end
+
+        table.insert(icons, { icon = "__pyveganism__/graphics/icons/filaments/" .. (extra_properties.filament_icon_name or animal_name) .. "-filament.png", icon_size = 64, scale = 0.25, shift = { -8, -8 } })
+
+        RECIPE {
+            type = "recipe",
+            name = "print-" .. animal_name .. "-alive",
+            energy_required = 400,
+            icons = icons,
+            category = "bio-printer",
+            subgroup = "py-veganism-printing-alive",
+            ingredients = {
+                {
+                    type = "item",
+                    name = extra_properties.codex_name or animal_name .. "-codex",
+                    amount = 1
+                },
+                {
+                    type = "fluid",
+                    name = animal_name .. "-filament",
+                    amount = 100
+                },
+            },
+            results = {
+                {
+                    type = "item",
+                    name = animal_name,
+                    amount = 1 * (extra_properties.result_alive_multiplier or 1),
+                    probability = extra_properties.result_alive_probability
+                },
+                {
+                    type = "item",
+                    name = extra_properties.codex_name or animal_name .. "-codex",
+                    amount = 1,
+                    probability = extra_properties.codex_return or .99
+                }
+            },
+            allowed_module_categories = { extra_properties.module_category or animal_name },
+            main_product = animal_name
+        }:add_unlock(animal_name)
+    end
+
+    if not extra_properties.not_nvm then
+        RECIPE {
+            type = "recipe",
+            name = "print-" .. animal_name,
+            category = "bio-printer",
+            subgroup = "py-veganism-printing",
+            energy_required = 30,
+            icons = {
+                { icon = ITEM(animal_name).icon or ITEM(animal_name).icons[1].icon },
+                { icon = "__pyveganism__/graphics/icons/filaments/" .. (extra_properties.filament_icon_name or animal_name) .. "-filament.png", icon_size = 64, scale = 0.25, shift = { -8, 8 } },
+            },
+            ingredients = {
+                {
+                    type = "item",
+                    name = extra_properties.codex_name or animal_name .. "-codex",
+                    amount = 1
+                },
+                {
+                    type = "fluid",
+                    name = animal_name .. "-filament",
+                    amount = 100
+                },
+                {
+                    type = "item",
+                    name = extra_properties.special_container or "sack",
+                    amount = 1
+                }
+            },
+            results = {
+                {
+                    type = "item",
+                    name = extra_properties.nvm_name or ("non-viable-" .. animal_name .. "-mass"),
+                    amount = 1 * (extra_properties.result_multiplier or 1),
+                    probability = extra_properties.result_probability
+                },
+                {
+                    type = "item",
+                    name = extra_properties.codex_name or animal_name .. "-codex",
+                    amount = 1,
+                    probability = extra_properties.codex_return or .99
+                }
+            },
+            allowed_module_categories = { extra_properties.module_category or animal_name },
+            main_product = extra_properties.nvm_name or ("non-viable-" .. animal_name .. "-mass")
+        }:add_unlock(animal_name)
+    end
 end

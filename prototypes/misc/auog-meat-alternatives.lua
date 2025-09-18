@@ -1,7 +1,26 @@
 py_veganism_globals.non_viable_auog_mass_icon = {
-    {icon = "__pyveganism__/graphics/icons/reinforced-wooden-chest.png", icon_size = 64},
-    {icon = "__pyveganism__/graphics/icons/auog-gray.png", icon_size = 64, scale = 0.2, shift = {0, 8}},
+    { icon = "__pyveganism__/graphics/icons/reinforced-wooden-chest.png", icon_size = 64 },
+    { icon = "__pyveganism__/graphics/icons/auog-gray.png",               icon_size = 64, scale = 0.2, shift = { 0, 8 } },
 }
+
+TECHNOLOGY {
+    type = "techonolgy",
+    name = "auog-blood-drive",
+    icons = {
+        { icon = "__pyalienlifegraphics__/graphics/icons/auog.png",    icon_size = 64 },
+        { icon = "__pyalienlifegraphics__/graphics/icons/syringe.png", scale = 2,     shift = { 2, 8 }, icon_size = 64 },
+    },
+    unit = {
+        count = 200,
+        time = 60.0,
+        ingredients = {
+            { "automation-science-pack", 8 },
+            { "py-science-pack-1",       4 },
+            { "logistic-science-pack",   2 },
+            { "py-science-pack-2",       1 }
+        },
+    },
+}:add_prereq("auog"):add_prereq("fiber-refining"):add_prereq("glass"):add_prereq("energy-drink"):add_prereq("py-science-pack-2")
 
 ITEM {
     type = "item",
@@ -26,8 +45,8 @@ RECIPE {
     type = "recipe",
     name = "auog-fur-tuft-1",
     icons = {
-        {icon = "__pyveganism__/graphics/icons/auog-fur-tuft.png", icon_size = 64},
-        {icon = "__pyalienlifegraphics__/graphics/icons/1.png", icon_size = 64, scale = .25, shift = {-8, 8}},
+        { icon = "__pyveganism__/graphics/icons/auog-fur-tuft.png", icon_size = 64 },
+        { icon = "__pyalienlifegraphics__/graphics/icons/1.png",    icon_size = 64, scale = .25, shift = { -8, 8 } },
     },
     enabled = false,
     subgroup = "py-veganism-auog",
@@ -84,8 +103,8 @@ RECIPE {
     type = "recipe",
     name = "auog-fur-tuft-2",
     icons = {
-        {icon = "__pyveganism__/graphics/icons/auog-fur-tuft.png", icon_size = 64},
-        {icon = "__pyalienlifegraphics__/graphics/icons/2.png", icon_size = 64, scale = .25, shift = {-8, 8}},
+        { icon = "__pyveganism__/graphics/icons/auog-fur-tuft.png", icon_size = 64 },
+        { icon = "__pyalienlifegraphics__/graphics/icons/2.png",    icon_size = 64, scale = .25, shift = { -8, 8 } },
     },
     enabled = false,
     subgroup = "py-veganism-auog",
@@ -239,12 +258,12 @@ py_veganism_globals.repetitive_recipe(1, 3,
             }
             additional.nvm_auog_amount = 8
         end
-        
+
         return ingredient_pairs, additional
     end, function(i, ingredients, counts, additional)
         local icons = table.deepcopy(py_veganism_globals.non_viable_auog_mass_icon)
         table.insert(icons,
-            {icon = "__pyalienlifegraphics__/graphics/icons/" .. i .. ".png", icon_size = 64, scale = .25, shift = {-8, 8}}
+            { icon = "__pyalienlifegraphics__/graphics/icons/" .. i .. ".png", icon_size = 64, scale = .25, shift = { -8, 8 } }
         )
 
         RECIPE {
@@ -276,10 +295,16 @@ py_veganism_globals.repetitive_recipe(1, 3,
                 },
             },
             subgroup = "py-veganism-auog",
-            allowed_effects = {"speed", "productivity", "consumption", "pollution", "quality"},
-            allowed_module_categories = {"auog"},
+            allowed_effects = { "speed", "productivity", "consumption", "pollution", "quality" },
+            allowed_module_categories = { "auog" },
             order = "aaa",
-        }:add_unlock("auog")
+        }
+
+        if i == 3 then
+            RECIPE("synthetic-non-viable-auog-mass-3"):add_unlock("oil-plants")
+        else
+            RECIPE("synthetic-non-viable-auog-mass-3"):add_unlock("auog")
+        end
     end
 )
 
@@ -403,20 +428,20 @@ py_veganism_globals.repetitive_recipe(1, 3,
                 name = "bones",
                 amount = 10
             }
-            
+
             additional.energy_required = 45
             additional.blood_amount = 340
         end
-        
+
         return ingredient_pairs, additional
     end, function(i, ingredients, counts, additional)
-        RECIPE{
+        RECIPE {
             type = "recipe",
             name = "synthetic-auog-blood-" .. i,
             icons = {
-                {icon = "__pyalienlifegraphics__/graphics/icons/auog.png", icon_size = 64},
-                {icon = "__pyalienlifegraphics__/graphics/icons/blood.png", icon_size = 64, scale = 0.25, shift = {8, -8}},
-                {icon = "__pyalienlifegraphics__/graphics/icons/" .. i .. ".png", icon_size = 64, scale = 0.25, shift = {-8, 8}},
+                { icon = "__pyalienlifegraphics__/graphics/icons/auog.png",        icon_size = 64 },
+                { icon = "__pyalienlifegraphics__/graphics/icons/blood.png",       icon_size = 64, scale = 0.25, shift = { 8, -8 } },
+                { icon = "__pyalienlifegraphics__/graphics/icons/" .. i .. ".png", icon_size = 64, scale = 0.25, shift = { -8, 8 } },
             },
             enabled = false,
             hidden = settings.startup["pyveganism-old-recipes"] and settings.startup["pyveganism-old-recipes"].value,
@@ -442,11 +467,11 @@ py_veganism_globals.repetitive_recipe(1, 3,
                     probability = 0.9999
                 }
             },
-        }:add_unlock("auog")
+        }:add_unlock("auog-blood-drive")
     end
 )
 
-ITEM{
+ITEM {
     type = "item",
     name = "syringe",
     icon = "__pyveganism__/graphics/icons/syringe.png",
@@ -455,7 +480,7 @@ ITEM{
     stack_size = 200,
 }
 
-ITEM{
+ITEM {
     type = "item",
     name = "used-syringe",
     icon = "__pyveganism__/graphics/icons/used-syringe.png",
@@ -464,21 +489,7 @@ ITEM{
     stack_size = 200,
 }
 
-TECHNOLOGY{
-    type = "techonolgy",
-    name = "syringe",
-    icon = "__pyalienlifegraphics__/graphics/icons/syringe.png",
-    icon_size = 64,
-    unit = {
-        count = 45,
-        time = 30.0,
-        ingredients = {
-            {"automation-science-pack", 1}
-        },
-    },
-}:add_prereq("fiber-refining"):add_prereq("glass")
-
-RECIPE{
+RECIPE {
     type = "recipe",
     name = "syringe",
     icon = "__pyveganism__/graphics/icons/syringe.png",
@@ -506,14 +517,14 @@ RECIPE{
     order = "baa",
     energy_required = 15,
     subgroup = "py-veganism-auog"
-}:add_unlock("syringe")
+}:add_unlock("auog-blood-drive")
 
-RECIPE{
+RECIPE {
     type = "recipe",
     name = "clean-syringe-1",
     icons = {
-        {icon = "__pyveganism__/graphics/icons/syringe.png", icon_size = 64},
-        {icon = "__pyalienlifegraphics__/graphics/icons/1.png", icon_size = 64, scale = .25, shift = {-8, 8}}
+        { icon = "__pyveganism__/graphics/icons/syringe.png",    icon_size = 64 },
+        { icon = "__pyalienlifegraphics__/graphics/icons/1.png", icon_size = 64, scale = .25, shift = { -8, 8 } }
     },
     icon_size = 64,
     category = "washer",
@@ -539,14 +550,14 @@ RECIPE{
     order = "bba",
     subgroup = "py-veganism-auog",
     energy_required = 300,
-}:add_unlock("syringe")
+}:add_unlock("auog-blood-drive")
 
-RECIPE{
+RECIPE {
     type = "recipe",
     name = "clean-syringe-2",
     icons = {
-        {icon = "__pyveganism__/graphics/icons/syringe.png", icon_size = 64},
-        {icon = "__pyalienlifegraphics__/graphics/icons/2.png", icon_size = 64, scale = .25, shift = {-8, 8}}
+        { icon = "__pyveganism__/graphics/icons/syringe.png",    icon_size = 64 },
+        { icon = "__pyalienlifegraphics__/graphics/icons/2.png", icon_size = 64, scale = .25, shift = { -8, 8 } }
     },
     icon_size = 64,
     category = "washer",
@@ -572,9 +583,9 @@ RECIPE{
     order = "bba",
     subgroup = "py-veganism-auog",
     energy_required = 300,
-}:add_unlock("coalplant-mk01"):add_unlock("biomassplant-mk01"):add_unlock("oilplant-mk01"):add_unlock("gasplant-mk01")
+}:add_unlock("auog-blood-drive")
 
-RECIPE{
+RECIPE {
     type = "recipe",
     name = "break-used-syringe",
     icon = "__pyveganism__/graphics/icons/syringe.png",
@@ -602,26 +613,9 @@ RECIPE{
     order = "bca",
     subgroup = "py-veganism-auog",
     energy_required = 10,
-}:add_unlock("syringe")
+}:add_unlock("auog-blood-drive")
 
-TECHNOLOGY{
-    type = "techonolgy",
-    name = "auog-blood-drive",
-    icons = {
-        {icon = "__pyalienlifegraphics__/graphics/icons/auog.png", icon_size = 64},
-        {icon = "__pyalienlifegraphics__/graphics/icons/syringe.png", scale = 2, shift = {2, 8}, icon_size = 64},
-    },
-    unit = {
-        count = 200,
-        time = 60.0,
-        ingredients = {
-            {"automation-science-pack", 1},
-            {"py-science-pack-1", 1}
-        },
-    },
-}:add_prereq("auog"):add_prereq("syringe")
-
-RECIPE{
+RECIPE {
     type = "recipe",
     name = "auog-blood-drive",
     icon = "__pyalienlifegraphics__/graphics/icons/blood.png",
