@@ -25,5 +25,9 @@ for f, _ in pairs(data.raw.fluid) do
 end
 
 if register_cache_file ~= nil then
-    register_cache_file({ "pycoalprocessing", "pyfusionenergy", "pyindustry", "pyrawores", "pyhightech", "pypetroleumhandling", "pyalienlife", "pyalternativeenergy", "pyveganism" }, "__pyveganism__/cached-configs/pyalienlife+pyalternativeenergy+pycoalprocessing+pyfusionenergy+pyhightech+pyindustry+pypetroleumhandling+pyrawores+pyveganism")
+    if mods["pyhardmode"] then
+        register_cache_file({ "pycoalprocessing", "pyfusionenergy", "pyindustry", "pyrawores", "pyhightech", "pypetroleumhandling", "pyalienlife", "pyalternativeenergy", "pyveganism", "pyhardmode" }, "__pyveganism__/cached-configs/pyalienlife+pyalternativeenergy+pycoalprocessing+pyfusionenergy+pyhightech+pyindustry+pypetroleumhandling+pyrawores+pyveganism+pyhardmode")
+    else
+        register_cache_file({ "pycoalprocessing", "pyfusionenergy", "pyindustry", "pyrawores", "pyhightech", "pypetroleumhandling", "pyalienlife", "pyalternativeenergy", "pyveganism" }, "__pyveganism__/cached-configs/pyalienlife+pyalternativeenergy+pycoalprocessing+pyfusionenergy+pyhightech+pyindustry+pypetroleumhandling+pyrawores+pyveganism")
+    end
 end
