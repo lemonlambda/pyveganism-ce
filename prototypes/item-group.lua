@@ -9,19 +9,19 @@ data:extend {
     },
     --general
     {
-        type= "item-subgroup",
+        type = "item-subgroup",
         name = "py-veganism-filament",
         group = "py-veganism",
         order = "aa"
     },
     {
-        type= "item-subgroup",
+        type = "item-subgroup",
         name = "py-veganism-printing",
         group = "py-veganism",
         order = "ab"
     },
     {
-        type= "item-subgroup",
+        type = "item-subgroup",
         name = "py-veganism-printing-alive",
         group = "py-veganism",
         order = "ac"
@@ -230,6 +230,12 @@ data:extend {
         name = "py-veganism-zipir",
         group = "py-veganism",
         order = "cga",
+    },
+    {
+        type = "item-subgroup",
+        name = "py-veganism-fish1",
+        group = "py-veganism",
+        order = "cha",
     },
     {
         type = "item-subgroup",
