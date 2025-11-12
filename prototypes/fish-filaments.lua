@@ -27,6 +27,7 @@ unviable_fish_eggs.icons = {
     { icon = "__pyveganism__/graphics/icons/vegan.png" }
 }
 unviable_fish_eggs.icon = nil
+unviable_fish_eggs.icon_size = nil
 ITEM(unviable_fish_eggs)
 
 py_veganism_globals.register_replace_ingredients("fish-egg", "unviable-fish-egg")
